@@ -1,0 +1,58 @@
+********************************************************
+Installation Delphi XE2 in Virtuelle Maschine
+********************************************************
+
+
+[20.01.14]
+- Delphi klassische Ansicht:
+  --------------------------
+  http://blogs.embarcadero.com/andreanolanusse/how-to-configure-delphi-2010-to-look-work-and-feel-like-delphi-7/  
+  - Komponenten oben:
+    >Rechte Maus >Check:Component
+  - Formulardesigner offen:
+    >Tools >Optionen >VCL-Designer >Eingebetteter Designer
+  - >Objektinspektor >Eigenschaften >Tradistionelle Farben
+  
+- Komponenten: (Lawa)
+  ------------  
+  - Jedi: JVCL345CompleteJCL231-Build4197.zip
+    kopieren nach ...\Addons\Jedi\jcl, vlcl
+    JCL: install.bat
+      BPL path: dflt: C:\Users\Public\Documents\RAD Studio\9.0\Bpl
+      DCP path: dflt: C:\DelphiXE2\Addons\jcl\lib\d16\win32\
+    JVCL: install.bat
+      BPL: dflt: C:\Users\Public\Documents\RAD Studio\9.0\Bpl
+      
+  - GExperts: GXRSXE2-136.exe
+    Install into: c:\DelphiXE2\ADDONS\GExperts\
+  
+  - QuickReport: QR505PDW32XE2.EXE
+    Install into: c:\DelphiXE2\ADDONS\Quickrep
+  
+  - Unidac: unidac50d16pro.exe
+    Install into: c:\DelphiXE2\ADDONS\UniDAC
+                  c:\DelphiXE2\ADDONS\UniDAC\Demos
+    Kopieren von unidac50src.zip:
+      DbToolsInterfaces
+      Help
+      Images
+      Include
+      Lib # nur ältere überschreiben
+      Source # nur ältere überschreiben
+      ReadmeSrc.html
+   
+  - Indy10
+    nur Indy10.chm
+    
+  - NativeExcel3: V3.1.0
+    Install Into: c:\DelphiXE2\ADDONS\NativeExcel3
+    Follow install.txt
+    >Datei >Öffnen: NativeExcelDXE2.dpk
+    >Compile
+    >Install: TDataset2Excel, TDBGrid2Excle
+    
+  - madExcept: madCollection.exe
+    Install into: c:\DelphiXE2\ADDONS\madCollection
+    
+    
+  

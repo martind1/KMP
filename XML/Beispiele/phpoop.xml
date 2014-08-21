@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form jsname="fadr">
+
+  <javascript>
+    <mode>strong</mode>
+  </javascript>
+  
+  <defaults>
+    <text size="20" maxlength="127"/>
+    <file size="3"/>
+    <image border="4"/>
+    <intros errormsg="Please select an item">
+      <intro value="-1">Please select...</intro>
+    </intros>
+    <css>font-family: sans-serif; font-size: normal; color: Navy;</css>
+  </defaults>
+  
+  <elements>
+    
+    <select name="title" size="1" label="Title">
+      <options>
+        <option value="Mr.">Mr.</option>
+        <option value="Mrs.">Mrs.</option>
+      </options>
+      <intros errormsg="Please select an item.">
+        <intro value="-1">Please select...</intro>
+      </intros>
+    </select>
+    <text name="firstname" size="20" label="Firstname">
+      <validation>
+        <length min="2" max="127">Please enter your firstname.</length>
+      </validation>
+    </text>
+    <text name="lastname" size="20" label="Lastname">
+      <validation>
+        <length min="2" max="127">Please enter your lastname.</length>
+      </validation>
+    </text>
+    <text name="street" size="20" label="Street">
+      <validation>
+        <length min="3" max="127">Tell me the street you're living.</length>
+      </validation>
+    </text>
+    <text name="street" size="20" label="Street">
+      <validation>
+        <length min="3" max="127">Tell me the street you're living.</length>
+      </validation>
+    </text>
+    <text name="city" size="20" label="City">
+      <validation>
+        <length min="3" max="127">In which city do you live?</length>
+      </validation>
+    </text>
+    <text name="fullzip" size="20" label="Zip-Code">
+      <validation>
+        <length min="3" max="127">Enter the Zip-Code including foreign countries prefix.</length>
+      </validation>
+    </text>
+    <text name="phone" size="20" label="Phone number" />
+    
+    <text name="email" size="20" label="E-Mail">
+      <validation>
+        <phpfunction callback="true">email</phpfunction>
+        <jsfunction>
+          // must have the name of the (phpfunction)
+          function email(form) {
+            var v;
+            v = form.get_value(form, "email");
+            if ("" != v[0] &amp;&amp; -1 == v[0].search(new RegExp("@")))
+              form.set_err("Your email seems to be wrong. Please correct or remove it.");
+          }
+        </jsfunction>
+      </validation>
+    </text>    
+    <date name="birthday" language="en" format="d.m.Y" label="Date of birth">
+      <intros errormsg = "Please enter your birthdate">
+        <intro value="-1">-%-</intro>
+      </intros>
+      <limits>
+        <yearlong min="1900" max="2001"/>
+      </limits>
+    </date>
+  
+    <checkbox name="info" checked="true" label="Newsletter" />
+    
+    <submit name="submit">save</submit>
+    
+  </elements>
+  
+</form>
+ 

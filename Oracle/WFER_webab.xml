@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- encoding="UTF-8"  macht Fehler bei Umlauten -->
+<!--==================================================================
+*  Template zum Erstellen von MSSQL-Trigger 
+*  zum Erstellen der Workflow Ereignisse
+*=====================================================================
+*  20.11.08 MD   erstellt
+*  14.04.09 MD   Feld BEMERKUNG ist TEXT und muss deshalb ausgeschlossen werden
+*===================================================================-->
+<template>
+<line><![CDATA[
+drop TRIGGER TR_[Short]_WFER;
+create trigger TR_[Short]_WFER ON [TableName] after insert, update as
+begin
+  if @@ROWCOUNT = 1
+  begin
+    declare @OLDVALUE varchar(250), @NEWVALUE varchar(250)
+    declare @PK varchar(250)
+    set @PK = [MsPKEY]
+]]></line>
+  <field><![CDATA[
+      if isnull(([MSOld]), [MsNullValue]) <> isnull(([MSNew]), [MsNullValue])
+      begin
+        set @OLDVALUE = ([MSOld])
+        set @NEWVALUE = ([MSNew])
+        insert into WFER(TBLNAME,FLDNAME,PKVALUE,OLDVALUE,NEWVALUE,ERFASST_VON,ERFASST_AM)
+          values('[Short]','[Field]',@PK,@OLDVALUE,@NEWVALUE,dbo.getusse(),getdate())
+      end else
+  ]]></field>
+<line><![CDATA[
+        set @OLDVALUE='dummy'
+  end
+end;
+]]></line>
+</template>

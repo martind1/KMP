@@ -1,0 +1,242 @@
+object DlgInitEdi: TDlgInitEdi
+  Left = 930
+  Top = 138
+  Width = 529
+  Height = 494
+  ActiveControl = meEntries
+  Caption = 'Section Editor'
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clBlack
+  Font.Height = -12
+  Font.Name = 'Arial'
+  Font.Style = []
+  OldCreateOrder = True
+  Position = poScreenCenter
+  Scaled = False
+  ShowHint = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 15
+  object gbTop: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 521
+    Height = 65
+    Align = alTop
+    Caption = 'Section'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 8
+      Top = 18
+      Width = 65
+      Height = 15
+      Caption = 'Anwendung'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 88
+      Top = 18
+      Width = 19
+      Height = 15
+      Caption = 'Typ'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 120
+      Top = 18
+      Width = 34
+      Height = 15
+      Caption = 'Name'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 272
+      Top = 18
+      Width = 41
+      Height = 15
+      Caption = 'Section'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object edANWE: TEdit
+      Left = 8
+      Top = 34
+      Width = 72
+      Height = 23
+      CharCase = ecUpperCase
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnChange = EditChange
+    end
+    object edTYP: TEdit
+      Left = 88
+      Top = 34
+      Width = 24
+      Height = 23
+      CharCase = ecUpperCase
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnChange = edTYPChange
+    end
+    object edNAME: TEdit
+      Left = 120
+      Top = 34
+      Width = 145
+      Height = 23
+      CharCase = ecUpperCase
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnChange = EditChange
+    end
+    object edSECTION: TEdit
+      Left = 272
+      Top = 34
+      Width = 240
+      Height = 23
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnChange = EditChange
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 65
+    Width = 521
+    Height = 366
+    Align = alClient
+    Caption = 'Inhalt'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    object meEntries: TMemo
+      Left = 2
+      Top = 17
+      Width = 517
+      Height = 347
+      Align = alClient
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Courier New'
+      Font.Style = []
+      Lines.Strings = (
+        'param=value')
+      ParentFont = False
+      ScrollBars = ssBoth
+      TabOrder = 0
+      WordWrap = False
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 431
+    Width = 521
+    Height = 36
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 2
+    object BtnOK: TBitBtn
+      Left = 356
+      Top = 6
+      Width = 77
+      Height = 27
+      Caption = 'OK'
+      Default = True
+      Enabled = False
+      ModalResult = 1
+      TabOrder = 0
+      OnClick = BtnOKClick
+      NumGlyphs = 2
+      Spacing = -1
+    end
+    object BtnCancel: TBitBtn
+      Left = 442
+      Top = 6
+      Width = 77
+      Height = 27
+      Cancel = True
+      Caption = 'Abbrechen'
+      ModalResult = 2
+      TabOrder = 1
+      OnClick = BtnCancelClick
+      NumGlyphs = 2
+      Spacing = -1
+    end
+    object chbDelete: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 129
+      Height = 17
+      Caption = 'Ziel vorher löschen'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
+    end
+    object chbOverwrite: TCheckBox
+      Left = 152
+      Top = 8
+      Width = 172
+      Height = 17
+      Caption = 'bestehende überschreiben'
+      Checked = True
+      State = cbChecked
+      TabOrder = 3
+    end
+  end
+  object Query1: TuQuery
+    Left = 280
+    Top = 97
+  end
+end

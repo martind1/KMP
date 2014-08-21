@@ -1,0 +1,23 @@
+Projekt    Version        Stand
+KMP        3.07MD         26.04.02
+Komponenten
+==================================
+
+MultiGrid - Darstellung
+-----------------------
+- Nach .Cancel wurde die aktuelle Zelle nicht aktualisiert.
+  Sie enthielt falsche oder leere Werte.
+- Lsg: TMultiGrid.BCStateChange ändert Options.dgAlwaysShowEditor
+       nicht mehr.
+- Einsatz: QUPE
+
+QSplitter
+---------
+- TSplitter mit Speicherung der Position in .INI
+- wird im Register 'Beispiele' angelegt.
+- Einsatz: QUPE
+
+
+ToDo
+----
+

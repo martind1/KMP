@@ -1,0 +1,126 @@
+UniDAC Migration Wizard log
+
+Created at: 30.10.2011 01:45:46
+
+Initializing unit list
+
+Allocating temporary folder
+
+Processing file: D:\Delphi2010\Kmp\QW\Alt\EMailFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\BEINFRM.PAS
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\QW\EMailFrm.pas
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\QW\FltrDlg.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\FltrFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\GRSOFRM.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\KARTFRM.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Logondlg.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Silofrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\SISTFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\SpedFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\StMeDm.pas
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\QW\StMeFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Vartfrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\ZSpKuFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Alt\EMailFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\BEINFRM.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\EMailFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\GRSOFRM.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\KARTFRM.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Logondlg.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Silofrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\SISTFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\SpedFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\StMeDm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\StMeFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\Vartfrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\QW\ZSpKuFrm.DFM
+
+No changes
+
+Replacing original files with changed versions
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

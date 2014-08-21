@@ -1,0 +1,23 @@
+  {GNav_Kmp}
+  SGrossschrift: string = 'Großschrift';
+  SKleinschrift: string = 'Kleinschrift';
+
+  {QNav_Kmp}
+  SSuchen: string = 'Suchen';
+  SFirstRecord: string = 'Erster Datensatz';
+  SPriorRecord: string = 'Vorheriger Datensatz';
+  SNextRecord: string = 'Nächster Datensatz';
+  SLastRecord: string = 'Letzter Datensatz';
+  SReadOnly: string = 'Nur Lesen';
+  SInsertRecord: string = 'Datensatz einfügen';
+  SDeleteRecord: string = 'Datensatz löschen';
+  SEditRecord: string = 'Datensatz bearbeiten';
+  SPostEdit: string = 'Übernehmen';
+  SCancelEdit: string = 'Bearbeiten abbrechen';
+  SRefreshRecord: string = 'Daten aktualisieren';
+  SDeleteRecordQuestion: string = 'Datensatz löschen?';
+  SDeleteMultipleRecordsQuestion: string = 'Alle markierten Datensätze löschen?';
+
+  {PrnFoDlg}
+  SWindows: string = '(Windows)';
+  SDefaultPrinter: string = '(Standarddrucker)';

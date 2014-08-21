@@ -1,0 +1,745 @@
+Projekt    Version        Stand
+KMP        3.13MD         09.01.04
+Komponenten
+==================================
+
+12.03.14
+--------
+- Beschleunigung der Anzeige von CalcFields der Form cf1=LookupDef:Lu;Field
+  durch CalcCache.FillCache.
+  Dabei werden alle Zeilen der LuDef in die CacheList eingelesen.
+- Aktivierung:
+  LuDef.Options.FillCache  
+
+06.03.14
+--------
+- Addons: umDBImage kann auf PDFs anzeigen.
+  Verwendet wird TPDFImage von Thomas Friedmann, www.itf-it.de
+  PDFImage: auf Unicode umgesetzt
+
+
+01.02.14
+--------
+- OnlyOpenOnce: Parameter an laufende Anwendung übertragen:
+  procedure TFrmMain.BCOnlyOpenOnce(var Message: TMessage);  //message BC_ONLYOPENONCE;
+  var
+    S: string;
+  begin
+    SetLength(S, 255);
+    SetLength(S, GlobalGetAtomName(Message.WParam, PChar(S), 255));
+    GlobalDeleteAtom(Message.WParam);
+  end;
+
+
+25.11.13
+--------
+- Aufgabe: Datensatz mit Details duplizieren:
+- Nav.Duplicate (nur Haupt Datenastz)
+- Details duplizieren:
+
+21.11.13
+--------
+- Problem: [DCC Fataler Fehler] MainFrm.pas(28): F2051 Unit Gnav_kmp wurde mit einer 
+           unterschiedlichen Version von UQue_Kmp.TuQuery compiliert
+- Abhilfe: >kmp.bpl >Projekt >Optionen >Package Ausgabeverzeichnis entfernen
+            (war d:\DelphiXE2\Kmp\Lib) 
+            alleiniger Speicherort jetzt: 
+            c:\Users\Public\Documents\RAD Studio\9.0\Bpl\Kmp.bpl
+            entsprechend Addons.bpl
+- Abhilfe: ...\kmp als Bibliothekspfad belassen
+           damit kann kmp auch ohne Package-Compile geändert werden.
+
+- Problem: [DCC Fataler Fehler] XmlExpDlg.pas(80): F2051 Unit XMLExport wurde mit einer 
+           unterschiedlichen Version von UDB__Kmp.TuDataBase compiliert            
+- Abhilfe: ...\kmp\XML als Bibliothekspfad hinzufügen
+
+
+
+26.07.13
+--------
+- case <string> ab Delphi 2010: uses StrUtils:
+case IndexStr(myText, ['s1','s2','s3']) of
+  0: S := 's1 gefunden';
+  1: S := 's2 gefunden';
+  2: S := 's3 gefunden';
+else 'nicht gefunden';  // ist -1
+end;
+- analog ohne Case sensitiv: IndexStr
+- es gibt auch ein override für ANSI Strings.
+
+12.06.13
+--------
+- MuGrid: Feldwerte in Statuszeile anzeigen
+  Falls Feldwert zu breit für Spalte
+  - DisplayOptions: H
+    Bsp. in ColumnList:  Adresse:20,H=ADRESSE_FELD
+    Über Tabellenlayout: Spalte Optionen: H eintragen
+
+29.04.13
+--------
+- MuGrid.DrawingStyle: Vorgabe in Prots.MuDrawingStyle
+  weil gdsThemed schlecht ist (Doppelschrift bei Memos u.a.)
+
+25.04.13 Multiline Property Editor
+--------
+- ...\ADDONS\DelphiDabbler\dd-stringpe\PJStringPE.pas
+- ergänzt in Package ..\ADDONS\Addons.dpk
+
+25.04.13 RecordCount
+--------
+- Der Recordcount wird jetzt vollständig von UniDAC übernommen
+  - QueryRecCount wird in Mu gesetzt wenn SlideBar aktiviert ist
+  - NavLink.RecordCount ergibt per DoFetchAll immer korrektes Ergebnis.
+- Mu.UpdateScrollbar jetzt wieder Original Delphi (in Mu deaktiviert)
+
+- Problem: aktualisiert LookupDef-Scrollbars nicht automatisch 
+  http://qc.embarcadero.com/wc/qcmain.aspx?d=7527
+  gelöst per Workaround (Height +/-1) in TMultiGrid.BCMultiGrid.mgForceScrollBar
+
+Idee: Mu.Horizontale Scrollbar scrollt spaltenweise (wie Vert Zeilenweise)
+
+04.04.13 PrnDlg
+--------
+- Drucken Dialog: speichert Position, Höhe, breite und Spaltenbreiten Ausdruck/Drucker
+  - Nav.SavePosition, Kurz/Section = PRN__DLG (für alle Masken der Anwendung)
+
+01.10.10 WordKmp
+--------
+- falls die feldinhalte nicht gedruckt werden:
+  In Word muss "Felder vor dem Drucken aktualisieren" aus sein !!!
+
+09.06.10 Idee
+--------
+- LookUp Detail: CheckDetail erst aufrufen wenn Detail übernommen werden soll
+  Zweck: (1) kein unnötiges CheckDetail mehr wenn Lookup abgebrochen wird
+         (2) kein unnötiges CheckDetail mehr wenn Übernahme Filterkriterien verletzt (webab bvor, checkkste())
+  Nachteil (1): Lookup-Maske kann nicht mehr auf gespeicherte Werte zurückgreifen
+                Klären: in welchen Projekten greift Lookup auf gespeicherte Werte zu?
+           (2): Lookup trotz fehlerhaften/fehlenden Daten möglich
+   (2) gewinnt
+
+10.04.10 LookUpDef: Tablename ausblenden
+--------
+- LuDef.LuEnabled = true/false setzen
+  Die Eigenschaft LuEnabled liest von TDataSource.Enabled.
+    Bei Wertänderung wird Nav.SetTabs aufgerufen, und TabTitle ausblendet bei disabled         
+
+17.03.10 berühmte Farben
+--------
+- T-Com Magenta:    $007400E2 (#E20074 HTML)
+- Google-Blau fett: $00CC0022 (#2200CC HTML)
+- Google Font:      $00B05D2A (#2A5DB0 HTML)
+- MS-Bing Blau:     $00CC4400 (#0044CC HTML)
+
+12.02.10 Bug TMultiGrid
+--------
+- verliert Focus bei bestimmten Zeilen nur in bestimmten Zeilen
+  Lsg: ein cobOnClick führte ein WM_NEXTDLGCTL auch in der Tabellensicht aus.
+
+16.10.09 Delphi 2010
+--------
+- Delphi2010 und Jedi Inspirations:
+  - Database.IsSqlBased <--> Standard
+  - Dataset.Reload via Bookmark (statt PKeys)
+  - HTML-Format in DBEdit: --> Paint > HTMLDrawText (Jedi)
+  
+- Komponentenersetzungen:
+  TPBFolderDlg -> TJvBrowseForFolderDialog
+
+09.01.10
+--------
+- IniDB: Suchen. F3:Weitersuchen
+  InitSearchDlg in Projektverwaltung mit aufnehmen
+
+22.09.09
+--------
+- ToDo: TrStr in Kmp
+        Standardfunktion in GNav. Parametrisiert: DataSet, Feldnamen
+
+29.11.09 Nav.OnSingleDataChange
+--------
+- Das Ereignis Nav.OnSingleDataChange wird ausgelöst wenn
+  1. In der Single-Ansicht ein Datenfeld geändert wurde
+     oder der Datensatz gewechselt wurde
+  2. Von der Multi auf die Single-Ansicht gewechselt wurde
+- Parameter (wie DataSource.DataChange): Sender: TLNavigator; Field: TField;  
+- Es dient zum Anpassen der Oberflächen-Controls (Farbe, ReadOnly usw)  
+
+29.11.09 TAswCheckListBox
+--------
+- CheckListBox als Datenbankkomponente:
+  - mit AswName
+  die Speicherung erfolgt in einem StringField. Die Werde werden mit CRLF getrennt.
+  in Asws_Kmp.pas
+
+14.09.09 Kommunikation/Datenaustausch zwischen Forms
+--------
+Lesen:
+- LNavigator.GetFormValue(ParamName): string
+- Ereignis: LNavigator.OnGetFormValue(ParamName, var Value)
+- Alternativ: GNavigator.GetFormValue(FormKurz, ParamName): string
+              Form.GetFormValue(ParamName): string
+Schreiben:
+- LNavigator.SetFormValue(ParamName, Value)
+- Ereignis: LNavigator.OnSetFormValue(ParamName, Value)
+- Alternativ: GNavigator.SetFormValue(FormKurz, ParamName, Value)
+              Form.SetFormValue(ParamName, Value)
+
+14.07.09 Indy's
+
+- Bugs bei langen Subjects gefixed:
+  Subject Beispiel: =?ISO-8859-1?Q?VNR3A4000106 - Biomassekraftwerk Kaiserslautern GmbH - Schl=FCsselparameteranalyse Erzeuger gem. =A7 8 Abs. (3) DepV?=
+  - IdCodeHeader.pas#EncodeHeader(): nur noch ein Encode-String am Anfang und Ende
+  - IdGlobal.pas#PosIdx(): EAccess bei Suchstring länger als String
+  - TIdHeaderList.SetValue: ['Subject'] Zeile nicht mehr umbrechen
+
+23.05.09
+
+- MSSQL: aktualisieren einer Row in großen Tabellen (MSSQL)
+  Problem1: die BDE will nach dem Post das komplette Dataset einlesen (fetch-all Problem),
+            was bei >10000 Zeilen langsam wird
+  Problem2: die BDE kennt (bei MSSQL) 'READ UNCOMMITTED' nicht
+  Lösungsschritte:
+  - GNavigator.SetDuplDB(aQuery, aDataBase, aIndex)
+      erzeugt neue Database (aIndex in 0..4]) um zu entkoppeln
+  - TqDatabase.DoConnect setzt bei MSSQL und TransIsolation = tiDirtyRead ein Sql ab:
+      SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+  - Cached Updates verwenden, aber ohne ApplyUpdate bzw. UpdateRecord
+      - UpdateSql muss andere Database als die Query haben 
+
+
+
+18.04.09 Aufräumem alle Projekte:
+
+- FrmMain.GNavigator1DbCompare << GNavigator1DbCompare.txt (AnsiUpperCase)
+- FrmMENU.FormCreate: Maximized := true; Sizeable := false;
+- FrmMain.WindowArrangeItemClick: self.ArrangeMinimized;
+
+- TFrmMenu.NavPoll: CheckVScroll weg
+
+20.04.09
+- TreeView bei dem Doppelklick kein Expand/Collapse ausführt,
+  aber den OnDblClick Event auslöst:
+  - TQTreeView (Seite: Beispiele)
+    DblClickExpands=false
+
+17.04.09
+
+- Formulare maximiert:
+  - neues Feld: TqForm.Maximized := true
+  - beim Setzen werden sofort die Koordinaten maximiert, auch in FormCreate.
+  - Bei Größenänderung des Hauptfensters wird das Formular eingepasst.
+  - Bei LNavigator.Options.lnSavePosition=true wird Maximized gemerkt.
+  - Wenn der Bediener die Größe um mehr als 10Px verkleinert wird Maximized=false gesetzt.
+  Voraussetzung: Sysparam.FormsInFrame=true
+
+- Formulare im Rahmen
+  Bei Verkleinerung des Hauptfensters werden die Formulare eingepasst.
+  Voraussetzung: Sysparam.FormsInFrame=true
+  
+- Achtung: Forms mit BorderStyle = bsDialog können in der Größe nicht mehr
+  geändert werden. -> BorderStyle = bsSizeable in *.dfm ändern
+
+16.04.09
+
+- LuGrid: Position und Größe merken:
+  - LookUpDef.Options: LuGridSavePos = true
+  - oder global einstellen: SysParam.GridSavePos := true
+
+- Bei Lookups über Fremdmaske Position NICHT berechnen:
+  LNavigator.Options: lnNoLookupPos=true
+
+- LuGrid: Schnellsuche durch Eingabe der Anfangsbuchstaben
+  ! Die Suche erfolgt über das letzte Feld der Sortierfolge
+    Die Sortierung kann vom Bediener geändert werden.
+  - LookUpDef.Options: LuGridSearch = true
+                       luGridFltr = false (empfohlen)
+
+
+15.04.09
+
+- EditSingle per Rechte Maustaste in Tabelle umstellen
+  >Ändern in Tabelle
+  Wenn angekreuzt kann direkt in Tabelle gändert werden.
+  Wenn nicht dann wird beim Ändern auf die Einzelsicht umgeschaltet.  
+
+26.03.09
+
+- Asws_km: Einzelne Auswahlen können in der <AppDir>\ASWS.INI gespeichert werden.
+  Zum Editieren einer Auswahl gibt es den Dialog kmp#TDlgAswEd.Execute(AswName)
+  Bei Verwendung von IniDb ist dafür die Property IniDb.AswsFromIni=true zu setzen,
+  aber die Verwaltung über die DB-Table ASWS ist vorzuziehen, zum Editieren gibt
+  es dafür die Form kmp\msapps\ASWSFrm.
+
+23.03.09
+
+- Suchen-Modus und Active-Status der Sekundärtabellen
+  - wenn während Suchen von Einzelsicht auf Tabellensicht geschaltet wird,
+    sollen beim Öffnen die Sekundärtabellen geschlossen bleiben
+    -> NLnk.SetEnable vs. LNav.CheckAutoOpen
+       in LNav.CheckAutoOpen: NavLink.DataSourceList.Clear
+
+- CheckAutoOpen manuell aufrufen, weil ein nicht-Standard Tabset geändert wird:
+  PostMessage(self.Handle, BC_PAGECHANGE, Nav.PageIndex, 0);
+
+23.01.09 
+
+- Dialog Suchen und ersetzen (ReplaceDlg)
+  - Berechtigung zum Ersetzen:
+    - bisher: wenn aufrufende Form Berechtigung zum Ändern hat
+    - neu: Die Berechtigung über die Maske 'FRMREPLACEDLG' wird abgefragt:
+      - wenn die Maske nicht mit GNavigator.AddForm() eingebunden wurde,
+        ist Ersetzen erlaubt.
+      - wenn die Maske mit GNavigator.AddForm() eingebunden wurde,
+        entscheidet die Maskenberechtigung "Tabelle Ändern"
+        (Feld RECH_UPDATE_KNZ=J)
+
+  - Gesamtberechtigung zum Suchen: über den Aufruf-Button bzw. MenuIndex
+    in der Rechteverwaltung.
+
+
+02.01.09
+
+- PrnSource:
+  Kopien=0 druckt jetzt nicht mehr, löst aber AfterPrn aus.
+
+10.11.08
+
+- Lookup mit mehreren Reference-Feldern
+  Bei Übernahme wird jetzt erst nachgeladen, wenn alle Felder kopiert sind:
+  1. Kopieren der Reference-Felder von LuDef ohne Ereignis
+  2. Kopieren mit Ereignis (BC_DATACHANGE) und Nachladen der nicht-key-Felder
+
+29.10.08
+
+- MultiGrid: Spaltenbreite optimieren
+  Die Spaltenbreite wird anhand der angezeigten Daten optimiert.
+  Aktivieren: Tabellenlayout Spalte 'Optionen': O (wie Otto) eingeben.
+  Vorgeben: in ColumnList: Sorte Bez:34,O=SRTE_BEZ
+
+01.10.08
+
+- Auch bei Tastaturnavigation wird Hint in der Statuszeile angezeigt
+  - TGNavigator.DoOnControlChange
+
+25.09.08
+
+- BDE Fehler 'zu wenig Festplattenspeicher' wird behandelt und gelöst.
+  Ursache: 32bit Zähler (geht nur bis 4GB)
+  - Prots.pas: function DiskFreeBde
+               procedure FillDiskBde
+  - Err__Kmp.pas: EisBdeFreeDiskError(E)
+
+06.09.08
+
+- Files vom Explorer in die Anwendung ziehen und verarbeiten:
+  QuVA Frechen LfskFrm JPG-Dateien per Drag&Drop oder FileOpen übernehmen:
+  - procedure WMDropFiles(var Msg: TWMDropFiles); message WM_DROPFILES;
+    begin
+      Msg.Result := 0;
+      try
+        Anz := DragQueryFile(Msg.Drop, $FFFFFFFF, nil, 0);      // Anzahl der Dragdateien erfragen
+        for I := 1 to Anz do
+        begin
+          DragQueryFile(Msg.Drop, I - 1, @Buff, SizeOf(Buff) - 1);        // Dateinamen holen
+          Verarbeite(StrPas(Buff));        // und verarbeiten
+        end;
+      finally
+        DragFinish(Msg.Drop);      // Speicher freigeben
+      end;
+    end;
+  - FormCloseQuery1:  DragAcceptFiles(self.Handle, false);
+  - NavPostStart:     DragAcceptFiles(self.Handle, true);
+
+
+
+
+28.08.08 Idee
+
+  EMess und EProt werden in STME protokolliert
+  - feste STME_NR 900001 und 900002
+  - Herkunft: OwnerDotName(Sender)
+    Text: siehe dort (Info, E.Message, Sql Fehlerliste)
+  - Aktivierung: FrmSTME im Projekt vorhanden
+    Aufruf: zu klären (GNav, Add_Stme, per PostMessage in STME o.ä.)
+
+19.08.08
+
+- TNXlsKmp (unit NXls_Kmp)
+  Native Excel Komponente für komfortablen Zugriff
+  public
+    procedure Open(CreateNew: boolean);
+    procedure Close;
+    procedure Save;
+    procedure SaveAs(Filename: string);
+    procedure Show;
+    procedure Print;
+    property Cells[X, Y: Integer]: TString read GetCells write SetCells;
+    property VarCells[X, Y: Integer]: Variant read GetVarCells write SetVarCells;
+  published
+    property WorkFile: string read FWorkFile write SetWorkFile;
+    property WorkSheet: string read FWorkSheet write SetWorkSheet;
+    property Active: boolean read FActive write SetActive;
+    property Visible: boolean read FVisible write FVisible;  //nur Excel
+  end;
+
+- TDirBtn - zum Auswählen von Verzeichnissen
+            korrespondiert mit TEdit und TDBEdit
+
+- TOpenBtn - zum Öffnen von Files
+             korrespondiert mit TEdit und TDBEdit
+
+- FltrFrm: Tabellenlayout speichern
+
+- TMultiGrid: wenn es ein TDBEdit-Feld mit Readonly gibt, kann auch die Spalte
+              nicht editiert werden.
+              Ausschalten: SysParam.AllowEditReadOnly = true
+
+- Nav.Navlink.AssignDateTime(FieldName, AValue: TDateTime)
+- Nav.Navlink.AssignFloat(FieldName, AValue: TDateTime)
+  Zuweisung per AssignValue nur wenn AValue unterschiedlich.
+
+09.08.08
+
+- Komponente zum Drucken über Word
+  TWordPrn  (kmp\WordPrnKmp.pas)
+  - Lädt Word mit Vorlage. Füllt die Formularfelder der Vorlage (DataSource)
+    Druckt Ergebnis aus und schließt Word oder lässt Word mit Ergebnis offen
+    (Preview=true) oder speichert Ergebnis in neuer Datei (ExportFile=true).
+  - Die Vorlage wird in der Property 'QRepKurz' angegeben
+  - DataSource: zum Füllen der Vorlage
+    - OnDefineField: Benutzerbezogenes Füllen der Wordfelder
+  - WordFields: Umsetztabelle i.d.F. Wordfeld.Textmarke = Datasource.Feldname
+  - Zum Exportieren wird ExportFile=true und ExportFilename gesetzt und normal
+    gedruckt (DoRun oder per Druckdialog)
+
+05.08.08
+
+- Fehler bei MSSQL:
+  (0)$3004 SQL(0):Für diese Operation ist eine Nicht-BLOB-Spalte in der Tabelle erforderlich.
+  http://www.delphi32.com/info_facts/faq/faq_825.asp
+  -> Setze Query1.AutoRefresh=true
+
+31.07.08
+
+- Spaltenüberschriften programmgesteuert ändern
+  - aMu.ColumnsDefined := false;
+    try
+      aMu.ColumnList.BeginUpdate;
+      IniKmp.ReplaceSection(aMu.IniSection, WeList(aMu.ColumnList));
+    finally
+      aMu.ColumnList.EndUpdate;
+    end;
+  - MuVSTO.LoadedColumnList.Assign(LbChargenRechnung.Items);
+    MuVSTO.IniSection := 'ChargenRechnung';
+
+
+28.06.08
+
+- Tipp: Combobox nach Auwahl verlassen:
+  (muss bei DbCheckbox auf ActiveControl testen! - 27.12.12)
+  procedure TFrmLSTH.cobFREIGABE_STATUSChange(Sender: TObject);
+  begin
+    if self.ActiveControl = TControl(Sender) then
+      PostMessage(self.Handle, WM_NEXTDLGCTL, 0, 0);
+  end;
+
+16.05.08
+
+- Problem: Interbase lädt bei Insert komplette Table nach
+  http://info.borland.com/devsupport/bde/issues/501/interbase.html
+  If you have two TQueries where the first does a SELECT and the second does an UPDATE,
+  against 2 separate tables in the same database, executing the UPDATE after the SELECT cause a
+  Fetch All on the TQuery with the SELECT.
+- Lösung:
+  SQL Passthru Mode: The recommended value is SHARED NOAUTOCOMMIT
+- Änderungen im Programm: Transaktionen für alle manuellen Sql-Kommandos:
+  Query.ExecSql ersetzen durch Prots.QueryExecCommitted(Query);
+  Proc.ExecProc ersetzen durch Prots.ProcExecCommitted(Proc);
+
+14.05.08
+
+- PrnSource: Auswahl Hoch/ Querformat
+  - Wenn dieses Feature freigeschaltet ist, dann erscheint im Druckdialog
+    die Auswahl hoch/ quer (Hoch- Querformat).
+  - Feature freischalten: Options: psOrientation=true
+                          oder in Bemerkung: 'Orientation=x' (x=L/P) eintragen
+  - Feature abfragen (im Druckformular): PrnSource.IsLandscape
+
+21.04.08
+
+- Sortiern Dialog
+  - 'Permanent'-Setzen ohne sonst. Key-Änderung wird jetzt durchgeführt.
+  - 'Absteigend'-Änderung ohne sonst. Key-Änderung wird jetzt durchgeführt.
+
+
+08.04.08
+
+- InitList: Aufrufparameter von GNav.StartFormData als TStrings
+            Realisiert als Readonly-Property von TqForm.
+  Aufruf:  GNavigator.StartFormData(self, 'KURZ', PChar('Para1=Value1;Para2=Value2'));
+  Abfrage: in FormCreate oder NavStart
+           MyPara1 := InitList.Values['Para1'];
+
+27.03.08
+
+- IniKmp - Probleme wenn .INI auf dem Serverlaufwerk
+  33:Der Prozess kann nicht auf die Datei zugreifen,
+  da ein anderer Prozess einen Teil der Datei gesperrt hat
+  Lsg:
+  - property IniKmp.IgnoreFileError: keine Exception bei Fehler
+  - CacheTemp:
+     true: kopiert .INI nach Temp (nach Festlegung des FileName zuweisen)
+     false: kopiert wieder zurück (in MainFrm.Close zuweisen)
+
+07.03.08
+
+- Idee: Spaltenüberschriften kursiv wenn absteigend sortiert
+  (sind bereits unterstrichen)
+
+09.11.07
+
+- Mittlere Maustaste markiert in MultiGrid (ausschließlich) die aktuelle Zeile
+
+07.11.07
+
+- TAusw: SortIndex für 'Suchbegriff' in Lov_Dlg definieren:
+  - in TAusw.UserFields einem folgenden Feld '*' voranstellen i.d.F.:
+    UserFields: 'Auftraggeber=RE_KUND_NR;*RE_KUND_NAME1'
+    
+- Interbase Blob Felder:
+  - varchar(32000) ist in IB möglich    
+
+
+26.03.07
+
+- der Ausdruck 'Hardcopy' ist jetzt in jeder Ausdruckliste verfügbar.
+  Er druckt den Inhalt des MDI-Fensters aus (ohne Rahmen).
+
+
+07.02.06
+
+- Beim Start eines Forms in Multi wird die Mu1 explizit fokussiert.
+
+- todo: Single-Focus bleibt beim Wechsel auf Multi und wieder auf Single (z.B. durch EditSingle) bestehen
+
+
+22.12.06
+
+- BuildSOList:
+  - setzt nur ein Flag
+  - nlnk.GetSOList wertet das Flag aus, macht internal BuildSOList und
+                   entfernt alte LEObject Objekt
+
+25.09.06
+
+Bug: Beim Suchen in varchar(1) Feld kann nur ein Zeichen eingegeben werden.
+
+Bug: MultiGrid: letzte Zeile nicht komplett sichtbar
+                wenn SlideBar=true nach Suchen 
+
+09.01.04
+
+StrTok reentrant
+----------------
+- der Parameter NextStr wurde hinzugefügt.
+function Prots.StrTok(S, DivChars: PChar; var NextStr: PChar): PChar;
+- Verwendung
+  var NextStr: PChar;
+  X := StrTok(S, T, NextStr);    //1. Aufruf
+  X := StrTok(nil, T, NextStr);  //ff Aufrufe
+
+
+Lookup im Modus lumZeigMsk und lumAendMsk 
+-----------------------------------------
+- der zugeordnete Datensatz kann nicht mehr geändert werden, wenn man
+  im Lookup-Fenster den Filter löscht und auf einen anderen Datensatz
+  positioniert.
+
+
+18.02.04
+
+Suchen und Ersetzen Dialog
+--------------------------
+- Dialog ähnlich MS-Word zum Suchen und Ersetzen von Werten in einer
+  Tabellenspalte.
+
+  Programmaufruf:  Suchen:   GNavigator.SearchAndReplace(false);
+                   Ersetzen: GNavigator.SearchAndReplace(true);
+
+  Aufruf im Menü: >Bearbeiten >Suchen ...      oder Strg-F
+                  >Bearbeiten >Ersetzen ...    oder Strg-R
+
+   Bedienung: Suchen in Feld: Wählen Sie Tabellenspalte bzw. Datenbankfeld
+              Suchen nach:    Geben Sie den zu suchenden Feldinhalt ein.
+                              '*' = findet alles, '=' findet nur leere Felder
+              Gefundene Elemente markieren: markiert in Tabelle, z.B. um in
+                              Word wieder einzufügen.
+              Ersetzen durch: Geben Sie den neuen Feldinhalt ein.
+              [Ersetzen]      ersetzt gefundenen Wert und sucht den nächsten.
+              [Alle ersetzen] ersetzt alle Werte ohne Rückfrage
+              [Weitersuchen]  sucht den nächsten Wert
+
+03.03.04
+
+Lookup - Berechtigungen
+-----------------------
+- Die Erlaubnis, ob in einer Detail-Lookup Grid Erfasst oder geändert werden darf,
+  wird jetzt über das Originalformular (in LuDef.LuKurz) ermittelt.
+  Wird das Formular nicht gefunden, erfolgt die Erlaubnis wie bisher über den
+  LNavigator.
+
+08.03.04
+
+- XML Import:
+  -----------
+  - die bisherige Meldung bei bereits vorhandenen Werten wurde ergänzt:
+    Es werden relevante Feldnamen und Werte des zu überschreibenden Datensatzes
+    angezeigt, so dass der Bediener erkennen kann, welcher Datensatz
+    überschrieben werden soll.
+
+15.03.04
+
+- Druckauswahl erkennen:
+  ----------------------
+  In PrnSource.BeforePrn zu erkennen, ob der Aufruf über den
+  Auswahl-Dialog oder direkt im Programm gestartet wurde:
+    uses Prn__Dlg;
+    if DlgPrn = nil then
+      <Direktstart> else
+      <Dialog-Start>
+
+25.03.04
+
+- Rechteverwaltung:
+  -----------------
+  - Liste der Benutzer der Anwendung:
+    RechteKmp.UserList
+
+  - Liste der Gruppen des angemeldeten Benutzers:
+    RechteKmp.UserGruppen
+
+14.04.04
+
+- DbTreeView - FastAccess
+  -----------------------
+  - mit dieser Option wird die Datenmenge nur einmal durchlaufen.
+    Dies ist für Anzahl Datensätze >100 notwendig, da im normalen
+    Ablauf jede Kombination geladen wird.
+  - Vorauss.: Parents sind vor ihren Childs sortiert
+
+
+- INI in Datenbank
+  ----------------
+  Schema: QuSY/Rechteverwaltung
+  Keys: Application/Machine/Usergroup/IUser
+  User|Machine|Usergroup bzgl. Rechteverw.
+  User ist lokal (Grid-Spalten)
+  ->für Oracle realisiert
+
+01.06.04
+
+- Calclist - Format von Lu übernehmen
+  -----------------------------------
+  in Calclist bewirkt die Zeile
+    Feldname=Format:LuDef;LuField
+  dass das Format vom Lookupdef Feld übernommen wird.
+  Feldwerte werden nicht übernommen.
+  Zur Automatische Übernahme von Feldwerten (in OnCalcField) ist
+    Feldname=Lookup:LuDef;LuField
+  zu verwenden.
+
+03.09.04
+
+- Problem: temporäre Paradox Files auf Serververz. führen zu BDE Fehler
+  ---------------------------------------------------------------------
+  Ursache: Bei CachedUpdate werden lokal Daten abgelegt
+  Lsg:     Session.PrivateDir := TempDir;
+           Erfolgt jetzt in GNav DbInit automatisch
+
+28.10.04
+
+- Database Links
+  --------------
+  Realisierung über GNavigator.TableSynonyms
+  Bsp.: QUVA.EINTEILUNGEN=EINTEILUNGEN@QW03DB.INTRANET
+  - Feldbeschreibungskomp. angepasst (FldDsKmp)
+  - Ausdrucke auf DfltPrn (CopyFltr=Yes) angepasst
+
+29.10.04
+
+- SQL Rechenfelder Format Vorgabe
+  -------------------------------
+  - In SqlFieldList kann auf der linken Seite das Format
+    (string, float, integer) angegeben werden.
+    Damit erfolgt kein aufwändiges BDE-Matadaten-Update.
+    Bsp: MAXFELD:float=max(feld)
+    Zu Beachten: das Format muss mit dem tatsächlichen
+    Format der Datenbank übereinstimmen.
+
+30.11.04
+
+- SQL Dialog: Historie
+  --------------------
+  Die über 'Ergebnis' oder 'ExecSql' ausgeführten Statements
+  werden auf der Seite 'Historie' verwaltet. Dort kann ein
+  anderes Statement ausgewählt und über 'Ergebnis' oder
+  'ExecSql' direkt ausgeführt werden.
+
+03.01.05
+
+- Rechteverwaltung und Detail-Lookups
+  -----------------------------------
+  - wenn die Hauptmaske keine Rechte für Ändern/Erfassen/Löschen hat,
+    dann kann auch kein Detail-Datensatz geändert/erfasst/gelöscht werden.
+    Das ist nicht so.
+  - Die Erlaubnis für Detail-Datensätze wird von der Form in
+    LookupDef.LuKurz übernommen.
+    Wenn das nicht möglich ist (z.B. weil die Form an sich erlaubt ist,
+    aber nicht die Zuordnung über ein Feld), ist in NavStart die Zeile
+    zu ergänzen:
+        LuXXXX.NavLink.TabellenRechte := Nav.NavLink.TabellenRechte;
+    bzw.
+        LuXXXX.NavLink.TabellenRechte := LuXXXX.NavLink.TabellenRechte -
+                                         [reUpdate, reInsert, reDelete];
+  - Die Deaktivierung der globalen Buttons erfolgt jetzt automatisch.
+  - Die Unterbindung der BtnPage und Lookup-Funktionen erfolgt jetzt automatisch.
+
+07.01.05
+
+- DDE Server für Rechteverwaltung
+  -------------------------------
+  der TDlgDdeSysInfo zeigt jetzt die Namen der mit der Maus berührten
+  Controls korrekt an - auch wenn der sichtbare Teil keinen Namen hat.
+  Als Form wird jetzt die Form unter dem Mauscursor angezeigt.
+
+08.01.05
+
+- Titel der Fenster detaillierter
+  -------------------------------
+  siehe Lnav_kmp#TLNavigator.SetTitel
+  Abfragen (FrmFltr) müssen geändert werden.
+
+  - Bei Focussierung einer Detailtabelle wird der LookUpDef-TabTitel in
+    []-Klammern angezeigt.
+  - Im Lookup-Modus wird 'Lookup' vorangestellt.
+  - Abfragen setzen jetzt Nav.SubCaption auf den Abfragenamen
+    (statt ALNav.NavLink.Form.Caption)
+
+- Suchkriterien: Suchausdruck negieren
+  ------------------------------------
+  durch Voranstellen von '!' wird die Filterzeile negiert.
+
+  Bsp: F=!a;b;c ergibt NOT ((F='a') OR (F='b') OR (F='c'))
+
+31.01.05
+
+- Schemaänderungen in Delphi neu einlesen
+  ---------------------------------------
+  - bisher musste z.B. beim Einfügen eines neuen Datenbankfelds per
+    SQL Delphi neu gestartet werden, um die Änderung anzuzeigen.
+  - Jetzt: Auf der Datenbankkomponente (muss vom Typ TqDataBase sein)
+    die Eigenschaft 'StartConnect' auf true und dann wieder auf false
+    setzen und dann das Formular neu öffnen.
+
+    

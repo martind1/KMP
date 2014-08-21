@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<?xml-stylesheet href="nstest.css" type="text/css"?>
+<!-- Meine Homepage in XML mit HTML Tags dazwischen -->
+
+<homepage xmlns:html="http://www.w3.org/TR/REC-html40">
+<html:h1>Willkommen auf meiner Homepage!</html:h1>
+<text>Dies ist nun meine Homepage in XML.</text>
+<html:ul>
+<html:li>Hier ist sogar eine Liste.</html:li>
+<html:li><html:a href="http://www.ib.hu-berlin.de">Und auf einfache Weise kreieren wir einen Link ohne irgendetwas über die Linksprache in XML XLink zu wissen</html:a></html:li>
+</html:ul>
+<text>Bis demnächst!</text>
+</homepage>

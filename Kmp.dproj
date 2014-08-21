@@ -1,0 +1,422 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{A2BC5DC1-CFD4-4948-A903-39EA5A9C15F5}</ProjectGuid>
+			<MainSource>Kmp.dpk</MainSource>
+			<ProjectVersion>13.4</ProjectVersion>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<FrameworkType>VCL</FrameworkType>
+			<Base>True</Base>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<AppType>Package</AppType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+			<Cfg_2_Win32>true</Cfg_2_Win32>
+			<CfgParent>Cfg_2</CfgParent>
+			<Cfg_2>true</Cfg_2>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>rtl;dbrtl;ibxpress;IndyCore;IndySystem;IndyProtocols;$(DCC_UsePackage)</DCC_UsePackage>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;Bde;Data.Win;System.Win;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Locale>1031</VerInfo_Locale>
+			<DCC_DependencyCheckOutputName>c:\programme\embarcadero\rad studio\7.0\Bpl\Kmp.bpl</DCC_DependencyCheckOutputName>
+			<DCC_Description>KMP Komponenten</DCC_Description>
+			<GenDll>true</GenDll>
+			<GenPackage>true</GenPackage>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_WriteableConstants>true</DCC_WriteableConstants>
+			<DCC_Alignment>0</DCC_Alignment>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_RangeChecking>true</DCC_RangeChecking>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<DCC_UsePackage>vclx;vcl;vclie;vclimg;vcldb;VclSmp;adortl;$(DCC_UsePackage)</DCC_UsePackage>
+			<Icon_MainIcon>Kmp_Icon.ico</Icon_MainIcon>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<DCC_UsePackage>vclx;vcl;vclie;vclimg;vcldb;VclSmp;bdertl;vcldbx;adortl;Jcl;JvCore;JvStdCtrls;madBasic_;madDisAsm_;madExcept_;dac160;unidac160;NativeExcelDXE2;Addons;$(DCC_UsePackage)</DCC_UsePackage>
+			<Icon_MainIcon>Kmp_Icon.ico</Icon_MainIcon>
+			<Debugger_RunParams>Alias=qwlokal imach=0165 werknr=0165</Debugger_RunParams>
+			<DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+			<DCC_DcpOutput>Lib</DCC_DcpOutput>
+			<DCC_MapFile>3</DCC_MapFile>
+			<DCC_DcuOutput>Lib</DCC_DcuOutput>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="dbrtl.dcp"/>
+			<DCCReference Include="vclx.dcp"/>
+			<DCCReference Include="vcl.dcp"/>
+			<DCCReference Include="vclie.dcp"/>
+			<DCCReference Include="vclimg.dcp"/>
+			<DCCReference Include="vcldb.dcp"/>
+			<DCCReference Include="bdertl.dcp"/>
+			<DCCReference Include="vcldbx.dcp"/>
+			<DCCReference Include="ibxpress.dcp"/>
+			<DCCReference Include="adortl.dcp"/>
+			<DCCReference Include="VclSmp.dcp"/>
+			<DCCReference Include="Jcl.dcp"/>
+			<DCCReference Include="JvCore.dcp"/>
+			<DCCReference Include="JvStdCtrls.dcp"/>
+			<DCCReference Include="Addons.dcp"/>
+			<DCCReference Include="IndySystem.dcp"/>
+			<DCCReference Include="IndyCore.dcp"/>
+			<DCCReference Include="IndyProtocols.dcp"/>
+			<DCCReference Include="unidac160.dcp"/>
+			<DCCReference Include="dac160.dcp"/>
+			<DCCReference Include="NativeExcelDXE2.dcp"/>
+			<DCCReference Include="madBasic_.dcp"/>
+			<DCCReference Include="madDisAsm_.dcp"/>
+			<DCCReference Include="madExcept_.dcp"/>
+			<DCCReference Include="USes_Kmp.pas"/>
+			<DCCReference Include="UQue_Kmp.pas"/>
+			<DCCReference Include="UTbl_Kmp.pas"/>
+			<DCCReference Include="ADO__Kmp.PAS"/>
+			<DCCReference Include="Arc__Kmp.pas"/>
+			<DCCReference Include="Asws_Kmp.pas"/>
+			<DCCReference Include="Ausw_Kmp.pas"/>
+			<DCCReference Include="AWE560Kmp.pas"/>
+			<DCCReference Include="B051_Kmp.pas"/>
+			<DCCReference Include="BTNP_KMP.PAS"/>
+			<DCCReference Include="CalcCache.pas"/>
+			<DCCReference Include="CollapsePanel.pas"/>
+			<DCCReference Include="CPor_Kmp.pas"/>
+			<DCCReference Include="CPro_Kmp.pas"/>
+			<DCCReference Include="Datn_Kmp.pas"/>
+			<DCCReference Include="DdeGewichtKmp.pas"/>
+			<DCCReference Include="DelphiStr.pas"/>
+			<DCCReference Include="Dis39Kmp.pas"/>
+			<DCCReference Include="DisB87Kmp.pas"/>
+			<DCCReference Include="DisKKmp.pas"/>
+			<DCCReference Include="DisTrasKmp.pas"/>
+			<DCCReference Include="DPos_Kmp.pas"/>
+			<DCCReference Include="DwSohKmp.pas"/>
+			<DCCReference Include="Dwt2Kmp.pas"/>
+			<DCCReference Include="Dwt2SohKmp.pas"/>
+			<DCCReference Include="Dwt10Kmp.pas"/>
+			<DCCReference Include="Dwt11Kmp.pas"/>
+			<DCCReference Include="DWT410kmp.pas"/>
+			<DCCReference Include="DwtEnq.pas"/>
+			<DCCReference Include="DwtEnqKmp.pas"/>
+			<DCCReference Include="EmailSendKmp.pas"/>
+			<DCCReference Include="ErConnec.pas"/>
+			<DCCReference Include="FaWa_Kmp.pas"/>
+			<DCCReference Include="FawaWsKmp.pas"/>
+			<DCCReference Include="FDDE_Kmp.pas"/>
+			<DCCReference Include="FldDsKmp.pas"/>
+			<DCCReference Include="Gen__Kmp.pas"/>
+			<DCCReference Include="GNav_Kmp.pas"/>
+			<DCCReference Include="HtmlClp.pas"/>
+			<DCCReference Include="IEEEFloatClass.pas"/>
+			<DCCReference Include="Ini__Kmp.pas"/>
+			<DCCReference Include="IniDbkmp.pas"/>
+			<DCCReference Include="IT30Kmp.pas"/>
+			<DCCReference Include="IT60Kmp.pas"/>
+			<DCCReference Include="KmpIndyReg.pas"/>
+			<DCCReference Include="Kmp__reg.pas"/>
+			<DCCReference Include="KmpResString.pas"/>
+			<DCCReference Include="LNav_Kmp.pas"/>
+			<DCCReference Include="Lubtnkmp.pas"/>
+			<DCCReference Include="LuDefKmp.pas"/>
+			<DCCReference Include="LuEdiKmp.pas"/>
+			<DCCReference Include="MuGriKmp.pas"/>
+			<DCCReference Include="NLnk_Kmp.pas"/>
+			<DCCReference Include="nstr_Kmp.pas"/>
+			<DCCReference Include="NXls.pas"/>
+			<DCCReference Include="NXls_Kmp.pas"/>
+			<DCCReference Include="OPC_AE.pas"/>
+			<DCCReference Include="OPCCOMN.pas"/>
+			<DCCReference Include="OPCDA.pas"/>
+			<DCCReference Include="OPCerror.pas"/>
+			<DCCReference Include="OPCHDA.pas"/>
+			<DCCReference Include="OpcS7Kmp.pas"/>
+			<DCCReference Include="OPCtypes.pas"/>
+			<DCCReference Include="OPCutils.pas"/>
+			<DCCReference Include="Pf11_Kmp.pas"/>
+			<DCCReference Include="Poll_kmp.pas"/>
+			<DCCReference Include="PR161Kmp.pas"/>
+			<DCCReference Include="PR171Kmp.pas"/>
+			<DCCReference Include="Pr1613WsKmp.pas"/>
+			<DCCReference Include="Prots.pas"/>
+			<DCCReference Include="PSrc_Kmp.pas"/>
+			<DCCReference Include="QDBCtrlGrid.pas"/>
+			<DCCReference Include="QEdi_Kmp.pas"/>
+			<DCCReference Include="qLab_kmp.pas"/>
+			<DCCReference Include="QNav_Kmp.pas"/>
+			<DCCReference Include="QRepForm.pas"/>
+			<DCCReference Include="QrExt.pas"/>
+			<DCCReference Include="QSpin_kmp.pas"/>
+			<DCCReference Include="qSplitter.pas"/>
+			<DCCReference Include="QTreeView.pas"/>
+			<DCCReference Include="Qwf_Form.pas"/>
+			<DCCReference Include="RADIOS.PAS"/>
+			<DCCReference Include="RawData.pas"/>
+			<DCCReference Include="RechtKmp.pas"/>
+			<DCCReference Include="Repl_Kmp.pas"/>
+			<DCCReference Include="Ro8_3964Kmp.pas"/>
+			<DCCReference Include="Ro8EnqKmp.pas"/>
+			<DCCReference Include="Row7_Kmp.pas"/>
+			<DCCReference Include="Row10net_Kmp.pas"/>
+			<DCCReference Include="RzLabel.pas"/>
+			<DCCReference Include="Sche_Kmp.pas"/>
+			<DCCReference Include="ShellTools.pas"/>
+			<DCCReference Include="SpsProt.pas"/>
+			<DCCReference Include="StopWatch.pas"/>
+			<DCCReference Include="SystemKmp.pas"/>
+			<DCCReference Include="TabNbKmp.pas"/>
+			<DCCReference Include="Tools.pas"/>
+			<DCCReference Include="UAli_Kmp.pas"/>
+			<DCCReference Include="UDatasetIF.pas"/>
+			<DCCReference Include="UDB__Kmp.pas"/>
+			<DCCReference Include="UdpPortKmp.pas"/>
+			<DCCReference Include="UDS__Kmp.pas"/>
+			<DCCReference Include="UMem_Kmp.pas"/>
+			<DCCReference Include="UMetaKmp.pas"/>
+			<DCCReference Include="Ro8_3964Simul.pas">
+				<Form>DlgRo8Simul</Form>
+			</DCCReference>
+			<DCCReference Include="ReplaceDlg.PAS">
+				<Form>DlgReplace</Form>
+			</DCCReference>
+			<DCCReference Include="LuGriDlg.pas">
+				<Form>DlgLuGrid</Form>
+			</DCCReference>
+			<DCCReference Include="Lov__Dlg.pas">
+				<Form>DlgLov</Form>
+			</DCCReference>
+			<DCCReference Include="AbortDlg.pas">
+				<Form>DlgAbort</Form>
+			</DCCReference>
+			<DCCReference Include="Err__Kmp.pas">
+				<Form>DlgErr</Form>
+			</DCCReference>
+			<DCCReference Include="Asw__dlg.pas">
+				<Form>DlgAsw</Form>
+			</DCCReference>
+			<DCCReference Include="Hint_Dlg.pas">
+				<Form>DlgHint</Form>
+			</DCCReference>
+			<DCCReference Include="AswEdDlg.pas">
+				<Form>DlgAswEd</Form>
+			</DCCReference>
+			<DCCReference Include="Ini__Dlg.pas">
+				<Form>DlgIni</Form>
+			</DCCReference>
+			<DCCReference Include="WSDDEKmp.pas"/>
+			<DCCReference Include="PrnFoDlg.pas">
+				<Form>DlgPrnFont</Form>
+			</DCCReference>
+			<DCCReference Include="Str__dlg.pas">
+				<Form>DlgStrings</Form>
+			</DCCReference>
+			<DCCReference Include="UPro_Kmp.pas"/>
+			<DCCReference Include="WRep_Kmp.pas"/>
+			<DCCReference Include="Ausw_Dlg.pas">
+				<Form>DlgAusw</Form>
+			</DCCReference>
+			<DCCReference Include="DatumDlg.pas">
+				<Form>DlgDatum</Form>
+			</DCCReference>
+			<DCCReference Include="QrPreDlg.pas">
+				<Form>DlgQRPreview</Form>
+			</DCCReference>
+			<DCCReference Include="Prn__Dlg.pas">
+				<Form>DlgPrn</Form>
+			</DCCReference>
+			<DCCReference Include="ChangDlg.pas">
+				<Form>DlgChange</Form>
+			</DCCReference>
+			<DCCReference Include="XmlExpDlg.pas">
+				<Form>DlgXMLEXP</Form>
+			</DCCReference>
+			<DCCReference Include="FldDeDlg.pas">
+				<Form>DlgFldDesc</Form>
+			</DCCReference>
+			<DCCReference Include="MuGriDlg.pas">
+				<Form>DlgMuGri</Form>
+			</DCCReference>
+			<DCCReference Include="Sort_Dlg.pas">
+				<Form>DlgSort</Form>
+			</DCCReference>
+			<DCCReference Include="PropsDlg.pas">
+				<Form>DlgProps</Form>
+			</DCCReference>
+			<DCCReference Include="VektorKmp.pas"/>
+			<DCCReference Include="Konv_Dlg.pas">
+				<Form>DlgKonvert</Form>
+			</DCCReference>
+			<DCCReference Include="Makrodlg.pas">
+				<Form>DlgMakro</Form>
+			</DCCReference>
+			<DCCReference Include="MemoDlg.pas">
+				<Form>DlgMemo</Form>
+			</DCCReference>
+			<DCCReference Include="PropEds.pas"/>
+			<DCCReference Include="WinTools.pas"/>
+			<DCCReference Include="WT65_Kmp.pas"/>
+			<DCCReference Include="WT60_Kmp.pas"/>
+			<DCCReference Include="WT60TKmp.pas"/>
+			<DCCReference Include="Mp85Kmp.pas"/>
+			<DCCReference Include="WtSohKmp.pas"/>
+			<DCCReference Include="Mci__Kmp.pas"/>
+			<DCCReference Include="WSPortKmp.pas"/>
+			<DCCReference Include="EssmKmp.pas"/>
+			<DCCReference Include="WaShare.pas"/>
+			<DCCReference Include="WordPrnKmp.pas"/>
+			<DCCReference Include="ZeitDlg.pas"/>
+			<DCCReference Include="TgridKmp.pas"/>
+			<DCCReference Include="Qr3DCnvs.pas"/>
+			<DCCReference Include="CalcDlg.pas">
+				<Form>DlgCalc</Form>
+			</DCCReference>
+			<DCCReference Include="DdeSiDlg.pas">
+				<Form>DlgDdeSysInfo</Form>
+			</DCCReference>
+			<DCCReference Include="MuSiFr.pas">
+				<Form>FrMuSi</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Feiertage.pas"/>
+			<DCCReference Include="Sql__Dlg.pas">
+				<Form>DlgSql</Form>
+			</DCCReference>
+			<DCCReference Include="MuSiControlFr.pas">
+				<Form>FrMusiControl</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="MettlerKmp.pas"/>
+			<DCCReference Include="XLS.pas"/>
+			<DCCReference Include="ExcelPrnKmp.pas"/>
+			<DCCReference Include="SizeControls.pas"/>
+			<DCCReference Include="Soe3030Kmp.pas"/>
+			<DCCReference Include="RAG701Kmp.pas"/>
+			<DCCReference Include="Rhewa83zKmp.pas"/>
+			<DCCReference Include="CtrlMuGriKmp.pas"/>
+			<DCCReference Include="WoeDatKmp.pas"/>
+			<DCCReference Include="Xls__Kmp.pas"/>
+			<DCCReference Include="Indy\FTPFileSystem.pas"/>
+			<DCCReference Include="Unicode\EncodingTools.pas"/>
+			<DCCReference Include="Unicode\WideStringConvert.pas"/>
+			<DCCReference Include="XML\XMLExport.pas"/>
+			<DCCReference Include="AswClDlg.pas">
+				<Form>DlgAswCl</Form>
+			</DCCReference>
+			<DCCReference Include="RingKmp.pas"/>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>Package</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+						<Parameters Name="RunParams">Alias=qwlokal imach=0165 werknr=0165</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1031</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\lib\SDL\X2\sdlchartpack_101X2.bpl">SDL ChartPack 10.1</Excluded_Packages>
+					</Excluded_Packages>
+					<Source>
+						<Source Name="MainSource">Kmp.dpk</Source>
+					</Source>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win64">False</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+	</Project>

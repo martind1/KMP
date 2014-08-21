@@ -1,0 +1,32 @@
+XML Query Language
+At the moment, XML is just getting off the ground, and there is still a lot of work to be done. For example, you may wish to query XML files to identify elements that hold specific pieces of data. An example of a proposed query language is shown below and reads: ‘Where there is an element of type employee in document employees.xml, such that it contains “file clerk” in the position element, return the name of the employee’. Note that variable names are preceded by $ to distinguish them from string literals in the XML document.
+
+WHERE <employee>
+        <position>file clerk</position>
+        <name> $n</name>
+      </employee> IN "employees.xml"
+CONSTRUCT $n
+
+ 
+Currently, XML-QL is still in the development stage. If you scour the links below, you may find early versions of tools for querying XML documents.
+
+Conclusions
+With the release of IE5, I expect to see a real increase in XML. My personal view is that XML represents a major step towards portable, application independent data. As well as making many proprietary file formats redundant, it’s easy to imagine three tier client/server systems that use XML as a middleware format rather than MIDAS datasets or COM objects. It is equally easy to imagine storing composite documents in XML, or using it as a base output format for reporting.
+
+Figure 1: An XML document fragment describing two employees
+<employees>
+  <employee>
+    <name>James Smith</name>
+    <birthdate>1970-09-30</birthdate>
+    <ss_number>555-09-8410</ss_number>
+    <position>file clerk</position>
+  </employee>
+  <employee status="on leave">
+    <name>Mary Davis</name>
+    <birthdate>1972-11-09</birthdate>
+    <ss_number>884-99-3192</ss_number>
+    <position>lead engineer</position>
+  </employee>
+</employees>
+
+ 

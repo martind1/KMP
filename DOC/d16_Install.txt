@@ -1,0 +1,278 @@
+Install Delphi XE2 (d16) 13.04.2012
+Rechner Wandzik, Worki
+------------------------------------
+
+[22.05.14]
+QRDesign - Quickreport End-User Editor
+Test dpe.zak: 
+Problem:
+Package D:\DelphiXE2\ADDONS\Quickrep\bpl\QR5DesignDXE2.bpl kann nicht installiert werden, 
+da ein anderes Package mit dem gleichen Basisnamen bereits geladen ist 
+(c:\program files (x86)\embarcadero\rad studio\9.0\bin\QR5DesignDXE2.bpl).
+- del rad studio\9.0\bin\QR5DesignDXE2.bpl -> deleted
+  -> nein:belassen, ist von 19.02.2013
+{$ifdef QRPP}  
+- Komponente: TQREditor
+  Problem: nur BDE Datenquellen aber lt QR-Notes auch alle TDataSets möglich
+- Lsg1:
+procedure EditReport(Report: TQuickRep); (qreport.pas)
+http://www.quickreport.co.uk/WebInfoPage.aspx?WebInfoID=708
+qrdatasu.pas: setupr Datasource: erweitern: um TuQuery
+- Quickreport Source ändern:
+  - Projekt: 
+  
+Lsg:
+QR5RunDXE2.dproj: >Projekt >Optionen >Ausgabeverzeichnis für Units: .\dcu
+QR5DesignDXE2.dproj dito, Problem: bpl bereits vorhanden:
+- vorher entfernen: bin\qr*.bpl
+- >Komponente QuickRep
+    c:\Program Files (x86)\Embarcadero\RAD Studio\9.0\bin\QR5DesignDXE2.bpl
+    QR5RunDXE2.bpl
+- o.g. KMPs >Optionen >DCP: (.\bpl) -> leerlasen für Std-Pfad
+
+Problem:
+QR5>qrdatasu erwartet BDE
+Lsg: qrdatasu: Erweiterung DataType um TuQuery(Index=?)
+
+
+[14.05.14]
+- Inbetriebnahme Gnostice eDocEngine (SDBL):
+  (Fortsetzung von 29.04.12)
+- Package installieren: (Interface)
+  d:\DelphiXE2\ADDONS\Gnostice\eDocEngine\Source\QR\DCLgtQRExpD16.dpk
+- Bibliothekspfad ergänzen:
+  d:\DelphiXE2\ADDONS\Gnostice\eDocEngine\Lib\RADXE2\Win32\
+- kopiere DCLgtQRExpD16.bpl, gtQRExpD16.bpl nach
+  c:\Users\Public\Documents\RAD Studio\9.0\Bpl\
+  
+  
+
+[06.03.14]
+- Problem Addons\TPDFImage: kann noch kein Unicode
+http://stackoverflow.com/questions/14764652/calling-external-dll-with-array-of-pchar-as-parameter-in-xe
+
+
+
+[14.02.14]
+- Problem: Fehler beim compilieren von LL.bpl (addons\combit):
+  F2051 Unit Lnav_kmp wurde mit einer unterschiedlichen Version von Mugrikmp.TMultiGrid compiliert
+- Lsg: kmp neu kompilieren+installieren -> LL.bpl lässt sich kompilieren
+
+- Problem2: die Fehlermeldung tritt beim Compilieren von QUPE auf:
+  LsthFrm.pas(19): F2051 Unit LlPrnKmp wurde mit einer unterschiedlichen Version von Qwf_form.TqForm compiliert
+- Lsg: >Tools >Optionen >Bibliothekspfad >+Addons\Combit  
+
+[06.02.14]
+- Problem: Dataset wird geschlossen, Prot:
+  WARN FIBUILV.Query1 Recordcount: Dataset closing because QueryRecCount=false and already open
+- Lösung: setze TuQuery.Options.QueryRecCount=True
+
+[24.01.14]
+- Ziel: KMP\ aus Bibliothekspfad zu entfernen.
+  Aber *.dfm werden im Bibliothekspfad erwartet.
+
+[12.11.12]
+- Problem: beim Kompilieren von KMP gibt es eine Access Violation.
+  Stack sagt: TQRExportFilterLibrary.AddFilter
+  Ursache: es gab noch eine alte Datei kmp\qrHTML.pas mit tödlicher initialization
+  QR Source: qrprntr-bp.pas
+             QRPrntr.pas
+             
+
+[29.04.12]
+- SDBL
+
+- Gnostice eDocEngine
+  Help: http://www.quickreport.co.uk/WebInfoPage.aspx?WebInfoID=730
+  
+  registrered Version im Einsatz:
+
+
+[28.04.12}
+- Install Worki
+
+- Addons:
+  NEU: eigenes Verzeichnis für DCU und DCP (Bibl.-Path)
+  Ausgabeverzeichnis für Units: d:\DelphiXE2\ADDONS\Lib
+  Package Ausgabeverzeichnis:   d:\DelphiXE2\ADDONS\Lib
+  Bibl.Path: d:\DelphiXE2\ADDONS\Lib
+  Suchpfad:  d:\DelphiXE2\ADDONS;...
+
+- KMP
+  NEU: eigenes Verzeichnis für DCU und DCP (Bibl.-Path)
+  Ausgabeverzeichnis für Units: d:\DelphiXE2\Kmp\Lib
+  Package Ausgabeverzeichnis:   d:\DelphiXE2\Kmp\Lib
+  Bibl.Path: d:\DelphiXE2\Kmp\Lib
+  Suchpfad:  d:\DelphiXE2\Kmp;...
+  - dafür müssen die Resourcen auch nach Lib\
+      oder doch Bibl.Path auf kmp\
+
+  - KMP requires:
+    Jcl,
+    JvCore,   (ohne d16)
+    JvStdCtrls,
+    NativeExcelDXE2: Bibl.path: d:\DelphiXE2\ADDONS\NativeExcel3\DELPHIXE2
+    - CodecUtilsWin32:
+  
+- TAsBarcode - addons\pbarcode2
+  NEU: eigenes Verzeichnis für DCU und DCP (Bibl.-Path)
+  Ausgabeverzeichnis für Units: d:\DelphiXE2\ADDONS\fbarcode2\Lib
+  Package Ausgabeverzeichnis:   dto.
+  Bibl.Path: d:\DelphiXE2\ADDONS\fbarcode2\Lib
+  Suchpfad:  ?
+
+[27.04.12]
+- Install Worki
+
+- Devart: V4.1.6 installiert
+- QReport installiert
+  Bibl.Path: c:\Programme\Embarcadero\RAD Studio\9.0\lib\win32
+         und c:\Programme\Embarcadero\RAD Studio\9.0\lib\QR505
+
+- TMS Excel
+  - runtime path wurde ergänzt -> in delphixe2.bat ergänzen. ok
+  - TXLSXAdapter manuel installieren aus Source\dproj und _DESIGN.dproj
+  [DCC Fataler Fehler] XlsxAdapterXE2.dpk(37): E2202 Package 'FlexCel_Core' wird benötigt, konnte aber nicht gefunden werden
+compiling XlsxAdapterXE2.dpk failed.
+E2202 Package 'FlexCel_Core' not found.
+
+There is no Core unit in the source.
+
+Installing FlexCelXE2.bpl and FlexCelXE2_DESIGN.bpl was successful.
+Version 5.05
+
+Using XE2 Update 4
+
+Registration / login code: 06E63150
+
+Thanks for Help  
+
+
+[22.04.12]
+- Install Worki XE2 Update 4
+  muss XE2 vorher deinstallieren! Registry kann evtl beibehalten werden.
+  
+  - GExperts
+  - Jedi
+  - madExcept
+  - Devart
+  - QReport
+  - TMS Keyboard
+  - TMS Excel
+    
+- Jedi
+  BPL path (default): C:\Dokumente und Einstellungen\All Users\Dokumente\RAD Studio\9.0\Bpl
+  DCP path (default): D:\DelphiXE2\ADDONS\Jedi\jcl\lib\d16\win32\  
+  JVCL:
+  BPL path: C:\Dokumente und Einstellungen\All Users\Dokumente\RAD Studio\9.0\Bpl
+  
+- Devart: V4.1.5 wird benötigt, kann aber nicht runtergeladen werden! Warte auf devart support.  
+
+[15.04.12]
+- QSBT
+  - Typbibliothek importieren
+    Unit Verzeichnis Name: $(BDS)\Imports
+    Palettenseite: ActiveX
+    In neues Package: OasDCOM
+    TIntecont2: QuvaSvrAkw.exe
+    - TOAS_Kartenspender
+    
+  - TAdvTouchKeyboard
+    TMSSystemControlsReg.zip V1.0.2.0 - Lizenz!
+    Bibl.Path: addons\TMS
+
+[13.04.2012]
+erl(6h)
+- Delphi XE2 installiert auf Wandzik Rechner
+- Unidac: unidac41d16pro.exe
+- Jedi: JVCL345CompleteJCL231-Build4197.zip
+
+- Problem: XE2 hat *keine* Komponenten
+  vermutl nach Deinstallation von FastReport u.a.
+- Delphi XE2 entfernt und neu installiert: Standardkomponenten sind wieder da
+- Update3 aufgespielt, weiter mit Jedi
+- neues Verzeichnis: c:\Programme\Embarcadero\RAD Studio\9.0\Bpl\
+- Jedi JCL
+  BPL Path: (c:\Dokumente und Einstellungen\All Users\Dokumente\RAD Studio\9.0\Bpl)
+      nach: c:\Programme\Embarcadero\RAD Studio\9.0\Bpl\
+      -> Bpl Path hinzufügen -> Setpath.DelphiXE2.bat
+    64Bit *nicht* installieren (Haken weg)  
+- Jedi JVCL      
+  BPL Path: c:\Programme\Embarcadero\RAD Studio\9.0\Bpl\
+- Bug
+  + Suchpfad: c:\Delphi2010\ADDONS\Jedi\jvcl\common\jedi\  
+  + Biblpfad: c:\Delphi2010\ADDONS\Jedi\jvcl\common\jedi\  
+  
+- QuickReport
+  QR505PDW32XE2.EXE
+  NEIN *.dco *.dfm *.res kopieren nach lib\
+  NEIN BiblPath: c:\Delphi2010\ADDONS\Quickrep\Lib\
+  BiblPath: $(BDS)\Lib\QR505
+  DCP (pck erfordert): c:\Programme\Embarcadero\RAD Studio\9.0\lib\win32\QR5RunDXE2.dcp
+  - Problem: EAccess bei Kompilieren von Addons
+  
+- GExperts
+  GXRSXE2-136.exe  
+
+- Addons
+  alle Subdirs ohne GExperts, Jedi, QuickRep, SDL, TMS, UniDAC
+  -> Addons400.zip
+  - erl ean45full: compiler version 23.0 (Delphi XE2) has VER230 defined.
+  - Erfordert QR5RunDXE2.dcp und QR5DesignDXE2.dcp ($(BDS)\lib\win32\QR5RunDXE2.dcp)
+    Bibl.Path: $(BDS)\lib\win32
+  
+- NativeExcel3 - Lizenz!
+  für XE2 nocht nicht vorhande: neu kompiliern, neues Package XE2
+  xlsdef.inc: define ver230
+  Ausgabeverzeicnis für Units: DELPHIXE2\  
+  Package Ausgabeverzeicnis: DELPHIXE2\
+  
+- madExcept - Lizenz!
+  madCollection.exe
+  madshi.key
+  - Install nach c:\delphixe2\addons\madCollection
+
+- KMP400.zip
+  - kmp.dpk: requires: JvCoreD16R, JvStdCtrlsD16R,
+                       NativeExcelDXE2,
+                       indac160,
+                       dac160,
+                       xmlrtl (codecUtilsWin32)
+  - prots.pas: uses: Xml.Internal.CodecUtilsWin32
+  
+- TAsBarcode
+  ADDONS\fbarcode2\PBarcode.dproj
+  requires QR5RunDXE2;
+  File fehlte: fbarcode2\barcode.d32
+  
+- Bibliothekspfad:
+  \Kmp
+  \Addons
+
+  
+- QuvaE:
+  - FrmMain: QRXMLSSFilter1: Eigenschaft TextEncoding existiert nicht
+  - RepBelSG: Klasse TAsBarcode
+  
+  - Typbibliothek importieren
+    SHSvr_TLB
+    QSBTSvr_TLB ?
+    QuvaSvr_TLB (TIntecont)
+    Unit Verzeichnis Name: $(BDS)\Imports
+    In neues Package: QuvaSvr
+    TIntecont2: QuvaSvrAkw.exe
+    
+- NEIN Bibl Pfad: JA Suchpfad:
+  DBTreeView: d:\DelphiXE\ADDONS\DbTreeView
+  
+- EanQR:  
+  Bibl.Path: C:\DelphiXE\ADDONS\ean45full\Source
+- qrBarcode:
+  Bibl.Path: d:\DelphiXE\ADDONS\fbarcode2  
+  
+- OpenOnlyOnce: Fehler bei Bereichsprüfung
+  (Fehler beim Lese von cobWERK_NR.Items.Strings, Fehler beim Lese von EdAllgTxt.Lines.Strings)
+  -> {$R-} in WinProc
+  
+  
+  

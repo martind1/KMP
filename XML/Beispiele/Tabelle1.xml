@@ -1,0 +1,37 @@
+  <?xml version="1.0" ?> 
+  <!-- Kommentar  --> 
+<DATABASE>
+  <Name>Schema_oder_Anwendung</Name>
+  <Schema>weitere Parameter moeglich</Schema>
+<TABLE myatt="Hallo">
+  <Name>Tabelle1</Name>
+  <DBName>fuer Insert Statement z.B.</DBName>
+  <ROW>
+    <Feld1>Feld&gt;inhalt1</Feld1>
+    <Feld2>Feldinhalt2</Feld2>
+  </ROW>
+  <ROW>
+    <Feld1>Feldinhalt3</Feld1>
+    <Feld2>Feldinhalt4</Feld2>
+  </ROW>
+</TABLE>
+<TABLE>
+  <Name>universities</Name>
+  <ROW>
+    <name>UCSB</name>
+    <location>Santa Barbara, CA</location>
+  </ROW>
+  <ROW>
+    <name>Record of Texas at Arlington</name>
+    <location>Arlington, TX</location>
+  </ROW>
+  <ROW>
+    <name>USM</name>
+    <location>Hattiesburg, MS</location>
+  </ROW>
+  <ROW>
+    <name>Baylor</name>
+    <location>Waco, TX</location>
+  </ROW>
+</TABLE>
+</DATABASE>

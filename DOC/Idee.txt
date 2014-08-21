@@ -1,0 +1,947 @@
+12.08.97  Export-Klassen
+OK        ==============
+exp_dlg   - Entsprechend Feldnamen
+          - für Reorganisation
+          - für Excel usw.
+
+          - Export
+            - Liste mit Feldnamen
+            - Reihenfolge änderbar
+
+          - Import
+            - Liste mit geänderten Feldnamen
+              <neu> = <alt>
+            - Ereignis
+              - OnImport: kann Daten manipulieren
+            - Flags
+              - Überschreiben (=Reaktion auf Indexfehler)
+              - fehlende Felder ignorieren (dflt)
+
+          - Format
+            - ASCII variable (CSV)
+            - ASCDII fest
+            - Alias: Create Table (für ASCII,Excel,...)
+
+24.08.97  Detail - Erfassen
+          -----------------
+ok        - Steuerung über Property in LuDef:
+            - Direktes Erfassen in Fremdmaske
+              - Detail-Filter übernehmen für Vorbelegung
+            - Erfassen in Detailtabelle
+            - Erfassen durch Auswahl in Tabelle der noch nicht zugeordneten
+              Detailsätze (bereits realisiert und Standard, für n:m)
+
+01.10.97   Lov__Dlg (Werteliste)
+           ---------------------
+ok         Anzeige mehrerer Spalten
+
+01.10.97   Preview
+           -------
+           - Eigenes Fenster
+             - mit GNavigator steuerbar
+             - auch SQL-Button soll funktionieren
+
+01.10.97   Ausw_Kmp (Auswertungskomponente)
+OK         --------------------------------
+           - Definition Spalte, Gruppen, Summierung
+             für leeres Report-Fenster zu füllen
+
+10.10.97  EditSource: NavLink in GNav umsetzen
+          ------------------------------------
+          Bisher wird in DoEdit nur der X.DataSource umgestellt.
+          Der NavLink vom LNav blieb zugeordnet.
+          Jetzt soll auch der NavLink umgestellte werden (wie bei grüner
+          Detail-Tabelle).
+          Vorteile: - klarer;
+                    - Ereignisse BeforePost usw. können im EditSource-Ereignis
+                    - behandelt werden
+                    - weniger Aufwand im QNav
+          Nachteil: - größere interne Umstellung -> Folgefehler. testen !
+
+10.10.97  Idee: LNav von TDataSource abgeleitet
+          -------------------------------------
+          Namensänderung: TLuDef, TLNav, ..., TLuEdit, ...
+          Vorteile: - kompatibel mit LuDef
+                    - NavLink klarer, evtl. der von TDataSource abgeleitet
+                      und hat als Nachfahren LuDef und LNav
+                    - Interface kleiner, da LNav und LuDef von Navlink abgeleitet
+                    - DataChange, StateChange direkter als virt.Methode
+                    - DataSet kann natürlich nil sein ...
+                    - i.V.m. 'EditSource: NavLink in GNav umsetzen'
+          Nachteil: - größere interne Umstellung
+                      - alle Formulare: LNav.DataSet eintragen,
+                                        LDataSource löschen
+
+17.01.97  Primärkey nicht änderbar
+          ------------------------
+
+27.01.98  Multigrid
+ok        ---------
+30.10.98  - Anzeige der Sortierung über Markierung der entspr.
+            Spaltenüberschriften.
+            - Key = Unterstrichen oder Farbe (rot, blau)
+            - Key-Info von KeyFields
+                       wenn leer dann von PrimaryKeyFields
+
+
+27.01.98   Datei-Info
+ok         ----------
+           - Umfasst:
+             Alias
+             Pfad (Paradox)
+             Treiber-Typ
+             Anzahl Datensätze
+             Sortierung
+             Filter-Liste
+
+01.03.98  Markierte Datensätze löschen
+          ----------------------------
+OK        Erkennen und Bestätigen über normalen Löschaufruf
+
+
+          Markierte Datensätze ändern
+          ---------------------------
+          Erkennen bei Ändern-Aufruf:
+          - Änderungen in Maske eintragen (InMemoryTable)
+          - ChangeList aufbauen; Navlink.ChangeAll;
+
+
+02.03.98  Lookup Fields
+ok        -------------
+          Das sind CalcFields die mit einem Feld in einer LookupDef
+          korrespondieren und automatisch aktualisiert werden
+          (Manuelles OnRech Programm entfällt dann).
+          Optimierung des Nachladens:
+          Wenn sich die Schlüsselfelder nicht ändern wird der bekannte
+          Wert zugewiesen.
+
+          Oder als eigene Komponente, die auf Active=true bzgl. PageIndex
+          gesetzt werden kann und den Job handelt:
+          - Zwischenspeicher der Schlüsselfelder und CalcFields Zuordnungen
+          - Reaktion auf OnCalcFields Ereignis.
+          -> siehe  05.08.98  LookupDef: Optimierung bzgl. Öffnen
+
+
+28.03.98  RequestLive wird automatisch gesetzt
+OK        ------------------------------------
+          - TFltrList.BuildSql setzt Requestlive auf false wenn die
+            Ergebnismenge ein BDE-Update nicht erlaubt.
+            Kriterien:
+            - mehrere Tabellen
+            - Access: Datumfilter, 'LIKE'     (von GenerateSql)
+
+          - NavLink.BuildSql setzt RequestLive auf true wenn es anfangs
+            true war (anfangs = NavLink.LoadedRequestLive).
+
+
+28.03.98  Query mit RequestLive=false ändern
+          ----------------------------------
+          1. BuildSql mit Filter auf PrimaryKeyFields
+          2. Single
+          3. Edit
+          4. Post (Bediener)
+          5. BuildSql (Restaurieren)
+          6. GotoPos
+          7. Multi/Single wiederherstellen
+
+28.03.98  Makros
+OK        ------
+          - Realisierung über Untermenü 'Makros' im Menü 'Bearbeiten'
+            Das Menü 'Makros enthält Hotkeys und Makrotexte
+            Bei Click wird der Makrotext eingestreut (WM_CHAR)
+
+          - MakroDlg
+            GNavigator: MiMakros
+            MiMakros: Erlaubte Hotkeys anlegen
+
+05.04.98  Quickreport Komponente für Details flexibel zu drucken
+OK        ------------------------------------------------------
+          Bezieht sich auf eine Detailtabelle.
+          Öffnet diese nur einmal.
+          Stellt folgende Eigenschaften bereit:
+          - Filter: TStringList
+            die geöffnete Tabelle wird mit GotoPos positioniert
+          - Recordposition: integer
+            es wird auf den I.ten Record positioniert
+
+          Anwendung: Quku.PAnwRep
+
+08.04.98  Darstellung eines Memofelds als Grid
+          ------------------------------------
+          Der Inhalt des Memofelds besteht aus Zeilen in der Form
+          <Param>=<Value>
+          entspr. unseren Valuelists.
+          Die Komponente ist datensensitiv (DataSource,DataField)
+          und zeigt den Inhalt als erweiterbares Grid an mit den
+          Spalten 'Name' und 'Wert'.
+          Intern:
+          Ein DataLink ist zu verwalten entspr. DBMemo.
+
+09.05.98  Suchen-Modus: Alle Suchkriterien Löschen:
+OK        -----------------------------------------
+          F4 - Löschen
+
+25.07.98  Detail - LookUpDef: Erfassen: Vorbelegung anhand SOFields
+          ---------------------------------------------------------
+OK        in Navlink.DoInsert (und GNavigator.Duplicate für Duplizieren)
+
+03.08.98  InMemory - LookUp - Tabellen:  Residente Tabellen
+          -------------------------------------------------
+          Sekundärtabelle als InMem-Table realisieren
+          - Öffnen und einlesen nur einmal beim Start des Formulars
+          - LuGrids und Nachladen über GotoPos realisieren
+            - Datachange bewirkt kein Öffnen sondern ein GotoPos
+          - Optimierung über Caching von BookMarks
+            i.V.m. Stringlist: KeyValue=BookMark
+          - References werden dabei nicht in SQL umgesetzt (nur Fltr)
+            sondern manuell in NewDataChange / LuEdi behandelt
+          - Abgeleitet von TDBDataSet oder von TQuery
+
+03.08.98  Quickreport: komplette Spalte eine Detailtabelle
+          -------------------------------------------------
+          - TQRDBField
+          - evtl. übergeordnet: TQRDBDetailTbl
+            zum Organisieren aller TQRDBFields einer Table
+          Bsp in quku.vbtagrep.pas
+
+03.08.98  Lov-Button
+ok        ----------
+          mit den Properties:
+          - DatataSource, DataField
+            oder DBEdit
+          - DisplayFields   (F1;F2;F3;...)  für Zusatzinfos
+          Zeigt Lookup-Tabelle mit distinct Values des Feldes
+
+04.08.98  TAusw - Auswertungskomponente
+          -----------------------------
+          Berücksichtigt auch DateTime-Felder mit Uhrzeitangabe.
+          Somit erzeugt 'Tagesliste - 1.1.99' den Filter:
+            01.01.99 00:00:00 ~ 01.01.99 23:59:59
+
+05.08.98  LookupDef: Optimierung bzgl. Öffnen
+          -----------------------------------
+          - Bei Status- oder Datenänderungen in Formularen mit vielen
+            LuDefs dauert das Öffnen der Sekundärtabellen zu lange.
+            Statt dem neuen Öffnen soll stattdessen nur neu positioniert
+            werden (mit LuDef.GotoPos).
+          - Dies ist nur sinnvoll bei rel. kleinen Tabellen (bis 500 Sätzen)
+
+          - Steuerung über Property Lookupdef.NoReOpen
+            bzw. LookupDef.Options.NoReOpen
+
+          - Progr. in TLookUpEdit.BCDataChange
+          - Falls nicht gefunden:
+            - wenn PrimaryField leer ist dann: (Ideen:)
+              - State auf dsInsert setzen oder
+              + LookUpDef.Enabled := false setzen
+                (löscht die Anzeige in den datensensitiven Dialogelementen)
+              - oder Close (12.09.98)
+
+            - wenn Wert sonst nicht gefunden dann:
+              (Ursache: falsche Eingabe oder Tabelle wurde woanders aktualisert
+                        z.B. wenn der Bediener während des Lookups erfasst)
+              - Tabelle neu Öffnen
+              - Verfahren wie unter 'PrimaryField leer'
+
+          - Verwendung auch für Calcfields, die Werte aus Fremdtabellen
+            darstellen.
+            Für diese Calcfields müsste kein OnCalcField-Ereignis mehr
+            programmiert werden, da automatisch positioniert wird.
+
+          - Optimierung von GotoPosition wenn Sucheinträge der Sortierung
+            entsprechen: ab der aktuellen Position suchen.
+            -> NavLink.GotoPosition(ADataPos)
+
+06.08.98  Suchkriterien: Bezug auf anderes Feld über Platzhalter
+          ------------------------------------------------------
+          Platzhalter definieren:   f=#1   oder f=>0;#1   (f>0 Def.#1=f)
+          Platzhalter ansprechen:   f=5;#1>5    (f=5 oder Feld #1>5)
+                            oder:   f=>#1       (f>Feld #1)
+
+          Progr.: NavLink.FieldNrList : TValueList
+                  als var Übergabeparameter an GenerateSql (FieldNrList)
+                  ! muß 2mal gestartet werden wg. Rückbezug
+
+
+06.08.98  Suchkriterien speichern / laden
+          -------------------------------
+          - Speichern in .INI: [Suchkriterien.<Frm.ClassName>.<UserDefinedName>]
+                               Nr=5
+                               ...
+          - Bedienung über Menü 'Bearbeiten'
+              Suchkriterien laden       Umsch+F3
+              Suchkriterien speichern   Strg+F3
+-> Abfragen
+
+06.08.98  TAusw: Auswertungseinstellungen speichern / laden
+          -------------------------------------------------
+          - alle Filter und Tag/Monat/Jahresliste und Einzel/ZwSum/GrpSum.
+            - Datum nicht
+          - Speichern in .INI: [Auswertung.<TAusw.Name>.<UserDefinedName>]
+                               <ComponentName>=<Wert>
+                               ...
+          - Bedienung: über rechte Maustaste,
+                       über Menü 'Bearbeiten' (wie Suchkriterien)
+                       über Tastatur: Umsch+F3  bzw.  Strg+F3
+                       über Aufrufparameter
+                       über Button (eigentlich kein Platz dafür,
+                                    evtl. nur [V] und Commit-Button)
+                            bzw. Combobox u. autom. speichern bei Namenseintrag
+
+
+06.08.98  Field Description in eigener (Binär-)Datei
+          ------------------------------------------
+          - Grund: aus INI-Datei werden nur Zeilen bis 1024 Zeichen gelesen
+            Bsp: quvar3
+          - Datei:   <INI-Name>.FLD    im INI-Verzeichnis (dflt.: windir)
+            oder     <ALIAS>.FLD
+          oder: pro Tabelle eigener Eintrag
+
+
+10.08.98  Suchen: Datum: 00.01.98 ergibt gesamten Monat
+          ---------------------------------------------
+
+11.08.98  Detail erfassen und Master ist noch im Insert-Modus
+          ---------------------------------------------------
+          Problem: wenn Primary-Key eine ID ist, ist er noch
+                   nicht definiert.
+                   Def.: PKey ist letztes PrimaryKeyField und ist null
+                         Master ist MasterSource (immer Nav.DataSource)
+          Lösung: - in Detail.BeforeInsert:
+                    - Master.Store (erzeugt PKey)
+                      Master.References[PKey] := PKey.AsString (closed)
+                      Master.Open
+                      Master.Edit
+                  - in LNav.PageChange
+                    if Master.Active and Master.References[PKey] <> '' then
+                      Tmp := Master.References[PKey]
+                      Master.References[PKey] := ''          (closed)
+                      Master.Open
+->OK DetailInsert     if not NoGotoPos then Tmp.GotoPos(Master)
+
+12.09.98  Tabellen Synonyme
+          -----------------
+          - eine entspr. Liste existiert bereits in GNavigator.TableSynonyms
+          - Könnte in .INI über entspr. Abschnitt eingelesen werden:
+            [TableSynonyms]
+            <Synonym>=<eigentlicher Tabellenname>
+          - z.B. für Rechteverwaltung:
+            Rechte=QUSY.R_RECHTE
+          - GenSql erzeugt bereits:
+            .. from R_RECHTE Rechte, ...
+
+
+22.09.98  function WMessChoices(Titel, Text, Buttons: string): integer
+          ------------------------------------------------------------
+          Dialogmessage mit individuellen Buttons
+          - Returns Index des Buttons oder -1 bei Abbruch
+          - Ergänzt 'Abbruch' Button
+          - Buttons: Captions mit ';' getrennt anzugeben
+          - Anwendung:
+            case WMessChoises('Aktion', 'Bitte Aktion auswählen',
+                 'Lfs.Bearbeiten;Abschluß;Pos-Übern.') of
+              0: BtnLfscClick(Sender);
+              1: BtnDoneClick(Sender);
+              2: BtnTakeClick(Sender);
+            end;
+
+02.11.98  Übernehmen: Alle Markierten Datensätze
+          --------------------------------------
+          im Detail Lookup kann bisher nur ein Datensatz
+          übernommen werden.
+          Falls mehrere Markiert sind sollen diese übernommen
+          werden.
+
+05.12.98  qEdit
+ok        -----
+          Erweiterung von TEdit
+          - Alignement
+          - Numerisch (nur Ziffern, VZ und Komma erlaubt)
+            Datum
+          - EditMask  (entspr. TDBEdit)
+            Steuert auch Nachkommastellen
+
+19.01.99  Y2000 + Oracle
+          alter session
+ok        set nls_date_format='dd.mm.yyyy';
+          Speicherung und Verwendung in SysParam.DbSqlDatum
+
+
+27.01.99  TGenerator
+          ----------
+          Properties:
+          - Praefix: string     Zeichenfolge vor der generierten Zahl
+          - Postfix: string     Zeichenfolge hinter der generierten Zahl
+          Events:
+          - AfterGen(Sender; Store: boolean)    Aufruf nach Generierung.
+                                Standard: Praefix und Postfix ergänzen.
+
+04.02.99  DatumBtn Dialog
+          ---------------
+          Buttons anderes Design <<Jahr>>
+ok 310599 Gedrückt halten scrollt durch
+
+27.02.99  Auge-Button
+!?        -----------
+          Soll Requestlive anzeigen und schalten
+
+27.02.99  Formularlänge (z.B. 6") unter NT
+???       --------------------------------
+          evtl. mit Escape
+
+21.03.99  ReplaceParams(TQuery)
+SqlDialog ---------------------
+ok        ersetzt Parameter in SQL mit tatsächlichen Werten
+
+21.03.99  Exception-Dialog
+ok wenn   ----------------
+delphi    lokales Menü mit der rechten Maustaste:
+running   -SQL-Dialog
+
+19.04.99  Lookup Grid (Einzelsicht)
+!?        -------------------------
+          Wenn in Einzelsicht erfasst wurde soll nach Rückkehr
+          die Tabelle neu eingelesen werden und auf den neuen
+          Datensatz positioniert werden.
+          Bei Änderungen soll entspr. verfahren werden.
+
+21.04.99  UpdateFieldDefs
+ok        ---------------
+          auf jeweils eine Tabelle mit allen Feldern beschränken
+          i.d.F. select * from TBL
+          bei Queries mit mehreren Tabellen werden die FieldDefs
+          der Einzeltabellen verwendet.
+
+20.05.99  TDataset.GotoPos in Delphi32 mit Locate realisieren
+!?        ----------------
+18.01.00  Funktioniert nur mit einem Feld da Variantenarrays den
+OK        Typ varString verweigern.
+
+31.05.99  Nav.Options:
+          ------------
+ok(Maxsizeable) - SpanMax:  Vergrößern auf GNavigator.ClientPanel erlauben
+ok(Option Nav)  - SavePos: Position und Größe speichern:  [Name]  Left/Top/Width/Height
+          ----------
+          - CloseAction (caNone, caHide, caFree, caMinimize)
+
+
+04.06.99  GNavigator.ClientWidth, .ClientHeight sind jetzt Properties
+ok        und werden dynamisch berechnet, z.B. nach Gräßenänderung oder
+          Maximierung von MainFrm.
+
+06.06.99  Nov-Pollfunk mit Close-Logik
+ok        und WantClose Flag
+
+07.07.99  Lookupdef, BeforeLuGrid:
+ok        ------------------------
+          Lookupdef.LeftTop wird umbenannt in .LuRect.
+          Lookupdef.LuRect.TopLeft entspr. biserigem LeftTop.
+          Lookupdef.LuRect beschreibt die Bounds des aktuellen Steuerelements.
+
+08.07.99  DfltRep als Class(TPrnSource)
+          -----------------------------
+          + Calcfields.Lookup bedienen über NavLink
+          Property Mu: TMultigrid
+
+13.07.99  TDatumBtn, TTimeBtn
+          -------------------
+          Format-Property bei Button
+          dflt: bei DB-Editfeldern von TField.DisplayFormat
+                sonst ShortTimeFormat bzw. ShortDateFormat von SysUtils
+
+27.07.99  TDatumBtn, TTimeBtn
+          -------------------
+ok        Dialog mit Comboboxen von Jahr (+-20) und Monat (1..12)
+
+28.07.99  Field Description
+          -----------------
+ok        FldDsc[ADBName, ATblName, AFieldName: string]: TFieldDef;
+
+13.08.99  DBGrid exportieren nach Excel/CSV
+ok        ---------------------------------
+          Aktuelle DBGrid wird exportiert im CSV Format (ASCII.CSV)
+          - Aufruf über Popup Menü( 'Ansicht in Excel')
+          - Dialog: FileName
+          - Überschriften sind die Spaltennamen
+          - Aufruf von Excel per DDE
+            FileOpen(FileName)
+          -> Auswertungen speichern nach PDox Tabelle (Details)
+
+13.08.99 DBGrid: Layout
+         --------------
+         - Layout Speichern auch im Popup Menü
+ok 30.10.99
+
+13.08.99 DBGrid: ScrollBar bzgl. RecCount
+ok       --------------------------------
+         - nicht nur 3 States
+         - DBGriScr Shareware-Komponente verwenden
+
+27.09.99  Re:Suchen: Datum: 00.01.98 ergibt gesamten Monat
+          ------------------------------------------------
+          bzw. 00.00.99 ergibt gesamtes Jahr
+          DlgDatum: Wert 'egal' in Jahr, Monat, Tag Sektion anzeigen
+
+
+30.10.99  Tools in Toolbar bzw. 'Bearbeiten'
+          ----------------------------------
+          Ziel:   mit der Maus sind ALLE Eingaben möglich.
+          Aufruf: per Doppelklick im Eingabefeld
+
+          - Taschenrechner
+            - Eingabe von Zahlen und Arithmetik über Tastatur
+            - Button/Listbox [Feld]: zur Übernahme von bestehenden Feldern
+            - Button [Übernehmen]: zur Übergabe Ergebnis
+            - Arithmetik: + - * / () MR MS
+
+          - DatumDlg
+          - ZeitDlg
+          - Increment
+          - Decrement
+
+          - Alphanumerische Tastatur
+
+          - Suchkriterien
+            - <, >, ..,
+            - kleiner, größer, enthalten in, zwischen,
+            - Verweis auf andere Felder
+
+15.11.99  PrnSource: Bedienermeldung
+          Message
+
+11.12.99  Asw-Komponenten mit vollständiger Lookup-Definition
+          ---------------------------------------------------
+          - Options: LeNoNullValues, {keine Null-Werte kopieren}
+                     LeReadOnly,     {keine Änderung zw. Data und LookupField}
+                     LeNoOverride,   {Kopieren nur wenn Ziel=Null}
+                     LeForceEmpty    {Leere References als Fltr is null verwenden}
+          - KeyField: boolean
+
+
+28.02.00  neues Ereignis: NavLink.OnChange
+          --------------------------------
+          - verbindet Datasource.OnDataChange und OnStateChange
+          - dient zur Steuerung von Enabled, Visible u.ä.
+
+20.03.00  Abfragen: FltrList und KeyFields permanent speichern in DB
+          ----------------------------------------------------------
+          Der Bediener kann seine Suchkriterien und die Sortierung in
+          der Datenbank unter einem Namen speichern und wieder laden.
+          Eine Combobox mit den gespeicherten Abfragen kann auf den
+          Formularen plaziert werden.
+          Beispiel: GEN.FltrFrm
+->Anwendungsbezogen realisiert
+
+20.03.00  Formular: SubCaption
+ok        --------------------
+          Aufbau Formulartitel:
+          <ShortCaption> [<SubCaption>] - <Titel2>
+          z.B. Kunden [Erzeuger] - Anzeigen
+          neu: SubCaption
+          Funktionen: Prots#SubCaption      Erzeugt Caption mit SubCaption
+                      Prots#MainCaption     Ergibt Caption ohne SubCaption
+          siehe auch  Prots#LongCaption
+                      TLNavigator.SetTitel
+
+01.04.00  n:m Bezeiehung und SOFields (Tip)
+          ---------------------------------
+          In den References der LookUpDef der Zieltabelle kann man die
+          Felder eintragen, die von der Zieltabelle zur Zuordnungstabelle
+          beim Einfügen kopiert werden sollen i.d.F.
+          <Feldname-Zieltabelle>=:<Feldname Zuordnungstabelle>
+          Vor.: im LookUpDef der Zuordnungstabelle ist als LookUpSource
+          die Zieltabelle eingetragen.
+->realisiert
+
+01.04.00  n:m LookupTabelle: markierte Datensätze übernehmen
+          --------------------------------------------------
+          ->realisiert (QUPE 01.02.2002)
+
+13.04.00  neue Felder in TLNavigator.Options
+          ----------------------------------
+          lnErfassSingle: true = Erfassen auf Single (entspr. ErfassSingle)
+          lnEditSingle: true = Ändern verzweigt auf Single-Seite
+          -> verworfen. Dafür eigene Eigenschaften (ErfassSingle,
+                        EditSingle) vorhanden.
+
+
+15.04.00  Drag&Drop innerhalb Grid standardisiert
+          ---------------------------------------
+          Aktivieren: TMultiGrid.MuOptions.muDrag=true setzen
+          Voraussetzung: KeyFields enthalten mind. 1 Keysegment
+                   noch: das letzte Keysegment muß ein Feld von Numerischem Typ ohne NK sein
+          Wirkung: durch Drag&Drop einer Gridzeile auf eine andere Zeile
+                   des Grids werden die Werte des letzten Keysegments
+                   in KeyFields entspr. automatisch geändert:
+          Bsp: KeyFields = Pos
+          Name      Pos                        Name      Pos
+          --------------  >>>>>                --------------
+          Otto      1     nach ziehen          Anna      1
+          Anna      2     von OTTO             Karl      2
+          Karl      3     hinter Karl          Otto      3
+          ->realisiert, siehe V306MD.txt
+
+28.04.00  Standard Popup-Menü für jedes DBEdit-Feld
+          -----------------------------------------
+          Rückgängig
+          Ausschneiden
+          Kopieren
+          Einfügen
+          Löschen
+          Alles markieren                    bis hierhin Windows95 Standard
+          -----------------------------------
+          Werteliste                         LovDlg
+          Rechner                            CalcDlg
+          Kalender                           DatumDlg
+          Uhr                                TimeDlg
+          -----------------------------------
+
+29.04.00  LookupDef-Flag: DeleteDetails
+          -----------------------------
+          bisher:
+          =======
+          Dieses Flag gibt zunächst einmal an, ob beim Löschen des Haupt-
+          Datensatzes auch die Details 'hart' gelöscht werden.
+          Somit wird es bei n:m Zuordnungen immer gesetzt.
+          Bei anderen 1:n Beziehungen wird es gesetzt wenn Details
+          ohne Masterzuordnung nicht existieren dürfen (Master is not null).
+
+          Auswirkungen beim Löschen des Master-Datensatzes (Query1):
+          Vor dem Löschen wird jedes LookUpDef im Formular durchlaufen:
+          1. LookUpDef.DeleteDetails=true:
+             alle Detail-Datensätze werden gelöscht
+          2. LookUpDef.DeleteDetails=false:
+             keine Aktion
+
+          Auswirkungen beim Löschen eines Detail.Datensatzes (LookUpDef):
+          1. DeleteDetails=true:
+             Datensatz wird gelöscht
+          2. DeleteDetails=false:
+             Datensatz wird geändert: Alle Zuordnungsfelder
+             (in References) werden auf null gesetzt.
+
+          Beim Erfassen wirkt dieses Flag i.V.m. dem Flag ErfassSingle und
+          der Eigenschaft LookUpSource:
+          1. DeleteDetails=false und ErfassSingle=true:
+             Lookup-Tabelle mit nicht-zugeordneten Details
+          2. LookUpSource <> nil:
+             Lookup-Tabelle in Fremdmaske vom LookUpSource
+          3. ErfassSingle=true:
+             Erfassen auf Single-Seite der Fremdmaske
+          4. ErfassSingle=false (Standard):
+             Erfassen auf gleichem Formular in Detailtabelle
+
+          Das harte Löschen erfolgt über SQL (delete from TBL where ...).
+          Es ist somit sehr schnell, kann aber nicht durch Ereignisse
+          kontrolliert werden.
+
+          Das harte Löschen kann ausgeschaltet werden ohne die Funktionalität
+          beim Erfassen zu beeinflussen:
+          SysParam.NoDeleteDetails=true
+          Das Löschen von Detaildatensätzen erfolgt dann über DB-Trigger
+          oder über GNavigator-Ereignisse (Access in Projekt GEN)
+
+          Zu programmieren:
+          1. Wenn trotz DeleteDetails=false Detail gelöscht bzw. deren
+             Master Fields auf null gesetzt werden sollen
+
+
+          neue Einstellung:
+          ===============
+          SysParam.SoftDelete=true         (in FrmPara.GetIni setzen)
+
+          Das Löschen der Detail-Datensätze erfolgt nicht direkt über SQL,
+          so daß die Ereignisse LuDetail.BeforeDelete usw. wirken.
+
+          Neue Aufruf Prozeduren:
+          1. Aufruf in NavLink.NewBeforeDelete
+             BroadcastMessage(EditSource, TLookUpDef, BC_LOOKUPDEF, ldDeleteDtl);
+
+          2. NavLink.DoDeleteMarked(MarkAll: boolean);
+             MarkAll=true löscht nicht die markierten Datensätze
+             sondern alle (im Filter).
+          ->realisiert (teilw.)
+
+31.01.01  SavePosition
+          ------------
+          Das Laden einer gespeicherten Fensterposition verträgt
+          sich nich mit der D5-Eigenschaft 'Anchors'. Diese beziehen
+          sich auf die urspr. Werte und werden nicht aktualisiert.
+          -> Konzept LoadPosition in Qwf_Form neu überdenken,
+            evtl. mit PostMessage. Width nicht in SetMinMaxInfo setzen.
+
+19.02.01  MultiGrid: markieren eines Bereiches
+          ------------------------------------
+          Das Markieren eines Bereiches mit der Maus und der Shift-
+          Taste muß programmiert werden.
+          MouseDown: anhand Primary Key / aktuellen Sortiereinstellungen
+          erkennen ob mit prior oder next zum aktuellen Record zu
+          selektieren ist.
+
+08.03.02  Vorbelegungen
+          -------------
+          LuDef: AutoOpen=true
+                 NoOpen=true
+          MultiGrid: Opions + [dgMultiSelect]
+-> realisiert
+
+09.03.02  Splitter mit Speicherung der Position
+          -------------------------------------
+          Änderungen werden in der .INI gespeichert.
+          Das Ereignis OnMoved wird ausgelöst, wenn der Benutzer das Formular
+          mit der Teilerleiste neu gegliedert hat.
+-> realisiert in qSplitter.pas, unter 'Beispiele' installiert.
+
+11.03.02  Btn Page
+          --------
+          Bei lumZeigMask springt Zielmaske nach PageIndex=TqBtnMusi.Page
+
+01.05.02  Tag-Bits globale Aufstellung von 0..31
+          --------------------------------------
+          Bit   Wert        Bedeutung           Ort
+          0     1           QRep Schriftart 1   QREP_FORM
+          1     2           QRep Schriftart 2
+          2     4           QRep Schriftart 3
+          3     8           QRep Schriftart 4
+          4     16          QRep Schriftart 5
+          5     32          Resize Width 8      SDBL.PARA
+          6     64          Resize Height 8
+          7     128         Resize Width 20
+          8     256         Resize Height 20
+          9     512         Unused
+          10    1024
+          ...               ...
+          31    2147483648  ...
+        -> Realisierung in PROTS.PAS
+
+01.05.02  Vertikales TabControl rechts ersetzt Nav.TabSet und qBtnMuSi's:
+          ---------------------------------------------------------------
+          Name: TqTabControl
+          - mit Detail- und Multisicht
+          - mit zurück und Übernehmen
+          - mit LookUp-Displays
+          - mit User-Defined Buttons  (Event fragt Tag ab)
+          Verfahren: die einzelnen Tabs werden über ihre Tags unterschieden.
+          Zu klären: Bitmaps (statt Text) anzeigen
+          Einbindung: über Nav.Tabset; Änderung: Typ=TWinControl.
+
+02.05.02  MultiGrid: Spaltenbreite
+          ------------------------
+          Die letzte Spalte soll bei Resize so verbreitert werden, dass
+          sie gerade noch ohne Horiz.Scrollbar reinpasst.
+          Wenn sie nicht sichtbar ist (zu weit rechts, zu schmal) dann
+ok        keine Aktion.
+
+23.05.02  MultiGrid: Default-Spalten anhand Version verwenden
+          ---------------------------------------------------
+          Bei einer neuen Programmversion sollen bestimmte Grids das
+          Standard-Layout verwenden, auch wenn der Benutzer zwischenzeitlich
+          das Layout geändert ind in der .INI gespeichert hat.
+          Lsg: (1) Die Version wird global über die Ini-Datei verglichen
+                     [System]
+                     Version=2.0
+                   Wenn beim Programmstart die Version differiert werden in der
+                   INI die Einträge Spalten.TFrmVorf.Mu1 gelöscht. D.h. im
+                   Main wird eine Tabelle aller ungültigen Grid-Namen mit
+                   Versionsangabe programmiert: GNav.Version:
+                   Spalten.TFrmVorf.Mu1=2.00
+                   in Multigrid wird GNav.Version mit INI[Version] verglichen und
+                   wenn ungleich werden Default-Werte verwendet (und INI Layout
+                   gelöscht) und in der INI unter [Version] der GNav Eintrag geschrieben.
+               (2) in FrmMain wird programmiert:
+                   wenn INI.Version < Version dann
+                     kopiere Version nach INI.Version ([System] Version=2.0)
+                     lösche Spalten.TFrmVorf.Mu1
+                     lösche Spalten.TFrmAAnl.MuKund
+                     usw.
+
+
+23.05.02  .INI pro Maschine und pro User und pro Benutzergruppe
+          -----------------------------------------------------
+          - in der Haupt-Ini gibt es eine Include Sektion:
+            [Include]
+            UserIni=f:\qdispo\qdispo.ini
+            oder UserIni=q:\qdispo\#user#.ini
+            GroupIni=q:\qdispo\#group#.ini   (dflt = ExeName)
+            MachineIni=q:\qdispo\#pcnr#.ini
+          - Es werden Ersetzungen vorgenommen:
+            #pcnr# --> Maschinenname
+            #user# --> angemeldeter Benutzer (Windows bzw. Rechteverwaltung)
+          - alle Einträge in Include werden verarbeitet:
+            - Die INI wird um die angegebenen INIs ergänzt.
+            - bestehende Einträge (z.B. der Haupt-INI) werden NICHT überschrieben.
+            - es gilt die Reihenfolge in der Include-Sektion.
+
+          PROBLEM: Zurückschreiben:
+          - - - - - - - - - - - - -
+          In welche INI sollen Änderungen zurückgeschrieben werden?
+          Lsg: (1) neue Einträge (Spalten, Sortierung) werden in jede INI geschrieben.
+                   Sie müssen dann ggf. in MachineIni o.a. gelöscht werden.
+                   -->schlecht
+               (2) geänderte Einträge werden dorthin geschrieben von wo sie
+                   gelesen wurden. D.h. für jede Sektion ist der Ort zu merken.
+          Alternative: Das Programm unterscheidet die Eintragstypen:
+                       - Spalten, Sortierung immer nach UserIni
+                       - Drucker, Geräte immer nach MachineIni
+                       - Umgebung, System bleibt in HauptIni
+          Programmierung: Die IniKmp kann mehrere IniFiles verwalten,
+                          also den Ort jedes Eintrags.
+                          Update Vorschriften pro Sektion müssen programmierbar sein,
+                          i.d.F. Sektion 'Spalten' ist IniUser
+                          d.h. eine StringList in der IniKmp:
+                            Spalten.*=UserIni    (mit Wildcard *)
+                            Sortierung.*=UserIni
+                            Geräte=MachineIni
+                            Drucker=MachineIni
+          Default: neue Key generell nach User (Spalten, Sort,..)
+          Fazit : (1) StringList in der IniKmp: <Sektion*>=<IncludeTag>
+          - - - - (2) in der Haupt-INI (=<Pfad><EXE-Name>.INI):
+                      [Include]
+                      <IncludeTag>=<Filename>, Filename mit Platzhalter
+                                               #user# und #pcnr# und #group#
+                                               (group von Rechteverwaltung)
+
+INI-Datei über Datenbank/Rechteverwaltung
+-----------------------------------------
+- Rechteverwaltung wird erweitert um
+  - ApplicationIni
+  - UserIni
+  - UserGroupIni
+    - IniSections
+      - AppName        (A)
+      - UserName       (U)
+      - UserGroupName  (G)
+      - MachineName    (M)
+      - IniKeys
+
+  - MachineIni
+    - Drucker
+    - Anschlüsse
+
+- Beim Logon werden die INI-Daten von Datenbank nach temporärem .INI
+  geschrieben /gemerged
+
+- Zurückschreiben:
+
+Masken Layout Komponenten
+-------------------------
+- Detailbook:
+  - kann auch als TPageControl verwendet werden
+
+- Pagebook:
+  - Verwendung von TPageControl:
+    - neue Komponente: qPageControl:
+      - Schrift rechts senkrecht
+      - in Nav angebbar
+
+  - 'Zurück' und 'Übernehmen' wird in qPageControl automatisch verwaltet
+
+  - das alte Tabset dient neben der bisherigen Anzeige der LuDef-Sprüng
+    auch für benutzerdefinierte Buttons/Aktionen
+    Realisierung als TabControl.
+
+  - Benutzzerdefinierte Buttons im TabControl Tabset.
+    Event Nav.TabUsrButtonClicked(UsrBtnIdx: integer)
+      case UsrBtnIdx of ...
+    Event Nav.TabSysButtonClicked(SysBtnIdx: integer)
+      case SysBtnIdx of SysTake
+                        SysReturn
+
+    HalloIdx := Nav.AddTabUsrBtn('Hallo', 'Hint für Hallo');
+    Nav.DropTabUsrBtn(HalloIdx);
+
+
+LNavigator: Userbuttons in TabSet (unterer Bereich)
+---------------------------------------------------
+- property UserButtons: TValueList
+    <Code>=<Bezeichnung>[|<Hint>], z.B. IMPORT=Daten importieren|importiert Excel Tabelle
+    - Bezeichnung: wird angezeigt
+                   Hint wird mit '|' getrennt erfasst
+    Code: wird im Programm verwendet.
+- event OnUserButton(Sender: TObject; Code: string);
+  ... if Code = 'IMPORT' then ...
+- <Bezeichnung> wird übersetzt.
+
+- Steuerung zur Laufzeit:
+  wegblenden: UserButtons.Values['IMPORT'] := '';
+  neu hinzufügen: UserButtons.Values['NEU'] := Translate('neuer Eintrag');
+
+LNavigator: FPageConrol für 'Übernehmen' und 'Zurück' verwenden
+---------------------------------------------------------------
+diese Systemstrings werden rechts als FPageConrol-Tabs angezeigt, wenn
+LNav.Tabset=nil oder FTabControl.Visible=false.
+
+
+TFrame - Verwendung von TFrame Komponenten
+------------------------------------------
+- in Routinen integrieren, bei denen Form.Components[I] durchlaufen werden:
+  bei TFrame die TFrame-Komponenten durchlaufen.
+  - bisher nur für TMultiGrid realisiert.
+  - nicht in Frame verwenden da Unterstützung fehlt:
+    DBEdit, AswComboBox, TLookupDef, LNavigator, PrnSource, ..
+
+- eigenes TqFrame ableiten:
+  - mit Init-Ereignis
+    - um Komponenten auszublenden, zu repositionieren usw.
+- Bsp: kmp\MuSiFr
+
+20.05.03
+--------
+- Umstellung auf D5: TqStringList entfernen
+
+09.06.03 - LookUp: luEditOnly
+--------
+- Lookup-Option luEditOnly
+  Gewährleistet, dass der Bediener keinen anderen Master-Datensatz
+    ändern kann. Er kann nur den zugeordneten Editieren.
+    -> Suchen nicht erlaubt
+    -> nur lumZeigMsk und lumAendMsk möglich. (evtl. noch lumSuch)
+
+22.07.03 XML Export Version 2.0
+-------------------------------
+- Ziel: mit anderen XML-Tool kompatible.
+        z.B. Öffnen in Excel
+- Comment: ohne 'Export'
+- FIELDS -> TBL_FIELDS     (TBL = aktueller Tabellenname)
+  PKEY   -> TBL_PKEY
+  (neu)  -> TBL_ROWS
+  ROW    -> TBL_ROW
+
+21.08.03 Main-Menu: Alle Protokollfiles
+---------------------------------------
+- Filter über OpenDlg
+  Filename: log#M.log -> log??.log
+  Prot.Edit
+  Prot.EditAll
+  IniKmp.Edit
+  
+28.11.03 AutoOpen
+-----------------
+- Details werden erst geschlossen wenn wieder auf Multi geschaltet wird
+  - LNav.CheckAutoOpen schließt nur wenn PageIndex >= 10
+  -> OK 28.11.03
+
+17.12.03 IndexInfo Ora
+----------------------
+- unter Oracle IndexInfo optimieren
+  - SELECT * FROM dba_Constraints
+    WHERE owner='QUVA'AND table_name='AUFTRAGS_KOEPFE' AND Constraint_TYPE='P';
+  - select * from dba_cons_columns where constraint_name='PK_AUFK';
+
+03.03.04 Readonly und TMultiGrid
+--------------------------------
+- ist ein DBEdit auf ReadOnly, dann kann auch in der Grid-Spalte
+  keine Änderung erfolgen.
+- Zwischenlösung: Änderung in Grid generell verbieten. z.B. über RowSelect
+                  über muOption
+- Optimale Lösung (siehe nächster Punkt)
+  Spalten auf Basis der Prop Columns erzeugen. in TColumn gibt es ReadOnly
+  pro Spalte.
+
+03.03.04 MultiGrid: Columns über TColumn bilden
+-----------------------------------------------
+- Vorteile
+  - ReadOnly einer einzelnen Spalte (z.B. weil DbEdit ReadOnly ist.
+  - Mehrere unterschiedliche Grids einer Table in einem Form.
+
+

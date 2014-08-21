@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- encoding="UTF-8"  macht Fehler bei Umlauten -->
+<!--==================================================================
+*  Template zum Erstellen von Oracle-Trigger 
+*  zum Protokollieren von Feldänderungen in STME 
+*  für Modul ChangeLog
+*=====================================================================
+19.03.04 MD  erstellt (mit insert und delete)
+15.07.11 md  show errors weg
+*===================================================================-->
+
+<template>
+  <line><![CDATA[
+CREATE OR REPLACE TRIGGER TR_[Short]_CHANGELOG
+AFTER UPDATE OR INSERT OR DELETE ON [TableName] FOR EACH ROW
+BEGIN
+  DECLARE
+    S      VARCHAR(2000);
+    V_STME INTEGER;
+  BEGIN
+    -- Datensatz durch Replikation nicht bearbeiten
+    IF NOT (DBMS_REPUTIL.FROM_REMOTE     = FALSE AND
+            DBMS_SNAPSHOT.I_AM_A_REFRESH = FALSE) THEN
+      RETURN;
+    END IF;
+    IF inserting then
+      ADD_STME([STME_NR], [WERK_NR], :NEW.[PKEY_FIELD], 'N',
+               '[Short]: inserted', V_STME);
+      RETURN;
+    END IF;
+    IF deleting then
+      ADD_STME([STME_NR], [WERK_NR], :OLD.[PKEY_FIELD], 'N',
+               '[Short]: deleted', V_STME);
+      RETURN;
+    END IF;
+    S := '[Short]: ';
+    -- alle Aenderungen protokollieren:
+    begin
+  ]]></line>
+   <field><![CDATA[
+      IF NVL(:OLD.[Field], [NullValue]) <> NVL(:NEW.[Field], [NullValue]) THEN
+        S := S || '[Field]('||:OLD.[Field]||')->('||:NEW.[Field]||') ';
+      END IF;
+   ]]></field>
+  <line><![CDATA[
+    EXCEPTION WHEN OTHERS THEN
+      S := SQLERRM;
+    end;
+    IF LENGTH(S) > LENGTH('[Short]: ') THEN
+      ADD_STME([STME_NR], [WERK_NR], :NEW.[PKEY_FIELD], 'N',
+               S, V_STME);
+    END IF;
+  END;
+END;
+/
+  ]]></line>
+</template>

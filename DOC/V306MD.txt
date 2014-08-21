@@ -1,0 +1,62 @@
+Projekt    Version        Stand
+KMP        3.06MD         22.03.02
+Komponenten
+==================================
+
+OPC-Komponente: TOPCS7
+----------------------
+nicht für S7
+- Properties:
+  - ProgID: 'OPC.SimaticNET' für S7
+  - Connection: Name der Verbindung
+  - Simul: Simulation ohne OPC Server
+  - ReadBeforeWrite: Schreibt nur wenn zuvor gelesener Wert ungleich
+                     nicht verwenden!
+  - LbRead: Listbox zur Vervolgung der Lesezugriffe
+  - LbWrite: Listbox zur Vervolgung der Schreibzugriffe
+
+- Einsatz: Dracholin
+
+
+List&Label Erweiterung für TPrnSource: TLlPrn
+---------------------------------------------
+- Abkömmling von TPrnSource
+- Verwendet L8MD-Komponente (unser Ersatz für die Original DBL8_ von combit)
+- Properties:
+  - MuSelect: DBGrid von der die markierten Datensätze stammen
+  - DataSource: Datenquelle bei einfachen Listen und Label/Card
+  - MasterSource: Datenquelle bei MasterDetail Reports (sonst: DataSource)
+  - DataSource,DetailSource1..9: Bis zu 10 Detailtabellen
+  - DesignerFileExt: 2stelliger Kürzel. Eindeutig für ges. Projektverzeichnis!
+  Die restlichen Props werden an L8MD weitergereicht.
+
+- OneRecord: true = Ausdruck auf aktuellen Datensatz zu beschränken
+- Keyfields: Sortierung der Haupttabelle
+- FltrList: Filtert zusätzlich zu den übernommenen Filtern
+
+
+PrnSource
+---------
+- Druckertyp jetzt als Auswahlfeld (mit Property Editor)
+
+- Druckerdialog ergänzt um Radiobuttons
+  'alle'  :    OneRecord := false;
+  'aktueller': OneRecord := true;
+  'markierte': Applikation kann MuSelect.SelectedRows auswerten
+               Bsp. in LlPrn.pas
+
+
+Drag&Drop innerhalb TMultiGrid
+------------------------------
+- Voraussetzungen: Sortierung über eindeutigen, zusammengesetzten Key
+                   mit letztem Segment als Positinsfeld (DragFieldName)
+- Einstellungen:
+  - Drag0Value: Wert für Austauschwert. Darf im Positionsfeld nicht vorkommen.
+                Vorgabe: 0
+  - DragFieldName: Positionsfeld, dessen Wert verändert wird (siehe oben)
+  - MuOptions: muDrag = True
+
+
+ToDo
+----
+

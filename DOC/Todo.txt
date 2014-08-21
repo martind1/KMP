@@ -1,0 +1,33 @@
+todo      - Duplizieren: Als GNav-Button, Menüaufruf
+
+          - Lookup auch in Sekundärfeldern
+            - Eingabe in LuTables: AutoEdit: true  (schlecht, da Tbl
+              aktualisieren will)
+              im SetKey-Modus (besser, Eingabe alle Keyfelder aller Keys)
+
+
+              - Maske nur mit einem Query:
+              - select aus mehreren Tabellen: ist immer ReadOnly
+              - Ändern: Umschalten nach TTable´s
+              DisableControls
+              oder Speichern mit SQL-Update
+
+08.08.97  (gespr. Wandzik)
+
+          - Lookup:
+          OK Auf Eingabefeld bereits Filter eingeben
+
+          - Lock-Table:
+            - Protokollieren der Aktivitäten des Users
+            - für jede Maske: Start, Ende
+            - Session-ID über Stored Proc
+
+
+23.09.97   Bug:
+Ok         Filter von LuDef in Detail erfassen übernehmen
+
+01.10.97   Bug:
+ok         Lookup (ohne Filter) positioniert nicht richtig   (ROE)
+
+
+

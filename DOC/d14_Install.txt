@@ -1,0 +1,707 @@
+Install Delphi 2010 (d14) 18.10.2009
+Umstellung der KMP auf UniDAC
+------------------------------------
+
+[25.04.12]
+Umstellung SDBL
+---------------
+- TPBFolderDlg -> TJvBrowseForFolderDialog
+
+- Typbibliothek importieren: Excel_TLB.pas
+
+- TButton -> TBitBtn
+
+- Assign -> Get/SetFieldText
+
+
+[24.04.12]
+Umstellung QuPE
+---------------
+- DBGrids zeigen keine Markierung:
+    DefaultDrawing = False -> DefaultDrawing = True
+
+[23.04.12]
+- Compit List&Label LL17
+  Package installieren:
+  kopiere Combit Delphi Files nach ...\ADDONS\Combit\LL17 
+          von c:\Programme\combit\LL17\Programmierbare Beispiele und Deklarationen\Delphi\ListLabel17.bpl
+    installiere ListLabel17.dpk
+  - Bibl.Pfad + addons\combit\LL17
+- Anpassen im Projekt:
+  AutoDestination: adUserSelect
+  AutoMasterMode: mmAsVariables  (wird auf mmNone gesetzt!)  
+  - Makro
+  AutoDestination = UserSelect -> AutoDestination = adUserSelect
+  AutoDestination = Preview    -> AutoDestination = adPreview
+  AutoDestination = Printer    -> AutoDestination = adPrinter
+  AutoDestination = PRNFile    -> AutoDestination = adPRNFile
+  
+  AutoMasterMode = AsVariables -> AutoMasterMode = mmAsVariables
+  AutoMasterMode = AsFields    -> AutoMasterMode = mmAsFields
+  AutoMasterMode = None        -> AutoMasterMode = mmNone
+  
+  AutoProjectType = ListProject  -> AutoProjectType = ptListProject
+  AutoProjectType = CardProject  -> AutoProjectType = ptCardProject
+  AutoProjectType = LabelProject -> AutoProjectType = ptLabelProject
+
+
+[22.04.12]
+Umstellung QuKU
+---------------
+
+[01.04.12]
+- Problem mit QuickReport:
+  [DCC Fataler Fehler] QR5RunD2010.dpk(81): F2051 
+  Unit QRWizard wurde mit einer unterschiedlichen Version von QRExtra.QRCreateList compiliert
+- Lsg: QR-Quellcode von Lib-Code trennen
+  - move d:\Delphi2010\ADDONS\Quickrep\*.dcu nach d:\Delphi2010\ADDONS\Quickrep\Lib\*.dcu
+  - Bibliothekspfad ändern von d:\Delphi2010\ADDONS\Quickrep 
+                          nach d:\Delphi2010\ADDONS\Quickrep\Lib
+    Suchpfad lassen.
+  
+
+[31.03.12]
+Umstellung Schwenk
+------------------
+- SPS nodave Komponente installieren
+
+
+[25.02.12]
+Umstellung LAWA
+---------------
+todo()
+- TXYGraph: Komponente nach D2010
+- lbCipher: TKey128 -> File nach Projekt
+- SDL_fourier
+- BMCSAD_TLB: Typbibliothek importieren
+  - altes BMCSAD_TLB.pas von D5 verwenden!
+- TZipmaster (30.04.12)  
+
+bekannt:
+- Menu: TButton -> TBitBtn
+- UpdateSQL weg
+- Session -> USession
+- Memofield.Assign(L) -> SetFieldStrings(AField: TField; Strings: TStrings);
+  L.Assign(Memofield) -> GetFieldStrings(AField: TField; L: TStrings);
+- Interbase Provider  
+erl():
+- uses dbtables weg (keine bde Abhängigkeiten)  
+
+- Grebs Sperrn weg:
+  - bleibt bei Logon Bitmap stehen
+    BtnDirekt.Visible=false
+    ini=
+  
+  
+
+
+[30.12.11]
+Umstellung TrinkMB: Tmb2
+------------------------
+- Menu: TButton -> TBitBtn
+
+- UpdateSQL weg
+
+- Session -> USession
+
+- Memofield.Assign(L) -> SetFieldStrings(AField: TField; Strings: TStrings);
+  L.Assign(Memofield) -> GetFieldStrings(AField: TField; L: TStrings);
+
+
+[28.12.11]
+Umstellung WeBAB
+----------------
+- Problem: required provider is not installed
+  SQL Server Native Client:
+  http://download.microsoft.com/download/0/E/6/0E67502A-22B4-4C47-92D3-0D223F117190/sqlncli.msi
+
+[26.12.11]
+Umstellung WeBAB
+----------------
+erl(8h)
+- setze Fetchall=true -> erec dauert zu lang
+
+- Icon eingefärbt
+
+- Problem: Sortorder und Unicode: ord(Zeichen) >> 255 (€ = 8364)
+  Lsg: Codepage über Sprache festlegen
+       Vergl über AnsiString(Codepage)
+       
+  - Problem: Ein Trigger hat ein Resultset zurückgegeben und/oder wurde mit 
+           SET NOCOUNT OFF ausgeführt, während ein anderes ausstehendes Resultset 
+           aktiv war.
+- Problem: MSSQL kann offene Cursur nicht transmitten
+  - NativeClient
+  - Stellschrauben:
+    - Para: SysParam.UseDuplDB = false (eigene Connection pro relevante Query)
+    - Logon: Database1.ConnectSQL 'SET NOCOUNT ON' (kein Rowcount bei Update zurückliefern)
+    - TuQuery.AssignConnection: Options.StrictUpdate = false (ignoriere wenn UpdateRows=0)
+
+- Problem: Generate ID: findet PKey Field nicht bei Views
+    Lsg: Schema, MSSQL spezifics in IndexInfo ergänzen
+  
+- aktuellen Native Client downloaden:
+  
+- Alias: RECHBUCH1 (LFRT1Frm) (Import altes Rechbuch)
+  -> Access Rechbuch wird nicht mehr unterstützt
+  LFRT1 wird entfernt
+  
+- Import (KHK) wird entfernt
+
+- mssql ClearStats wird entfernt
+
+- Problem: 'the data value violates the schema''s constraint for the column'
+  Lsg: FldDsKmp kann jetzt auch "Myfield=sum(F1)" auswerten (->F1)
+  
+
+erl(8h)
+- Typelib: Fibunet Client - FNCOMSRV_TLB-pas
+  >Typbibliothek >FibuNet V4.. >
+  Komponenten-Wrapper generieren: Nein
+  Unit anlegen: unit FNCOMSRV_TLB; in ...\7.0\Imports\
+  - Variants: FNetFrm
+  
+- Para: LoadLocale (Sprachliste von Registry)
+  von quvae  
+  
+- UpdateSQL entfernen
+      
+- Para: unitCharsetMap? - nicht verwendet (Wilson)
+
+- GIFImage => Vcl.Imaging.GIFImg
+
+- PBFolderDialog
+
+
+[22.12.11]
+Umstellung dpe.zak
+
+- erfordert SQL Server Native Client Download in der aktuellen Version.
+
+Erl(8h)
+- zu Testen: eANV und LibXml
+  neue LibXml Version installieren
+  
+- VarToStr: uses Variants
+
+todo
+- Test Bestandsliste Kataster
+  - PDF Export
+    Testen Kata: Export nach PDF und eMail
+    
+- Test: KuDisk    
+
+- zu Testen: OnlyOpenOnce -> TPBJustOne
+  http://www.torry.net/pages.php?id=516
+  
+- Testen: JFCFileDrag.pas
+  http://cycocrew.pagesperso-orange.fr/delphi/components.html  
+  
+  
+  
+
+[21.12.11]
+- Umstellung dpe.zak
+  ------------------
+  - Neue Version von LibXmlParser.pas
+    http://www.destructor.de/xmlparser/faq.htm#utf8
+    
+
+- UniDAC SQL Server:
+  MultipleActiveResultSets=true !
+  Native Client via OLE DB:
+    OLEDBProvider=prNativeClient !
+  Testen:
+  QuotedIdentifier=true    (BDE Kompatibilität = false)
+  
+  TuQuery:
+  Options.FetchAll=false setzen !
+  
+  Scale99:
+  - als Typelib importieren (TServ) als Komponente
+  
+  
+  
+
+[13.11.11]
+- UniDAC Migration Wizard in die IDE einbinden:
+  HKCU\Software\CodeGear\BDS\7.0\Experts 
+    ibcmigwizard=d:\Delphi2010\ADDONS\UniDAC\Bin\unimigwizard140.dll
+
+
+
+
+[06.11.11]
+- QuvaR3 nach Delphi2010\QuvaE übertragen
+  - Verzeichnisse entfernen (ab QuvaE\)
+    - QuVA
+    - Stoerdaten
+    - PDesigner
+    
+- Indy 10
+  - siehe d:\Delphi2010\Indy10\Indy10.chm
+    Kapitel Migrating ..
+
+- Oracle
+  Varchar(2000) - und wohl auch varchar(4000) - werden als TStringFiled geliefert
+  Ersetze BemList.Assign(FieldByName('BEMERKUNG'));
+      mit Prots.GetFieldStrings(AField: TField; L: TStrings);
+      
+- TNonSysdtemTimer
+  muss resumed werden beim Start      
+      
+- IniDB: async Tabellenlayout speichern
+  UDB.create: uDB bereits hier in Session eintragen
+
+- Statistik: Datumsformat falsch (bei Tag jjjj-mm-jj) , Abteilung Datumsformat ist leer.  
+
+[05.11.11]
+- QSBT
+
+[04.11.11]
+- QuvaE
+- GNav.Bem -> UDatabase.Params
+- Test
+  - XmlExpDlg
+- Spezial: Xls uses: entfernt: Unicode
+
+[03.11.10]
+- LogonDlg
+
+[02.11.10]
+- EncryptPasswort
+
+[30.10.11]
+- QuickReport: manuell installieren
+  
+- KMP Version von V3.17a (30.09.09) nach  V3.17k vom 18.06.11
+  - dpos_kmp
+  - prots
+  - fltrfrm
+  - gnav_kmp
+  - nlnk_kmp
+  - lnav_kmp
+  - qwf_form
+  - asws_kmp
+  - ludefkmp
+  
+  - IniDB
+  - INITEDFrm.pas
+  - DATNEDFrm.pas
+  
+########################
+[50009C4D]{rtl140.bpl  } System.TObject.ClassName (Line 9363, "System.pas" + 1) + $7
+[50009C84]{rtl140.bpl  } System.TObject.ClassNameIs (Line 9371, "System.pas" + 1) + $5
+[16C80256]{QR5RunD2010.bpl} Qrprntr.TQRExportFilterLibrary.AddFilter + $BA
+########################  
+[1EC2865A]{Kmp.bpl     } Qsplitter.TqSplitter.AllocateLineDC + $42
+########################
+[156BFADE]{Kmp.bpl     } Prots.MaxQuotient + $B6A
+########################
+
+[20.10.11]
+- List&Label -> UPDATE AUF VERSION 17 
+  - addons\combit\ll80 <= kopieren von c:\Programme\combit\LL80\
+  - Package installieren: d:\Delphi2010\ADDONS\Combit\LL80\L8D2010.dpk
+  - Problem: Can't load module cm32l8.dll
+    NEIN Lsg: dll nach $delphi$\bin kopieren (von system32)
+  - >Komponente >Komponente importieren: Combit8
+    1. (erstmal ohne Palettenseite und ohne Wrapper) also nur Unit anlegen
+    in c:\Programme\Embarcadero\RAD Studio\7.0\Imports\ListLabel_TLB.pas
+    -> kein Erfolg
+    2. Wrapper generieren (Seite ActiveX)
+       In neues Package anlegen: D:\Delphi2010\ADDONS\Combit\LL80\L8D2010.dpk
+       ohne Beschreibung
+       
+    Problem: AV in dotnetcoreide140.bpl
+    Lsg: >Build-Konfiguration >Debug >Symbolreferenceinfo
+    http://www.delphipraxis.net/149292-delphi2010-package-erstellen-av-dotnetcoreide140-bpl-2.html
+    
+
+  - Unit LlPrn
+  - Typbibliothek importieren: Combit8
+    >Komponente >Komponente importieren
+  - Delphi
+
+[29.10.11]
+- Umstellung QPilot
+  - Kmp\Oracle
+    Kmp\Qw
+    Kmp\Rechte
+    
+- Problem: EAccess bei KMB installieren
+  QrPrntr
+  Lsg (bringt nix): Kopiere c:\Programme\Embarcadero\RAD Studio\7.0\bin\QR5RunD2010.bpl
+       nach c:\Programme\Embarcadero\RAD Studio\7.0\Bpl\QR5RunD2010.bpl
+       (letzteres wurde immer neu angelegt)
+  Lsg Addons neu Installieren. Gnostice deinstallieren.
+  
+- QPilot:
+  - FrmPara: uses: qrctrls  
+  - Kmp\Qw\BeinFrm: TblWerk: DataSource: sollte vom Uni-Converter nach Mastersource geändert werden
+  -> GExperts >ReplaceComponent TUniQuery >TuQuery
+  
+ 
+
+
+[16.10.11]
+todo(6h)
+- Umstellung QPilot
+  Ist ein kleines Projekt mit MasterDatail und DB2 auf Oracle
+  1. >Delphi >UniDAC >Migration Wizard
+  
+- alle neuen Komponenten in Palette
+- Icons für Komponenten
+  wieder kmp__reg.pas verwenden
+  - KmpD14D entfernt
+  - KmpRegD.pas entfernt
+    KmpRegR.pas entfernt
+    
+- KmpIndyReg ?
+
+- Designer: Komponentennamen nicht anzeigen:
+  >Umgebungsoptionen >VCL-Designer >Komponenten-Titel zeigen
+
+[15.10.11]
+todo(7h)
+- 'KMP Addons' installiert (alle Komponenten)
+- KMP erfolgreich kompiliert (alle Units)
+- TuQuery: Create: Databasename=DB1 vorbelegen (wird vom Wizard entfernt)
+
+
+Quickreport V5.05
+-----------------
++ Bibliothekspfad:
+c:\Programme\Embarcadero\RAD Studio\7.0\lib\QR505\
+- den alten Pfad nicht löschen da dort Migrate-Module liegen
+
++ Suchpfad
+D:\Delphi2010\ADDONS\Quickrep505
+- wie oben alten Pfad 504 nicht entfernen
+
+todo()
+- Gnostice PDF Export realisieren:
+  FrmMain: GTPdfFilter???
+
+
+[14.10.11]
+todo(4h)
+- IndexInfo mit TUniMetadata
+  - Primary Key
+    MetaDataKind = 'Constraints'
+    Restrictions['TABLE_NAME'] := 'ADRESSEN'
+                ['CONSTRAINT_TYPE' := 'PRIMARY KEY'
+    Ergebnis: INDEX_NAME
+
+  - Liste der Indexnamen:
+    MetaDataKind = 'Indexes'
+      Restrictions[TABLE_NAME] = 'ADRESSEN' - Synonyme funktionieren nicht!
+      Ergebnis: INDEX_NAME
+                UNIQUE integer 0/1
+                
+  - Liste der IndexColumns
+    MetaDataKind = 'IndexColumns'
+      Restrictions[TABLE_NAME] = 'ADRESSEN'
+                  [INDEX_NAME] = von oben oder leer lassen für alle
+      Ergebnis: COLUMN_NAME
+                DESCENDING integer 0/1
+                (COLUMN_POSITION)
+    
+- NativeExcel3
+
+- ComPorts:
+  UdpPortKmp: PChar -> PAnsiChar
+
+
+[11.10.11]
+erl(4h)
+- Interface IUDataset, UDatasetIF.pas
+  für Funktionen mit UTable und UQuery
+  - Database, Session
+  
+
+[14.06.11]
+todo()
+- alte Klassen ersetzen
+  - tldatasource
+  - TUpdateSQL -> TUniUpdateSQL
+    Wird nicht mehr benötigt da TUniQuery selbst 
+  TUniUpdateSQL oder TuUpdateSQL ? wg .SetParams?
+  
+- Problem: AV bei dotnetcoreide
+  Lsg: "Symbol reference info" in Base, Debug und release Config auf "Reference Info" setzen
+  BCB: remove the added <ProjectExtensions/> tag   
+  
+todo()
+- UniAdmin.exe oder AppLoader.exe
+  - AppLoader(App, Server)
+    - Windows Anwendung
+    - Verwaltung der Aliase (wie UniAdmin)
+    - Starten von Anwendungn
+    - Cache der aktuellen Version der .EXE per DATN
+    - ORA: verwendet TNSNAMES.ORA wenn %ORA_ADMIN% gesetzt ist
+      für Aliasnames mit rudimentären Options
+    - MSSQL: Webab: nur Servername nötig. Alias automatisch erzeugen bzw statisch im EXE
+    - Firebird: Lawa: Servername für STA und DYN getrennt. Alias egal. Options statisch in EXE
+    - Options statisch: TuDatabase
+  - UNI-Unterstützung:
+    - UNI.LoadServerList - lädt Connections von Registry
+      verwendet in UNI ConnectionDialog
+  - todo: OnLogin Ereignis kann Params ändern - teilw erledigt
+
+[13.06.11]
+erl(6h)
+- TLDataSource -> TUniDataSource 
+- Komponenten zur Laufzeit anlegen und konfigurieren:
+  - Prn__Dlg
+    XmlExpDlg
+    
+- TUDataSource
+- TuMemTable
+
+- LuGriDlg
+  - BtnPage (TSpeedBtn)
+  
+todo()
+- XMLExport.TBlobStream ist BDE  
+
+- Ersatz für TSession.SQLHourGlass
+	- TuDatabase.SQLHourGlass
+		
+- Ersatz für EDBEngineError (von EDatabaseError):
+  Visualisieren EDAError (EDatabaseError)
+  
+- TLookUpDef von TuDataSource ableiten  
+
+- TuQuery.MasterSource von DataSource befüllen kompat.
+  - Lsg (zu prüfen): Set MasterSource ist kompatibel zu Set DataSource
+
+- Session.GetTableNames - Repl_Kmp  
+
+
+[12.06.11]
+todo(6h)
+- Komponenten zur Laufzeit anlegen und konfigurieren:
+  - lov__dlg 
+    - LDataSource. Nav, Query1, MultiGrid1, 
+    sql__dlg 
+    WRep_Kmp 
+    Prn__Dlg
+  
+
+[09.06.11]
+erl(5h)
+- UDB:
+  - Ereignis TuConnection.OnLogin bewahren (nicht mehr in UniDAC)
+    - override TuDatabase.DoConnect
+  $define FPC kennt ein solches Ereignis = Lazarus / Free Pascal Compiler
+    
+
+[08.06.11]
+erl(6h)
+- UniDAC V3.70 installieren (D2010), Installation:  (war V3.50)
+  - >Komponente >Packages >entfernen
+    aus c:\Programme\Embarcadero\RAD Studio\7.0\bin\
+    - Uni Access Components: dclunidac140.bpl
+    - Universal Data Access GUI related Components: unidacvcl140.bpl
+    - Devart DataAccess Components: dcldac140.bpl
+    - Devart Data Access GUI related Components: dacvcl140.bpl
+    = obige .bpl entfernen von c:\Programme\Embarcadero\RAD Studio\7.0\lib\
+      - und dac140.bpl, unidac140.bpl, und *provider140.bpl
+        auch aus System32!
+  - entfernen \addons\UniDAC\*      
+  - setup, make.bat
+  - das UniDAC bpl Verzeichnis ist c:\Programme\Embarcadero\RAD Studio\7.0\Bpl\
+    kopieren *.bpl von d:\Delphi2010\ADDONS\UniDAC\Bin\Delphi14\*.bpl
+  ! Delphi Library Path ist *nur* d:\Delphi2010\ADDONS\UniDAC\Lib\Delphi14
+    Delphi Suchpfad kann auch UinDAC\Source* sein
+  - Package installieren: 
+    dclunidac140.bpl
+  - BDE to UniDac Migration Wizard
+    Experte unimigwizard140.dll nach bin.
+    
+- Problem: Fehler beim Lesen von Formular:      
+           Fehler beim Lesen von TblANWE->SQL.Strings:
+           Connection is not defined
+  Lsg: 7.0\Dcp\dac~.dcp entfernen
+  
+- Demos
+  Oracle Schema: UNIDAC
+  InstallDemoObjectsOracle.sql  
+
+[06.06.11]
+erl(5h)
+sql__dlg: Params kopieren (Options)
+          aus den runtimes entfernen
+          todo: Kmp manuell anlegen
+gnav_kmp: sql__dlg und ander designmodule weg
+          DbiFuncs entfernt       
+flddedlg: bdecachedelete: body entfernt          
+          FieldDescDelete: bde-Sachen entfernt
+          
+Session: Verwaltung der Connections / TuDataBases
+         hat mit UniDAC nichts zu tun
+         
+inidb: Session entfernen. Databasename bilden ohne Sessionname.
+
+Session.PrivateDir: gestorben         
+
+[05.06.11]
+erl(5h)
+- Package Addons ist installiert
+
+- TuDatabase (von TqDatabase) = TUniConnection
+
+- todo: FldDesc nach DDL Änderungen im Designmode neu laden
+  (in Tqdatabase.startconnect entfernt)
+  
+todo()
+- Login und LoginParams und OnLogin Ereigns gibt es nicht mehr
+  - alles vorhar definieren
+    - Params  
+
+todo()
+TQuery -> TuQuery
+TDatabase -> TuDatabsae -> TUniConnection
+             - DatabaseName
+             - SessionName
+
+
+
+UniDAC migrieren
+----------------
+- Migration Wizzard
+- Replace in all files: c:\Users\Besitzer\AppData\Roaming\Notepad++\shortcuts.xml
+  DBTables, -> ''
+  *DbiFuncs, -> ''
+  TInMemoryTable -> TVirtualTable
+  TDBDataSet -> TCustomDADataSet
+  TDataBase -> TUniConnection (auch *.dfm) uses Uni
+  
+  Screen Cursor von TSession nach TUniQuery.ChangeCursor
+  Threadsafe? (DbIni)
+  
+- Problem: 'DB1' (DatabaseName) fehlt
+  Ziel: Connection gibt es nur auf einem Fremden Form (LogonDlg)
+  Lsg: Query1.Connection := LogonDlg.DB1
+  
+
+
+Optionen Compiler
+-----------------
+- Debuggen:
+  Symbolreferenzinfo: Nur Definitionen (ohne)
+- Laufzeitfehler:
+  Bereichsüberprüfung: True (false)
+- Quelltexterzeugung 
+  Optimierung: False (true) 
+  Record-Felder ausrichten: aus (Quad)
+  Stack-Frames: True (false)
+  Zuweisbare typisierte Konstanten: True (false)
+[x] Standard für neue Projekte
+  
+>Umgebungsoptionen >Bibliothek - Win32
+- Package-Ausgabeverzeichnis: $(BDS)\Bpl
+- DCP-Ausgabeverzeichnis: $(BDS)\Dcp
+  
+
+anderen String-Typen zuweisungskompatibel.
+Zuweisungen zwischen AnsiString und UnicodeString führen aber weiterhin die
+entsprechenden Auf- oder Abkonvertierungen durch. Bitte beachten Sie, dass eine
+Zuweisung eines UnicodeString-Typs zu einem AnsiString-Typ nicht empfohlen wird
+und zu Datenverlusten führen kann.
+Beachten Sie auch, dass AnsiString auch über die Felder CodePage und ElemSize verfügt.
+
+
+Jedi Projekt
+------------
+JEDI API 2.3 and JEDI WSCL 0.9.3.zip
+Install:
+d:\Delphi2010\ADDONS\Jedi\jcl\Install.bat
+d:\Delphi2010\ADDONS\Jedi\jvcl\install.bat
+- Projekt Jedi Installer >RAD Studio 2010
+  BPL-Path: C:\Programme\Embarcadero\RAD Studio\7.0\Bpl
+  DCP-Path: D:\Delphi2010\ADDONS\Jedi\jcl\lib\d14
+  
+TPBFolderDlg -> TJvBrowseForFolderDialog
+
+GExperts:
+----------
+GXRS2010-133.exe
+
+Quickreport:
+------------
+  QR5042PDW322010.EXE
+- Info für Gnostice
+http://www.quickreport.co.uk/WebInfoPage.aspx?WebInfoID=730
+PW: febaruli
+
+QuickReport 5 with Gnostice Technologies (GT) PDF export components:
+  GTPDF_QR5_D2010_setup.exe
+http://www.quickreport.co.uk/WebInfoPage.aspx?WebInfoID=730
+
++ Bibliothekspfad:
+c:\Programme\Embarcadero\RAD Studio\7.0\lib\QR504\
+
+Gnostice:
+---------
+eDocEngine VCL v2.x (With Source): 349 US$
+Single Developer License
+eDocEngine VCL v2.x (Without Source): 149 US$
+
+NATIVEEXCEL INSTALLATION NOTES
+------------------------------
+DELPHI 2009
+  - Select the menu Component/Install packages.
+  - Click the Add button and browse to the installation directory. 
+  - Select the DELPHI2009 sub directory. 
+  - Select the file NativeExcelD2009.bpl
+  - Select the menu "Tools/Options..."
+  - Add DELPHI2009 directory into the Library Path in 
+    "Environment Options/Delphi options/Library - Win32/Library Path"
+! IMPLICITBUILD ON setzen!
+
+UniDAC
+------
+- SetPath + c:\Programme\Embarcadero\RAD Studio\7.0\Bpl
+- SetPath + c:\Dokumente und Einstellungen\All Users\Dokumente\RAD Studio\7.0\Bpl\
+
+Addons (alles in einem Entwurfspackage)
+------
+ JLLabel (RotateLabel)
+- SendMail Komponente (MAPI)
+- ShellDropper (Drag&Drop in Anwendung)
+- UCLinePrinter
+- ZipMaster (DelphiZip)
+- DBTreeView
+- EANFull
+
+KMP
+---
+- alle Pfade zu D5-BPL Files entfernen
+- wir haben DESIGNONLY-Packages. Deswegen Bibliothekspfad auf \KMP,\ADDONS,usw
+  
+QSBT:
+- MountFocus KeyBoard Typelib importieren
+- SH_Kartenleser: Typelib SH_Svr
+- Typelib QSBT_Svr
+
+Tests
+-----
+- EMail: lange Header, Attachments, HTML-Text
+- Druck, Pdf-Export(Wgs-Email), DfltPrn
+- UniDAC
+
+ToDo
+----
+- List&Label (QUPE)
+
+- BdeAdmin Ersatz: UniAdmin
+  Alias -> Connection Parameter
+  Konfiguration speichern in Registry, Configfile (Pfad in Reg oder EnvVar)
+  
+- Installationsprogeramm:
+  InstallAware (auf der Comanion CD)
+
+  
+  

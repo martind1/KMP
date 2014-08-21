@@ -1,0 +1,30 @@
+<?xml version="1.0" ?> 
+<?xml-stylesheet href="salsa.xsl" type="text/xsl"?>
+<!DOCTYPE salsa-fig SYSTEM "salsa.dtd">
+<salsa-fig>
+       <sfname>Pivot2</sfname>
+       <sfkeyword>Pivot am Anfang</sfkeyword>
+       <sfwhen>
+        <she><r/><z/></she>
+        <he><l/><v/></he>       
+       </sfwhen>
+       <sfdesc>
+        <sfseq>
+          <she><l/><v/> mit <dgu/> in Richtung Mittelpunkt des Kreises.</she>
+          <he><r/><z/> mit <diu/> auf der Stelle</he>
+        </sfseq>
+        <sfseq>
+          <she>Pivot in der Mitte, laut "Salsa" rufen (der
+          Stimmung wegen ;-).</she>
+          <he><l/> vorne kreuzen, <r/> nach rechts, <l/> vorne
+          kreuzen. Dabei 3mal Klatschen.</he>
+        </sfseq>
+        <sfseq>
+          <she>wieder an den Kreisrand mit halber <dgu/></she>
+          <he>Basics auf der Stelle</he>
+        </sfseq>
+        <sfseq>
+          Cambia
+        </sfseq>
+       </sfdesc>
+</salsa-fig>

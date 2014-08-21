@@ -1,0 +1,72 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{C1E2E7AC-F863-4D24-85DF-51C0E96FDEBB}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Kmp.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Scale99\KmpScale99.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Scale99\Scale99_TLB.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Fibunet\FNCOMSRV_TLB.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="Kmp">
+			<MSBuild Projects="Kmp.dproj"/>
+		</Target>
+		<Target Name="Kmp:Clean">
+			<MSBuild Projects="Kmp.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Kmp:Make">
+			<MSBuild Projects="Kmp.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="KmpScale99">
+			<MSBuild Projects="Scale99\KmpScale99.dproj"/>
+		</Target>
+		<Target Name="KmpScale99:Clean">
+			<MSBuild Projects="Scale99\KmpScale99.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="KmpScale99:Make">
+			<MSBuild Projects="Scale99\KmpScale99.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Scale99_TLB">
+			<MSBuild Projects="Scale99\Scale99_TLB.dproj"/>
+		</Target>
+		<Target Name="Scale99_TLB:Clean">
+			<MSBuild Projects="Scale99\Scale99_TLB.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Scale99_TLB:Make">
+			<MSBuild Projects="Scale99\Scale99_TLB.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="FNCOMSRV_TLB">
+			<MSBuild Projects="Fibunet\FNCOMSRV_TLB.dproj"/>
+		</Target>
+		<Target Name="FNCOMSRV_TLB:Clean">
+			<MSBuild Projects="Fibunet\FNCOMSRV_TLB.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="FNCOMSRV_TLB:Make">
+			<MSBuild Projects="Fibunet\FNCOMSRV_TLB.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="Kmp;KmpScale99;Scale99_TLB;FNCOMSRV_TLB"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="Kmp:Clean;KmpScale99:Clean;Scale99_TLB:Clean;FNCOMSRV_TLB:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="Kmp:Make;KmpScale99:Make;Scale99_TLB:Make;FNCOMSRV_TLB:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

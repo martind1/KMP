@@ -1,0 +1,97 @@
+Projekt    Version        Stand
+KMP        3.09MD         29.07.02
+Komponenten
+==================================
+
+FDDE optimieren
+---------------
+- Anmeldereihenfolge Server/Clients beliebig:
+  - wenn Client sich anmeldet erzeugt er ein neues SubDir
+    der Server scannt alle SubDirs
+
+- abgemeldete Client-Verzeichnisse löschen
+
+
+- Kommunikation über WinSocks
+
+WinSocks: WSDDE
+===============
+- Eigenschaften und Funktionalität wie FDDE
+- verwendet Winsockets statt Filetransfer
+- neue Eigenschaft: Port
+  muß auf einen unbenutzten Port zeigen, z.B. 8
+
+
+
+Paradox Passwort:
+=================
+If you forget your paradox table password ,then try this password , it works well
+For PARADOX 7.0 use this password :"jIGGAe" or "cupcdvum"
+For PARADOX 5.0 use this password : same thing
+For PARADOX 4.x (DOS) use this password : "nx66ppx" 
+
+
+
+EMail senden
+============
+{Die TNMSMTP von FastNet tools wird benötigt.
+Die Komponente ist in Delphi 4-5 Professional
+und Enterprise Versionen enthalten.}
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  NMSMTP1.Host := 'mail.host.com';
+  NMSMTP1.UserID := 'Username';
+  NMSMTP1.Connect;
+  NMSMTP1.PostMessage.FromAddress := 'webmaster@swissdelphicenter.ch';
+  NMSMTP1.PostMessage.ToAddress.Text := 'user@host.com';
+  NMSMTP1.PostMessage.ToCarbonCopy.Text := 'AnotherUser@host.com';
+  NMSMTP1.PostMessage.ToBlindCarbonCopy.Text := 'AnotherUser@host.com';
+  NMSMTP1.PostMessage.Body.Text := 'This is the message';
+  NMSMTP1.PostMessage.Attachments.text := 'c:\File.txt';
+  NMSMTP1.PostMessage.Subject := 'Mail subject';
+  NMSMTP1.SendMail;
+  showmessage('Mail sent !');
+  NMSMTP1.Disconnect;
+end;
+
+Browser-Seite drucken:
+======================
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  vaIn,
+  vaOut: OleVariant;
+Begin
+  WebBrowser1.Navigate('http://www.google.com');
+  WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_DONTPROMPTUSER, vaIn, vaOut);
+end;
+// ab Internet Explorer 4
+
+
+Check if WS is enabled:
+-----------------------
+uses Winsock;
+
+function WinsockEnabled: boolean;
+var
+   wsaData: TWSAData;
+begin
+  result := true;
+  case Winsock.WSAStartup($0101,wsaData) of
+        WSAEINVAL, WSASYSNOTREADY, WSAVERNOTSUPPORTED: result := false;
+  else
+    Winsock.WSACleanup;
+  end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  if WinsockEnabled then
+  begin
+    ShowMessage('Winsock is enabled');
+  end
+  else
+  begin
+    ShowMessage('Winsock is disabled');
+  end;
+end;
+****************************************************

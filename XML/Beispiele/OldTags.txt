@@ -1,0 +1,15 @@
+Kleinschreibung: schlechter lesbar. In Mida u.ä. auch nicht so
+  sDATABASE = 'database';      //fester Tagbezeichner
+  sTABLE = 'table';            //fester Tagbezeichner
+  sROW = 'row';                //fester Tagbezeichner
+  sMETA = 'meta';              //fester Tagbezeichner
+  sTableName = 'name';         //fester Attributbezeichner
+  sCount = 'count';
+  sCreatedAt = 'CreatedAt';
+  sCreatedBy = 'CreatedBy';
+  sAlias = 'alias';
+  sServerName = 'servername';
+  sFieldType = 'type';
+  sFieldSize = 'size';
+  sPrecision = 'precision';
+  sDisplayLabel = 'display';

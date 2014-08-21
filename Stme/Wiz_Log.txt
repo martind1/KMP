@@ -1,0 +1,28 @@
+UniDAC Migration Wizard log
+
+Created at: 22.12.2011 00:32:06
+
+Initializing unit list
+
+Allocating temporary folder
+
+Processing file: D:\Delphi2010\kmp\stme\StMeDm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\stme\StMeFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\stme\StMeDm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\stme\StMeFrm.DFM
+
+No changes
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

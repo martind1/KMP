@@ -1,0 +1,22 @@
+UniDAC Migration Wizard log
+
+Created at: 26.11.2011 01:15:20
+
+Initializing unit list
+
+Allocating temporary folder
+
+Processing file: D:\Delphi2010\Kmp\temp\Lov__Dlg.pas
+
+2 change(s)
+
+Processing file: D:\Delphi2010\Kmp\temp\Lov__Dlg.DFM
+
+1 change(s)
+
+Replacing original files with changed versions
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

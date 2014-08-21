@@ -1,0 +1,23 @@
+Projekt    Version        Stand
+KMP        3.08MD         11.05.02
+Komponenten
+==================================
+
+Rechteverwaltung
+----------------
+  Überarbeitet:
+  ReadOnly-Felder werden im Suchmodus freigegeben:
+    DBEdit, DBComboBox, DBRadioGroup
+  Auch wenn TabbedNoteBook-Page auf Readonly.
+
+
+List&Label
+----------
+- die LL Komponenten werden aus dem KMP Package entfernt.
+  Damit die KMP auch ohne LL-Runtime DLLs verwendet werden können.
+- die     
+
+
+ToDo
+----
+FDDE optimieren

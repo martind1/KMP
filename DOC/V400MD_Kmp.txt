@@ -1,0 +1,329 @@
+Projekt    Version        Stand
+KMP        4.00MD         16.10.09
+Komponenten, Delphi 2010, XE2
+==================================
+
+[15.07.14]
+- neues Feature: Mu:aktuelle Zeile hellblau färben
+- MuGriKmp.MuOptions:muColorActiveRow
+          .DrawDataCell 
+- SysParam.ColorActiveRow : globale Einstellung
+  MuGriKmp.MuOptions:muNoColorActiveRow : Ausschluss falls global eingestellt
+
+[30.05.14]
+- Problem: Oracle Synonyms und Export: kein PKey
+  Lsg: TuMetadata: (Set)SynonymName sucht Tablename in Ora.ALL_SYNONYMS
+  auch in Sql_Dlg umgesetzt: >Popup>Metadaten
+
+[07.01.13]
+- Dialog Tabellenlayout:
+  Button 'Übernehmen' (Apply): sortiert Felder neu. Aktive Felder nach oben.
+
+[10.10.12]
+- abhängige LuDefs werden bei AfterReturn nachgeladen (QUPE)
+  TLookUpDef.BCLookUpDef
+  TLNavigator.DoAfterReturn
+
+[21.09.12]
+- PrnSource: Auswahl 'alle' unterbinden (in prn__dlg) 
+  Options: + psDisableAll
+
+[29.08.12]
+- Problem: Polling wird nicht aufgerufen in SHSvr und anderen COM Servern.
+  Ursache: TqForm(Nav.Owner).Started = false
+  Lsg: in FormCreate: Aufruf: Nav.DoStart 
+
+[04.07.12]
+- TOpenButton: OnBeforeClick Ereignis kann Filename ändern
+  (achte auf InitialDir)
+
+[07.06.12]
+- TLookUpBtn: Resize LookUpEdit:
+  (so wie unten - Button mit DBEdit Eigenschaft)
+  neuer Typ: TLookUpBtn.FLookupEdit von TLookUpEdit  nach TCustomEdit
+  - Auswirkungen:?
+
+
+[18.05.12]
+- Button mit DBEdit Eigenschaft
+  ResizeStd: Tag = 128:
+    verschiebt nach Rechts, so dass rechts noch ein Abstand von 20px bleibt.
+    DBEdit wird verbreitert so dass es bis zum linken Rand des Buttons geht
+      DBEdit darf _kein_ Tag=128 o.ä. haben.
+      
+
+[30.04.12]
+- procedure SetCodePage(var S: AnsiString; CodePage: Word; Convert: Boolean);
+  The optional Convert parameter determines if the payload itself of the string 
+  should be converted to the given code page. If the Convert parameter is False, 
+  then the code page for the string is merely altered. If the Convert parameter is 
+  True, then the payload of the passed string will be converted to the given code 
+  page. 
+  http://edn.embarcadero.com/article/38498
+  
+
+[10.03.12]
+- Problem: eine falsche Eingabe führt dazu, dass der Dialog 
+           (___ nicht gefunden. Tabelle?) 2-3mal angezeigt wird.
+           
+- Ursache: LuEdit-Logik wirkt unterschiedlich unter UniDAC
+           UniDAC optimiert das Nachladen von LuDefs, indem es die LuTbl nicht neu
+           öffnet, sondern die Query mit neuen :Parametern nachlädt.
+           Somit gibt es (meißtens) kein BeforeOpen mehr
+
+- Lösung1: Trennung BrowseReferences und EditReferences
+  Loaded: References -> BrowseReferences
+  StateChange: BrowseReferences <-> EditReferences (ohne ':'Parameter) ->ldEditRef/ldBrowseRef
+  TLookUpDef.PutReferenceFields: verwendet BrowseReferences
+
+- Lösung2: wenn BrowseReference keine :Parameter enthält, wird der Refresh über 
+  Nav.DataChange durchgeführt (BCLookup, ldRefresh)
+  Eine Abfrage von BeforeOpen ist nicht möglich, weil bei Vorhandensein
+  von ':'Parametern von UniDAC kein Open mehr durchgeführt wird.
+  
+- Lösung3: Im Editmodus wird der Filter jetzt auch über :Parameter gebildet  
+    
+- Problem: Selbst definierte LuDef.BeforeOpen Events werden nicht mehr ausgelöst.
+            zB dpe.erec.luvorf
+            
+  
+
+[26.02.12]
+- Problem: [DCC Fataler Fehler] QR5RunD2010.dpk(81): F2051 Unit QRWizard wurde 
+           mit einer unterschiedlichen Version von QRExtra.QRCreateList compiliert
+  Lsg: Compile QR5RunD2010.bpl
+
+[01.01.12]
+- UniDAC: kein UQuery.Open in AfterOpen einer anderen Query
+  Lsg: PostMessage
+
+[22.12.11]
+- AppendStr nicht mehr mit string verwendbar.
+  Ersatz: [Prots.]AddStr(Dest, s)
+  
+- Kundendiskette (KuDisk): Dbase: TDBF (Sourceforge)
+  D2010 Fork: http://hostuje.net/file.php?id=811483bbcc8ee0d1741dace4cb19a981
+  
+  
+
+[19.12.11]
+- Multigrid zeigt keinen Fokus:
+  -> setze DefaultDrawing = true
+
+
+[14.11.11] Ideen
+- TuQuery.CacheCalcFields=True
+    Erspart unsere TCalcCache-Logik
+           
+- TuQuery.QueryRecCount=True
+    Erspart unsere TNavlink.RecordCount Logik
+    
+    
+
+[14.11.11]
+- Problem: CodecUtilsWin32.dcu fehlt
+  Lsg: aus Suchpfad entfernen $(BDS)\SOURCE\WIN32\XML
+       in KMP\I8N\ kopieren
+       und in KMP.bpl einfügen
+       Bibliothekspfad hinzufügen: KMP\I8N\
+       
+
+[06.11.11]
+- TGtQrAsBarcode ersetzen durch TQRAsBarcode
+  (gleiche Eigenschaften)
+  uses: GtQrBarcode ersetzen durch qrBarcode
+  - LfsOERep
+    LaschRep
+    
+- DfltRep, DfltXRep: jetzt von KMP\
+  hinzugefügt: FrmPara.SetupLogo
+
+
+[05.11.11]
+- COM Schnittstellen:
+  OleVariant abgelöst durch WideString
+  ergänzen: uses Variants 
+  
+[04.11.11]
+- Umsetzung QuvaE
+  - neues Verzeichnis: QuvaE
+    entferne andere Quva-Projekte 
+    
+  - PINFO verschieben nach QuvaE\Oracle
+
+  löschen: d:\Delphi2010\QSBT\StMeFrm.*
+  
+  - Umsetzung *** aktuell ***
+    - alle DFMs müssen als TXT vorliegen!
+      - convert -i -s -t *.dfm
+      
+     1. Quickreport Converter Projekt öffnen: Verzeichnisse
+        jedes Verzeichnis einzeln
+        - erst jetzt .dpr in Delphi2010 öffnen
+     2. >UniDAC Migration Wizzard
+        stmedm entfernen
+        legt bei mehreren Durchläufen fehlerhaft immer die gleichen uses an
+     3. Notepad++ Uni_D5 Makro (Verzeichnis ändern)
+        c:\Dokumente und Einstellungen\MDambach\Anwendungsdaten\Notepad++\shortcuts.xml
+  
+  - fehlende Komponenten ersetzen
+    Main: TAbUnZipper
+    Main: TgtPDFEngine
+          TgtQRExportInterface
+          TgtRTFEngine
+- dfltrep?
+
+  - konkret:
+    Parafrm: fehlt: uses UPro_Kmp
+             entfernen: uses gtQrCtrls
+    MainFrm (zip): uses entfernt: AbBase, AbBrowse, AbZBrows, AbUnzper
+            (gt): uses entfernt: gtdZLIB,
+            gtClasses,gtCstDocEng,gtCstPlnEng,gtCstPDFEng,gtExPDFEng,gtPDFEng,gtCstHTMLEng,gtExHTMLEng,gtHTMLEng,
+            gtXHTMLEng,gtRTFEng,gtCstSpdEng,gtCstXLSEng,gtExXLSEng,gtXLSEng,gtCstGfxEng,gtGIFEng,
+    MenuFrm: uses entfernt: Psock, NMFtp
+    DataDFrm: uses entfernt: NMftp, Psock,
+    DataEFrm: uses entfernt: NMftp, Psock, 
+    
+    DataTFrm: SDBLDatabase: prop KeepConnection fehlt warum?
+    - W1050: CharInSet verwenden
+    
+  - QuvaSvr_TLB
+    - Komponentenwrapper
+      c:\Programme\Embarcadero\RAD Studio\7.0\Projects\
+      >neues Projekt >Verzeichnis explizit auswählen!
+      - Zugriffsverletzung bei Adresse 22204C71 in Modul 'dotnetcoreide140.bpl'. Lesen von Adresse 00000000
+        - >Konfig >Debuggen >Symbolreferenzinfo: Referenzinfo !
+      - Fehler bei Öffnen .dproj:
+        - Zeile mit <%s ...> entfernen
+    QSBTSvr_TLB bereits OK?
+    
+- Umsetzung QSBT
+  - FremdWgsDlg: uses entfernt: Word97  
+  - OnDefineWideField not defined
+
+- Umsetzung D5 Projekte
+  - TBitBtn ist jetzt von TCustomButton abgeleitet (nicht mehr von TButton)
+- Prn_Dlg
+- Tabellenlayout  
+
+[29.10.11]
+- Umsetzung D5 Projekte
+  Bsp: QPilot:
+  - QuickReport: 
+    - von Gnostice wieder zurück zu QR-Komponenten:
+    - ADDONS\Quickrep504\Converters\
+    
+  - Datei nicht gefunden: DesignEditors.dcu
+    Lsg: uses 'kmp__reg' entfernen
+
+[30.10.11]
+- TFrame in Delphi2010 registrieren:
+  Sie können einen Frame in die Objektablage einfügen, indem Sie ein Projekt mit 
+  diesem Frame öffnen, im Formular-Designer mit der rechten Maustaste klicken und 
+  Der Objektablage hinzufügen wählen. Weitere Informationen finden Sie unter 
+  Die Objektablage verwenden.
+
+  
+
+[16.10.11]
+- Icons für eigene Komponenten
+  Icon für die KOMPONENTE (Designer) ändern: mit dem XN Resource Editor die 
+    Unit.dcr bearbeiten
+  Cursor als RESSOURCE (Runtime) ändern: mit dem ResHacker "Ressourcen.res" ändern
+- Um eine *.dcr-Datei zu erzeugen wie folgt vorgehen:
+  - Mit dem XN Resource Editor eine neue Datei anlegen und einfach als *.dcr 
+    speichern. 
+  - Ein Icon für die Komponente hinzufügen und mit dem Klassennamen (z.B. TMyCompo) 
+    benennen.
+  - Im Package-Source (*.dpk) die Ressource einbinden mit {$R myResources.dcr}
+
+
+[15.10.11]
+
+[14.10.11]
+- Synonyme nicht verwenden!
+  weil sonst die Erkennung der Indexdefinitionen fehlschlägt
+  (damit kann man natürlich auch leben)
+  In GNavigator.IndexInfos kann der PKey manuell gesetzt werden:
+    ['ADRE'] := 'ADRE_ID'
+    
+    
+- Interfaces in Delphi sehr gut erklärt:
+  http://delphi.about.com/od/oopindelphi/a/interfaces-in-delphi-programming-101.htm
+
+[09.10.11]
+Packages
+========
+- KmpR
+  Runtime Package
+
+
+Umsetzung D5 Projekte
+=====================
+- Projekt in D2010 laden
+- >UniDAC >Migration Wizard verwenden
+- Notepad++
+  - Makros in 
+    c:\Dokumente und Einstellungen\MDambach\Anwendungsdaten\Notepad++\shortcuts.xml
+  
+  Replace
+  *.pas
+  TUniQuery => TUQuery
+  TUniStoredProc => TuStoredProc
+  TqDataBase => TuDatabase
+  Db___kmp => UDB__Kmp, USes_Kmp, UPro_Kmp
+  "Uni, DBAccess" => "Uni, UQue_Kmp, DBAccess"
+  "kmp__reg," => ""
+  *.dfm
+  <Uses>
+  
+  
+- Sonderfälle: >GExperts >Replace Components >
+
+
+- TLDataSource -> TuDataSource
+
+- TSession -> TuSession
+
+- TQuery -> TuQuery
+  - DatabaseName
+  
+
+- TUpdateSQL: 
+  - entfernen. Wird nicht mehr verwendet, da TuQuery die gleichen Möglichkeiten hat.
+  - setze TuQuery.CachedUpdates=false
+  - vorher UpdateSQL, DeleteSQL, InsertSQL nach TuQuery kopieren
+  - Ereignis OnUpdateRecord: nicht mehr sinnvoll
+    Aufruf ApplyUpdates: nicht mehr sinnvoll
+    
+- Delphi2010-Hilfe: "Anwendungen für Unicode anpassen"
+  suchen und berücksichtigen
+
+    
+[09.10.11]
+- EDBEngineError nicht mehr vorhanden
+  jetzt: EDAError
+         - ErrorCode integer (immer positiv)
+         - Message (von Exception)
+         
+- TuTable: keine IndexDefs mehr. Dafür IndexFieldNames string.
+         
+- Database.IsSqlBased immer true         
+
+- CachedUpdates entfernt
+
+- Threads und Sessions
+  - es genügt jetzt, eine eigene TuDatabase zu verwenden (UniConnection)
+    Session ist egal (keine UniDAC Entsprechung)
+    
+
+[16.10.09] Delphi 2010
+- Delphi2010 und Jedi Inspirations:
+  - Database.IsSqlBased <--> Standard
+  - Dataset.Reload via Bookmark (statt PKeys)
+  - HTML-Format in DBEdit: --> Paint > HTMLDrawText (Jedi)
+  
+- Komponentenersetzungen:
+  TPBFolderDlg -> TJvBrowseForFolderDialog
+  
+

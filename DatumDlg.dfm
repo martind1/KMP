@@ -1,0 +1,351 @@
+object DlgDatum: TDlgDatum
+  Left = 533
+  Top = 122
+  ActiveControl = Cal
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'Datum ausw'#228'hlen'
+  ClientHeight = 213
+  ClientWidth = 267
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clBlack
+  Font.Height = -13
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = True
+  Position = poScreenCenter
+  Scaled = False
+  ShowHint = True
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 16
+  object LaKw1: TLabel
+    Left = 8
+    Top = 77
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LaKw2: TLabel
+    Left = 8
+    Top = 93
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LaKw3: TLabel
+    Left = 8
+    Top = 109
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LaKw4: TLabel
+    Left = 8
+    Top = 125
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LaKw5: TLabel
+    Left = 8
+    Top = 141
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LaKw6: TLabel
+    Left = 8
+    Top = 157
+    Width = 14
+    Height = 16
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object BtnPrevMonth: TSpeedButton
+    Left = 8
+    Top = 35
+    Width = 24
+    Height = 24
+    Hint = 'fr'#252'herer Monat'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      D6010000424DD60100000000000036000000280000000A0000000D0000000100
+      180000000000A001000000000000000000000000000000000000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F0080007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F00FF007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F7F33007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F7F7F7F000000007F7F7F33007F7F007F7F
+      007F7F007F7F007F7F7F7F7F000000000000000000007F7F7777007F7F007F7F
+      007F7F7F7F7F000000000000000000000000000000007F7FF77F007F7F7F7F7F
+      000000000000000000000000000000000000000000007F7FF7F7007F7F007F7F
+      007F7F7F7F7F000000000000000000000000000000007F7FF777007F7F007F7F
+      007F7F007F7F007F7F7F7F7F000000000000000000007F7F0000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F7F7F7F000000007F7F0000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F0000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F0000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F0000}
+    ParentFont = False
+    Spacing = -1
+    OnClick = BtnPrevMonthClick
+    OnMouseDown = BtnMouseDown
+    OnMouseUp = BtnMouseUp
+  end
+  object BtnNextMonth: TSpeedButton
+    Left = 231
+    Top = 35
+    Width = 24
+    Height = 24
+    Hint = 'sp'#228'terer Monat'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      D6010000424DD60100000000000036000000280000000A0000000D0000000100
+      180000000000A001000000000000000000000000000000000000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F0080007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F00FF007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F7F33007F7F000000
+      7F7F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F7F33007F7F000000
+      0000000000007F7F7F007F7F007F7F007F7F007F7F007F7F7777007F7F000000
+      0000000000000000000000007F7F7F007F7F007F7F007F7FF77F007F7F000000
+      0000000000000000000000000000000000007F7F7F007F7FF7F7007F7F000000
+      0000000000000000000000007F7F7F007F7F007F7F007F7FF777007F7F000000
+      0000000000007F7F7F007F7F007F7F007F7F007F7F007F7F7337007F7F000000
+      7F7F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F7777007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F7A35007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7FF436007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F3437}
+    ParentFont = False
+    OnClick = BtnNextMonthClick
+    OnMouseDown = BtnMouseDown
+    OnMouseUp = BtnMouseUp
+  end
+  object BtnPrevYear: TSpeedButton
+    Left = 8
+    Top = 10
+    Width = 24
+    Height = 24
+    Hint = 'fr'#252'heres Jahr'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      3E020000424D3E0200000000000036000000280000000D0000000D0000000100
+      1800000000000802000000000000000000000000000000000000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F
+      7F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F
+      007F7F007F7F007F7F00007F7F007F7F007F7F007F7F007F7F007F7F007F7F00
+      7F7F007F7F007F7F007F7F007F7F007F7F7F007F7F007F7F0000007F7F7F007F
+      7F007F7F007F7F007F7F007F7F007F7F7F7F7F000000007F7F77007F7F007F7F
+      0000007F7F7F007F7F007F7F007F7F007F7F7F7F7F000000000000000000007F
+      7F00007F7F007F7F0000007F7F7F007F7F007F7F7F7F7F000000000000000000
+      000000000000007F7F00007F7F007F7F0000007F7F7F7F7F7F00000000000000
+      0000000000000000000000000000007F7F00007F7F007F7F0000007F7F7F007F
+      7F007F7F7F7F7F000000000000000000000000000000007F7F77007F7F007F7F
+      0000007F7F7F007F7F007F7F007F7F007F7F7F7F7F000000000000000000007F
+      7F7F007F7F007F7F0000007F7F7F007F7F007F7F007F7F007F7F007F7F007F7F
+      7F7F7F000000007F7F00007F7F007F7F007F7F007F7F007F7F007F7F007F7F00
+      7F7F007F7F007F7F007F7F007F7F007F7F00007F7F007F7F007F7F007F7F007F
+      7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F00007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F
+      7F00}
+    ParentFont = False
+    OnClick = BtnPrevYearClick
+    OnMouseDown = BtnMouseDown
+    OnMouseUp = BtnMouseUp
+  end
+  object BtnNextYear: TSpeedButton
+    Left = 231
+    Top = 10
+    Width = 24
+    Height = 24
+    Hint = 'sp'#228'teres Jahr'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      3E020000424D3E0200000000000036000000280000000D0000000D0000000100
+      1800000000000802000000000000000000000000000000000000007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F
+      7F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F
+      007F7F007F7F007F7F00007F7F007F7F007F7F007F7F007F7F007F7F007F7F00
+      7F7F007F7F007F7F007F7F007F7F007F7F7F007F7F007F7F0000007F7F7F007F
+      7F007F7F007F7F007F7F007F7F007F7F7F7F7F000000007F7F77007F7F007F7F
+      0000000000000000007F7F7F007F7F007F7F007F7F007F7F7F7F7F000000007F
+      7F00007F7F007F7F0000000000000000000000000000007F7F7F007F7F007F7F
+      7F7F7F000000007F7F00007F7F007F7F00000000000000000000000000000000
+      00000000007F7F7F7F7F7F000000007F7F7F007F7F007F7F0000000000000000
+      000000000000007F7F7F007F7F007F7F7F7F7F000000007F7F77007F7F007F7F
+      0000000000000000007F7F7F007F7F007F7F007F7F007F7F7F7F7F000000007F
+      7F7F007F7F007F7F0000007F7F7F007F7F007F7F007F7F007F7F007F7F007F7F
+      7F7F7F000000007F7F00007F7F007F7F007F7F007F7F007F7F007F7F007F7F00
+      7F7F007F7F007F7F007F7F007F7F007F7F37007F7F007F7F007F7F007F7F007F
+      7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F37007F7F007F7F
+      007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F7F007F
+      7F38}
+    ParentFont = False
+    OnClick = BtnNextYearClick
+    OnMouseDown = BtnMouseDown
+    OnMouseUp = BtnMouseUp
+  end
+  object Bevel1: TBevel
+    Left = 2
+    Top = 77
+    Width = 26
+    Height = 102
+  end
+  object BtnOK: TBitBtn
+    Left = 8
+    Top = 185
+    Width = 75
+    Height = 25
+    Caption = 'OK'
+    Default = True
+    Layout = blGlyphTop
+    Margin = 2
+    ModalResult = 1
+    NumGlyphs = 2
+    Spacing = -1
+    TabOrder = 0
+    IsControl = True
+  end
+  object BtnCancel: TBitBtn
+    Left = 181
+    Top = 185
+    Width = 75
+    Height = 25
+    Cancel = True
+    Caption = 'Abbruch'
+    Layout = blGlyphTop
+    Margin = 2
+    ModalResult = 2
+    NumGlyphs = 2
+    Spacing = -1
+    TabOrder = 1
+    IsControl = True
+  end
+  object Cal: TCalendar
+    Left = 29
+    Top = 59
+    Width = 227
+    Height = 120
+    StartOfWeek = 1
+    TabOrder = 2
+    UseCurrentDate = False
+    OnChange = CalChange
+    OnDblClick = CalDblClick
+  end
+  object BtnHeute: TBitBtn
+    Left = 95
+    Top = 185
+    Width = 75
+    Height = 25
+    Caption = '&Heute'
+    Layout = blGlyphTop
+    TabOrder = 3
+    OnClick = BtnHeuteClick
+  end
+  object BtnKW: TButton
+    Left = 3
+    Top = 61
+    Width = 24
+    Height = 16
+    Caption = 'Kw'
+    TabOrder = 4
+  end
+  object cobMonth: TComboBox
+    Left = 81
+    Top = 35
+    Width = 100
+    Height = 24
+    Hint = 'Monat ausw'#228'hlen'
+    Style = csDropDownList
+    Color = clWhite
+    Ctl3D = False
+    DropDownCount = 12
+    ParentCtl3D = False
+    TabOrder = 5
+    OnChange = cobChange
+    Items.Strings = (
+      'Januar'
+      'Februar'
+      'M'#228'rz'
+      'April'
+      'Mai'
+      'Juni'
+      'Juli'
+      'August'
+      'September'
+      'Oktober'
+      'Dezember')
+  end
+  object cobYear: TComboBox
+    Left = 81
+    Top = 11
+    Width = 100
+    Height = 24
+    Hint = 'Jahr ausw'#228'hlen'
+    Color = clWhite
+    Ctl3D = False
+    DropDownCount = 21
+    ParentCtl3D = False
+    TabOrder = 6
+    OnChange = cobChange
+    Items.Strings = (
+      '1979'
+      '1980'
+      '1981'
+      '1982'
+      '1999'
+      '2000')
+  end
+end

@@ -1,0 +1,46 @@
+Projekt    Version        Stand
+KMP        3.11MD         31.08.02
+Komponenten
+==================================
+
+Win32 - TPagecontrol
+--------------------
+- Nav.Detailbook kann auch vom Typ TPageControl sein.
+
+- Nav.Pagebook kann auch vom Typ TPageControl sein (Reiter rechts).
+  wichtig: das Multi-Tabsheet muss Tag=1 haben
+           das Single-Tabsheet muss Tag=0 haben
+
+IniKmp
+------
+- ReadString: leere Einträge (Key=) geben Default zurück
+!!! wurde wieder verworfen. Jetzt:
+- ReadString: leere Einträge (Key=) geben Leerstring ('') zurück
+- ReadStrDflt: leere Einträge (Key=) geben Default zurück
+
+Multigrid
+---------
+- auch wenn LuDef.NavLink=false ergibt Doppelklick die Einzelansicht
+
+XML
+---
+- XmlExport Komponente hinzugefügt. Siehe dort (XmlExport.pas)
+
+Divers
+------
+- FieldTypeStr() in GetFieldType() umbenannt
+  FieldTypeStr[] bleibt
+
+Stoppuhr mit mehreren Timern
+----------------------------
+Messen von Zeitspannen im Programmablauf
+- Ein globales Objekt (SW) ist immer vorhanden
+- Bsp.: SW[0].Start;  SW[0].Stop;  I := SW[1].ValueMs;  SW.ENum(SWFunc);
+        procedure SWFunc(ITimer: integer; Sender: TSWTimer);
+  siehe auch LAWA#RMES.PAS#TFrmRMes.DoExport;      
+
+Verschlüsselung
+---------------
+  EncryptPassw(Passw, Len)        Len muß mind. 2mal größer als length(Passw) sein!
+  Decrypt(Passw)
+    

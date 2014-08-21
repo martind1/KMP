@@ -1,0 +1,9 @@
+For example, the following creates an HTML paragraph from a person element with given-name and family-name attributes. The paragraph will contain the value of the given-name attribute of the current node followed by a space and the value of the family-name attribute of the current node.
+
+<xsl:template match="person">
+  <p>
+   <xsl:value-of select="@given-name"/>
+   <xsl:text> </xsl:text>
+   <xsl:value-of select="@family-name"/>
+  </p>
+</xsl:template>

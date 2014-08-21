@@ -1,0 +1,36 @@
+var
+  Dt1, Dt2: TDateTime;
+
+procedure TRepStatMat.Query1BeforeOpen(DataSet: TDataSet);
+var
+  S, S1, S2, NextS: string;
+begin
+  S := Nav.FltrList.Values['BELADEDATUM'];
+  if S <> '' then
+  begin
+    S1 := PStrTok(S, '~', NextS);
+    Dt1 := StrToDate(S1) - 0.5;
+    S2 := PStrTok('', '~', NextS);
+    if S2 <> '' then
+      Dt2 := StrToDate(S2) + 0.5 else
+      Dt2 := Dt1 + 0.5;
+    S := ':DTM1..:DTM2';
+    Nav.FltrList.Values['BELADEDATUM'] := S;
+  end;
+end;
+
+procedure TRepStatMat.NavBuildSql(DataSet: TDataSet; var OK,
+  fertig: Boolean);
+begin
+    if Query1.ParamCount >= 1 then
+    begin
+      Query1.ParamByName('DTM1').DataType := ftDateTime;
+      Query1.ParamByName('DTM1').AsDateTime := DT1;
+    end;
+    if Query1.ParamCount >= 2 then
+    begin
+      Query1.ParamByName('DTM2').DataType := ftDateTime;
+      Query1.ParamByName('DTM2').AsDateTime := DT2;
+    end;
+end;
+

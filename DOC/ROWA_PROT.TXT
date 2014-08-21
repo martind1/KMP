@@ -1,0 +1,9 @@
+T:3000
+S:^B
+W:^P
+B:Befehl
+S:^P^C
+W:^B
+S:^P
+A:150,^P,^C
+S:^P

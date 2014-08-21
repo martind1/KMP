@@ -1,0 +1,32 @@
+object FrmStru: TFrmStru
+  Left = 242
+  Top = 136
+  Caption = 'DB-Struktur'
+  ClientHeight = 297
+  ClientWidth = 668
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clBlack
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = True
+  Scaled = False
+  Visible = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Panel2: TPanel
+    Left = 639
+    Top = 0
+    Width = 29
+    Height = 297
+    Align = alRight
+    BevelInner = bvLowered
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitHeight = 276
+  end
+end

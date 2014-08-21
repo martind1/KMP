@@ -1,0 +1,70 @@
+UniDAC Migration Wizard log
+
+Created at: 31.10.2011 16:11:42
+
+Initializing unit list
+
+Allocating temporary folder
+
+Processing file: D:\Delphi2010\Kmp\Rechte\DATNEDFrm.pas
+
+2 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitAskDlg.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitCpyDlg.PAS
+
+2 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\INITEDFrm.pas
+
+5 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitEdiDlg.PAS
+
+3 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitImpDlg.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitSearchDlg.PAS
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\Rechte\DATNEDFrm.DFM
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitAskDlg.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitCpyDlg.DFM
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\INITEDFrm.DFM
+
+4 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitEdiDlg.DFM
+
+1 change(s)
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitImpDlg.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\Kmp\Rechte\InitSearchDlg.DFM
+
+No changes
+
+Replacing original files with changed versions
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

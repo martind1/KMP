@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- encoding="UTF-8"  macht Fehler bei Umlauten -->
+<!--==================================================================
+*  Template zum Erstellen von MSSQL-Trigger 
+*  zum Protokollieren von Feldaeerungen in STME 
+*  fuer ChangeLog
+*=====================================================================
+*  19.03.2004 MD   erstellt
+*  27.12.2006 MD   MSSQL
+*===================================================================-->
+<template>
+<line>
+drop TRIGGER TR_[Short]_CHANGELOG;
+create trigger TR_[Short]_CHANGELOG ON [TableName] after delete, update as
+begin
+  if @@ROWCOUNT = 1
+  begin
+    declare @S      varchar(8000)
+    declare @PK varchar(250)
+    set @S = '[Short]:'
+    set @PK = [MsPKEY]
+    if (@PK is null) or (@PK = '.') or (@PK = '..') or (@PK = '...') or (@PK = '....') or (@PK = '.....')
+    begin
+      set @PK = [MsPKEYdeleted]
+      set @S = @S + ' deleted'
+    end else
+    begin
+</line>
+  <field><![CDATA[
+      if update([Field])
+        set @S = @S + '[Field]('+([MSOld])+')->('+([MSNew])+') '
+  ]]></field>
+<line><![CDATA[
+    end
+    if len(@S) > len('[Short]:')
+    begin
+      exec ADD_STME [STME_NR], [WERK_NR], @PK, 'N', @S
+    end
+  end
+end;
+]]></line>
+</template>

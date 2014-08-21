@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<?xml-stylesheet href="brief.xsl" type="text/xsl"?> 
+<!DOCTYPE brief [
+<!ELEMENT brief (betreff, datum, anrede, text, abschluss)>
+<!ELEMENT betreff (#PCDATA)>
+<!ELEMENT datum (#PCDATA)>
+<!ELEMENT anrede (#PCDATA)>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT abschluss (#PCDATA)>
+<!ENTITY name "Vivien Petras">
+]>
+
+<brief>
+<betreff>Dieser Test - Über XML</betreff>
+<datum>2. Dezember 2000</datum>
+<anrede>Sehr geehrte Damen und Herren</anrede>
+<text>Dies ist ein Beispielbrief für unser erstes XML-Beispiel</text>
+<abschluss>MfG &name;</abschluss>
+</brief>

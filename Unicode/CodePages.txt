@@ -1,0 +1,31 @@
+Codepage reference 
+
+The following pages lists the character codes comprising some of the codepages supported by Windows 95. 
+
+Latin 2 (1250) [ graphic representation - 1250.gif ]
+
+Cyrillic (1251) [ graphic representation - 1251.gif ]
+
+Latin 1 (1252) [ graphic representation - 1252.gif ]
+
+Greek (1253) [ graphic representation - 1253.gif ]
+
+Latin 5 (1254) [ graphic representation - 1254.gif ]
+
+Hebrew (1255) [ graphic representation - 1255.gif ]
+
+Arabic (1256) [ graphic representation - 1256.gif ]
+
+Baltic (1257) [ graphic representation - 1257.gif ]
+
+Viet Nam (1258) [ graphic representation - 1258.gif ]
+
+Thai (874) [ graphic representation - 874.gif ]
+
+Japanese (932) - link to Microsoft's GlobalDev site
+
+PRC GBK (XGB) (936) - link to Microsoft's GlobalDev site 
+
+Korean Extended Wansung (949) - link to Microsoft's GlobalDev site 
+
+Chinese (Taiwan, Hong Kong) (950) - link to Microsoft's GlobalDev site

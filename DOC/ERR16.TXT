@@ -1,0 +1,725 @@
+     0  0000  Operation erfolgreich abgeschlossen
+    33  0021  Systemfehler
+    34  0022  Erforderliches Objekt nicht gefunden
+    35  0023  Daten physikalisch beschädigt
+    36  0024  Fehler bei der Ein-/Ausgabe
+    37  0025  Fehler: Zu wenig Ressourcen vorhanden
+    38  0026  Datenintegrität verletzt
+    39  0027  Ungültige Anforderung
+    40  0028  Fehler beim Sperren
+    41  0029  Zugriffs- oder Paßwortschutzverletzung
+    42  002A  Ungültiger Kontext
+    43  002B  Betriebssystemfehler
+    44  002C  Netzfehler
+    45  002D  Optionaler Parameter
+    46  002E  Abfrageprozessor
+    47  002F  Inkompatible Versionen
+    48  0030  Merkmal nicht verfügbar
+    49  0031  Fehler in der Systemkonfiguration
+    50  0032  ACHTUNG!
+    51  0033  Sonstiges
+    52  0034  Kompatibilitätsfehler
+    62  003E  Treiber-Fehler
+    63  003F  Internes Symbol
+   256  0100  INDFEHL
+   257  0101  PROBLEME
+   258  0102  ALT
+   512  0200  Arbeitsindex nicht vorhanden, fehlerhaft oder Indexschlüssel nicht lesbar
+   513  0201  Im Nur-Lesen-Modus öffnen
+   514  0202  Tabelle im Nur-Lesen-Modus öffnen
+   515  0203  Öffnen und lösen
+   516  0204  Tabelle öffnen und Verweis auf Arbeitsindex löschen
+   517  0205  Fehler beim Öffnen
+   518  0206  Tabelle nicht öffnen
+   519  0207  Nicht-dBASE-Index konvertieren
+   520  0208  Arbeitsindex ins dBASE-Format konvertieren
+   521  0209  .DBT-Datei nicht gefunden
+   522  020A  Ohne BLOB-Datei öffnen
+   523  020B  Tabelle ohne BLOB-Datei öffnen
+   524  020C  Alle BLOB-Felder leeren
+   525  020D  Bei der Reinitialisierung der BLOB-Datei gehen alle BLOB-Felder verloren.
+   526  020E  Fehler beim Öffnen
+   527  020F  Tabelle nicht öffnen
+   528  0210  Nicht-dBASE-BLOB-Datei importieren
+   529  0211  BLOB-Datei importieren
+   530  0212  Als Nicht-dBASE-Tabelle öffnen
+   531  0213  Tabelle und BLOB-Datei im ursprünglichen Format öffnen
+   532  0214  Inkompatibler Sprachtreiber des Arbeitsindex
+   533  0215  Arbeitsindex fehlerhaft
+   534  0216  Arbeitsindex erneut erstellen
+   535  0217  Alle Arbeitsindizes erneut erstellen
+  1024  0400  Nachschlagetabelle nicht gefunden oder fehlerhaft
+  1025  0401  BLOB-Datei nicht gefunden oder fehlerhaft
+  1026  0402  Im Nur-Lesen-Modus öffnen
+  1027  0403  Tabelle im Nur-Lesen-Modus öffnen
+  1028  0404  Fehler beim Öffnen
+  1029  0405  Tabelle nicht öffnen
+  1030  0406  Nachschlagetabelle entfernen
+  1031  0407  Verbindung zu Nachschlagetabelle aufheben
+  2048  0800  Datensätze werden gelesen
+  2049  0801  Datensätze werden sortiert
+  2050  0802  Datensätze werden geschrieben
+  2051  0803  Daten werden kombiniert
+  2052  0804  Abgeschlossene Schritte
+  2053  0805  Datensätze werden kopiert
+  2309  0905  WIE
+  2310  0906  NICHT
+  2320  0910  EINFUEGEN
+  2321  0911  LOESCHEN
+  2322  0912  AENDERNZU
+  2323  0913  AENDERN
+  2324  0914  ZU
+  2325  0915  FINDEN
+  2326  0916  RECHNE
+  2327  0917  ANZAHL
+  2328  0918  SUMME
+  2329  0919  MITTEL
+  2330  091A  MAX
+  2331  091B  MIN
+  2332  091C  ALLE
+  2333  091D  EINDEUTIG
+  2334  091E  LEER
+  2335  091F  HEUTE
+  2336  0920  ALS
+  2337  0921  ABSTEIGEND
+  2338  0922  ODER
+  2339  0923  NUR
+  2340  0924  JEDER
+  2341  0925  KEIN
+  2342  0926  EXAKT
+  2343  0927  MENGE
+  2347  092B  %zeit
+  2348  092C  %datum
+  2353  0931  %lower
+  2354  0932  %upper
+  2355  0933  %trim
+  2356  0934  %substring
+  2364  093C  __QB0000
+  2365  093D  ANTWORT
+  2366  093E  ENTFERNT
+  2367  093F  ERGAENZT
+  2368  0940  ALT
+  2369  0941  FEHLENTF
+  2370  0942  FEHLERG
+  2371  0943  FEHLALT
+  2372  0944  __XLTTMP
+  2373  0945  __QBEDIC
+  2405  0965  JAN
+  2406  0966  FEB
+  2407  0967  MÄR
+  2408  0968  APR
+  2409  0969  MAI
+  2410  096A  JUN
+  2411  096B  JUL
+  2412  096C  AUG
+  2413  096D  SEP
+  2414  096E  OKT
+  2415  096F  NOV
+  2416  0970  DEZ
+  2423  0977  ERGAENZT.DB
+  2424  0978  ALT.DB
+  2425  0979  ENTFERNT.DB
+  2426  097A  ANTWORT.DB
+  2427  097B  leer
+  2428  097C  Summe von 
+  2429  097D  Mittelwert von 
+  2430  097E  Anzahl von 
+  2431  097F  Maximum von 
+  2432  0980  Minimum von 
+  2433  0981  GRUPPIERUNG
+  2434  0982  FIELDORDER
+  2435  0983  SORT
+  2436  0984  ANSWER
+  2437  0985  TYPE
+  2438  0986  OPTIONS
+  2440  0988  GENERATE AUXILIARY TABLES
+  2441  0989  NO AUXILIARY TABLES
+  2442  098A  SERVER
+  2443  098B  LOCAL
+  2444  098C  CANNED
+  2445  098D  LIVE
+  2446  098E  SPEED
+  2447  098F  %extract
+  2448  0990  DATUM
+  2449  0991  ZEIT
+  2450  0992  JAHR
+  2451  0993  MONAT
+  2452  0994  TAG
+  2453  0995  STUNDE
+  2454  0996  MINUTE
+  2455  0997  SEKUNDE
+  8449  2101  Systemdatei kann nicht geöffnet werden.
+  8450  2102  I/O-Fehler bei Systemdatei
+  8451  2103  Datenstruktur fehlerhaft
+  8452  2104  Engine-Konfigurationsdatei nicht gefunden
+  8453  2105  Fehler beim Schreiben in die Engine-Konfigurationsdatei
+  8454  2106  Initialisierung mit anderer Konfigurationsdatei nicht möglich
+  8455  2107  System wurde unberechtigt erneut aufgerufen.
+  8456  2108  Fehler beim Suchen IDAPI01.DLL
+  8457  2109  Fehler beim Laden IDAPI01.DLL
+  8458  210A  Fehler beim Laden der IDAPI-Service-Bibliothek
+  8705  2201  Tabellenanfang
+  8706  2202  Tabellenende
+  8707  2203  Datensatz wegen der Änderung des Schlüsselwertes versetzt
+  8708  2204  Datensatz/Schlüssel gelöscht
+  8709  2205  Kein aktueller Datensatz
+  8710  2206  Datensatz nicht gefunden
+  8711  2207  Ende des BLOB-Feldes
+  8712  2208  Objekt nicht gefunden
+  8713  2209  Zugeordnete Datei nicht gefunden
+  8714  220A  BLOB-Datei nicht vorhanden
+  8715  220B  Sprachtreiber nicht gefunden
+  8961  2301  Beschädigter Header in Tabelle/Index
+  8962  2302  Datei ist beschädigt, aber nicht der Vorspann.
+  8963  2303  Memo-/BLOB-Datei fehlerhaft
+  8965  2305  Index fehlerhaft
+  8966  2306  Sperrungs-Datei fehlerhaft
+  8967  2307  Zugeordnete Datei fehlerhaft
+  8968  2308  .VAL-Datei fehlerhaft oder nicht vorhanden
+  8969  2309  Fremdes Indexdatei-Format.
+  9217  2401  Lesefehler
+  9218  2402  Schreibfehler
+  9219  2403  Kein Zugriff auf dieses Verzeichnis
+  9220  2404  Fehler beim Löschen der Datei
+  9221  2405  Kein Zugriff auf diese Datei
+  9222  2406  Zugriff auf die Tabelle aufgrund eines früheren Fehlers aufgehoben
+  9473  2501  Zu wenig Arbeitsspeicher für diese Operation
+  9474  2502  Zu wenig Datei-Handles
+  9475  2503  Zu wenig Festplattenspeicher
+  9476  2504  Keine Ressourcen mehr für tempörare Tabellen verfügbar
+  9477  2505  Datensatzlänge zu groß für Tabelle
+  9478  2506  Zu viele geöffnete Cursor-Objekte
+  9479  2507  Tabelle kann keine weiteren Daten aufnehmen.
+  9480  2508  Zu viele Sitzungen an diesem Arbeitsplatzrechner
+  9481  2509  Seriennummernbeschränkung (Paradox)
+  9482  250A  Interner Grenzwert überschritten (kontextabhängig)
+  9483  250B  Zu viele offene Tabellen vorhanden
+  9484  250C  Zu viele Cursor-Objekte pro Tabelle vorhanden
+  9485  250D  Zu viele Datensatzsperren für die Tabelle vorhanden
+  9486  250E  Zu viele Client-Anwendungen vorhanden
+  9487  250F  Zu viele Indizes für die Tabelle vorhanden
+  9488  2510  Zu viele Sitzungen vorhanden
+  9489  2511  Zu viele geöffnete Datenbanken vorhanden
+  9490  2512  Zu viele Paßwörter vorhanden
+  9491  2513  Zu viele aktive Treiber vorhanden.
+  9492  2514  Zu viele Felder beim Anlegen der Tabelle vorhanden
+  9493  2515  Zu viele Tabellensperren vorhanden
+  9494  2516  Zu viele offene BLOB-Felder vorhanden
+  9495  2517  Sperrungs-Datei ist zu groß.
+  9496  2518  Zu viele Abfragen geöffnet.
+  9498  251A  Zu viele BLOBs.
+  9729  2601  Indexfehler
+  9730  2602  Fehler bei der Überprüfung des kleinsten gültigen Werts
+  9731  2603  Fehler bei der Überprüfung des größten gültigen Werts
+  9732  2604  Für das Feld ist ein Wert erforderlich.
+  9733  2605  Hauptdatensatz nicht gefunden
+  9734  2606  Löschen oder Ändern nicht möglich - Detaildatensätze vorhanden
+  9735  2607  Falsche Ebene der Haupttabelle
+  9736  2608  Feldwert außerhalb des Wertebereichs in der Nachschlagetabelle.
+  9737  2609  Fehler beim Öffnen der Nachschlagetabelle
+  9738  260A  Fehler beim Öffnen der Detailtabelle
+  9739  260B  Fehler beim Öffnen der Haupttabelle
+  9740  260C  Feld ist leer.
+  9741  260D  Haupttabelle bereits vorhanden
+  9742  260E  Haupttabelle ist geöffnet.
+  9743  260F  Detailtabelle(n) vorhanden
+  9744  2610  Leeren nicht möglich - Detaildatensätze vorhanden
+  9745  2611  Nur eine selbstbezügliche Referenzintegrität zulässig (keine weiteren Änderungen an der Tabelle erlaubt)
+  9746  2612  Detailtabelle ist geöffnet.
+  9747  2613  Haupttabelle kann nur als Detailtabelle definiert werden, wenn ihre Detailtabellen leer sind.
+  9748  2614  Referenzintegritätsfelder müssen indiziert sein.
+  9749  2615  Eine Tabelle mit Referenzintegrität kann nur mit einem Paßwort geöffnet werden.
+  9750  2616  Feld(er) ist/sind mit mehr als einer Master-Tabelle verbunden.
+  9985  2701  Zahl außerhalb des gültigen Bereichs
+  9986  2702  Ungültiger Parameter
+  9987  2703  Ungültiger Dateiname
+  9988  2704  Datei nicht vorhanden
+  9989  2705  Ungültige Option
+  9990  2706  Ungültiges Funktions-Handle
+  9991  2707  Unbekannter Tabellentyp
+  9992  2708  Datei kann nicht geöffnet werden.
+  9993  2709  Neudefinition des Primärschlüssels nicht zulässig
+  9994  270A  Referenzintegritäts-Deskriptor kann nicht geändert werden.
+  9995  270B  Keine Übereinstimmung des Fremd- und Primärschlüssels.
+  9996  270C  Ungültige Änderung
+  9997  270D  Index nicht vorhanden
+  9998  270E  Ungültiger Offset im BLOB-Feld
+  9999  270F  Ungültige Deskriptornummer
+ 10000  2710  Ungültiger Feldtyp
+ 10001  2711  Ungültiger Felddeskriptor
+ 10002  2712  Ungültige Feldtransformation
+ 10003  2713  Ungültige Datensatzstruktur
+ 10004  2714  Ungültiger Deskriptor
+ 10005  2715  Ungültiger Array der Indexdeskriptoren
+ 10006  2716  Ungültiger Array der Deskriptoren für die Gültigkeitsprüfungen
+ 10007  2717  Ungültiger Array der Referenzintegritäts-Deskriptoren
+ 10008  2718  Ungültige Tabellenanordnung bei der Neustrukturierung
+ 10009  2719  Name nicht eindeutig
+ 10010  271A  Indexname erforderlich
+ 10011  271B  Ungültiges Sitzungs-Handle
+ 10012  271C  Unzulässige Umstrukturierung
+ 10013  271D  Unbekannter Treiber
+ 10014  271E  Unbekannte Datenbank
+ 10015  271F  Ungültiges Paßwort
+ 10016  2720  Keine Callback-Funktion
+ 10017  2721  Ungültige Länge des Callback-Puffers
+ 10018  2722  Ungültges Verzeichnis
+ 10019  2723  Übersetzungsfehler. Der Wert liegt nicht im gültigen Bereich.
+ 10020  2724  Verwendung des Cursors einer Tabelle für eine andere nicht zulässig
+ 10021  2725  Verweise passen nicht zur Tabelle.
+ 10022  2726  Ungültiger Index/Kennungsname
+ 10023  2727  Ungültiger Index-Deskriptor
+ 10024  2728  Tabelle nicht vorhanden
+ 10025  2729  Tabelle wird von zu vielen Anwendern benutzt.
+ 10026  272A  Schlüssel kann nicht ausgewertet werden oder Filterbedingung trifft nicht zu.
+ 10027  272B  Index bereits vorhanden
+ 10028  272C  Index ist geöffnet
+ 10029  272D  Ungültige BLOB-Länge
+ 10030  272E  Ungültiges BLOB-Handle im Datensatzpuffer
+ 10031  272F  Tabelle ist geöffnet.
+ 10032  2730  Tabelle muß neustrukturiert werden.
+ 10033  2731  Ungültiger Modus
+ 10034  2732  Index kann nicht geschlossen werden.
+ 10035  2733  Index wird für die Sortierung der Tabelle verwendet.
+ 10036  2734  Benutzername oder Paßwort unbekannt
+ 10037  2735  Überlappung auf mehreren Ebenen nicht zulässig
+ 10038  2736  Ungültiger Feldname
+ 10039  2737  Ungültiger Tabellenname
+ 10040  2738  Ungültiger Ausdruck für den verbundenen Cursor
+ 10041  2739  Reservierter Name
+ 10042  273A  Ungültige Dateinamenserweiterung
+ 10043  273B  Ungültiger Sprachtreiber
+ 10044  273C  Alias aktuell nicht geöffnet
+ 10045  273D  Inkompatible Datensatzstrukturen
+ 10046  273E  Name für DOS reserviert
+ 10047  273F  Zieltabelle muß indiziert sein.
+ 10048  2740  Ungültiger Indextyp
+ 10049  2741  Sprachtreiber von Tabelle und Index stimmen nicht überein.
+ 10050  2742  Ungültiges Filter-Handle
+ 10051  2743  Ungültiger Filter
+ 10052  2744  Unzulässige Tabellenerstellung
+ 10053  2745  Unzulässiges Löschen einer Tabelle
+ 10054  2746  Unzulässige Indexerstellung
+ 10055  2747  Unzulässiges Löschen eines Index
+ 10056  2748  Ungültige Tabelle
+ 10058  274A  Ungültige Uhrzeit
+ 10059  274B  Ungültiges Datum
+ 10060  274C  Datum/Uhrzeit ungültig
+ 10061  274D  Tabellen befinden sich in verschiedenen Verzeichnissen.
+ 10062  274E  Anzahl der Argumente stimmt nicht überein
+ 10063  274F  Funktion in Bibliothek nicht vorhanden
+ 10064  2750  Für diese Operation ist Basisreihenfolge erforderlich.
+ 10065  2751  Ungültiger Prozedurname
+ 10241  2801  Datensatz von anderem Anwender gesperrt
+ 10242  2802  Fehler beim Aufheben der Sperre
+ 10243  2803  Tabelle ist in Gebrauch.
+ 10244  2804  Verzeichnis ist in Gebrauch.
+ 10245  2805  Datei ist gesperrt.
+ 10246  2806  Verzeichnis ist gesperrt.
+ 10247  2807  Datensatz in dieser Sitzung bereits gesperrt
+ 10248  2808  Objekt nicht gesperrt
+ 10249  2809  Timeout bei der Sperrung
+ 10250  280A  Gruppe mit diesem Schlüssel gesperrt
+ 10251  280B  Tabellensperre aufgehoben
+ 10252  280C  Exklusiver Zugriff aufgehoben
+ 10253  280D  Tabelle nicht im Exklusivmodus geöffnet
+ 10254  280E  Überschneidung bei der Datensatzsperre in dieser Sitzung
+ 10255  280F  Deadlock festgestellt
+ 10256  2810  Eine Benutzertransaktion ist bereits aktiv.
+ 10257  2811  Zur Zeit wird keine Benutzertranskation vorgenommen.
+ 10258  2812  Fehler beim Sperren des Datensatzes
+ 10259  2813  Datensatz kann nicht gesperrt werden, da der Datensatz von einen anderen Benutzter geändert wurde.
+ 10260  2814  Datensatz kann nicht gesperrt werden, da der Datensatz von einem anderen Benutzer verlagert oder gelöscht wurde.
+ 10497  2901  Unzureichende Feldrechte für diese Operation
+ 10498  2902  Unzureichende Tabellenrechte für diese Operation - Paßwort erforderlich
+ 10499  2903  Unzureichende Familienrechte für diese Operation
+ 10500  2904  Verzeichnis ist schreibgeschützt.
+ 10501  2905  Datenbank ist schreibgeschützt.
+ 10502  2906  Schreibgeschütztes Feld kann nicht geändert werden.
+ 10503  2907  Verschlüsselte dBASE-Dateien werden nicht unterstützt.
+ 10504  2908  Unzureichende SQL-Rechte für diese Operation
+ 10753  2A01  Kein BLOB-Feld
+ 10754  2A02  BLOB bereits geöffnet
+ 10755  2A03  BLOB nicht geöffnet
+ 10756  2A04  Operation nicht anwendbar.
+ 10757  2A05  Tabelle besitzt keinen Primärindex.
+ 10758  2A06  Engine nicht initialisiert
+ 10759  2A07  Es wird versucht, die Engine neu zu initialisieren.
+ 10760  2A08  Es wird versucht, Objekte verschiedener Sitzungen zu kombinieren.
+ 10761  2A09  Paradox-Treiber nicht aktiv.
+ 10762  2A0A  Treiber nicht geladen
+ 10763  2A0B  Tabelle ist schreibgeschützt.
+ 10764  2A0C  Kein Index zugeordnet
+ 10765  2A0D  Tabelle(n) geöffnet - Diese Operation ist aktuell nicht durchführbar.
+ 10766  2A0E  Tabelle unterstützt diese Operation nicht.
+ 10767  2A0F  Index ist schreibgeschützt.
+ 10768  2A10  Operation wird nicht unterstützt - Tabelle ist nicht eindeutig indiziert.
+ 10769  2A11  Operation muß in der aktuellen Arbeitssitzung durchgeführt werden.
+ 10770  2A12  Ungültiges Schlüsselwort
+ 10771  2A13  Die Verbindung wird von einer anderen Anweisung benutzt.
+ 10772  2A14  Passthrough SQL-Verbindung muß zum gemeinsamen Zugriff freigegeben werden
+ 11009  2B01  Ungültige Funktionsnummer
+ 11010  2B02  Datei oder Verzeichnis nicht vorhanden
+ 11011  2B03  Pfad nicht gefunden
+ 11012  2B04  Zu viele Dateien geöffnet. Evtl. müssen Sie den Wert von MAXFILEHANDLE der IDAPI-Konfiguration ändern.
+ 11013  2B05  Zugriff verweigert
+ 11014  2B06  Ungültige Dateinummer
+ 11015  2B07  Speicherblöcke beschädigt
+ 11016  2B08  Zu wenig Arbeitsspeicher
+ 11017  2B09  Ungültige Speicherblockadresse
+ 11018  2B0A  Ungültige Umgebungsvariablen
+ 11019  2B0B  Ungültiges Format
+ 11020  2B0C  Ungültiger Zugriffscode
+ 11021  2B0D  Ungültige Daten
+ 11023  2B0F  Geräteeinheit nicht vorhanden
+ 11024  2B10  Es wird versucht, das aktuelle Verzeichnis zu entfernen.
+ 11025  2B11  Unterschiedliche Geräteeinheit
+ 11026  2B12  Keine weiteren Dateien
+ 11027  2B13  Ungültiges Argument
+ 11028  2B14  Liste der Argumente ist zu lang.
+ 11029  2B15  Formatfehler bei der Ausführung
+ 11030  2B16  Überkreuzte Geräteverbindung
+ 11041  2B21  Mathematisches Argument
+ 11042  2B22  Ergebnis zu groß
+ 11043  2B23  Datei bereits vorhanden
+ 11047  2B27  Unbekannter interner Fehler des Betriebssystems
+ 11058  2B32  SHARE-Fehler
+ 11059  2B33  Fehler bei der Sperrung
+ 11060  2B34  Kritischer DOS-Fehler
+ 11061  2B35  Laufwerk nicht bereit
+ 11108  2B64  Daten nicht exakt gelesen/geschrieben
+ 11109  2B65  Fehler beim Netzwerk-Betriebssystem.
+ 11110  2B66  Fehler beim NOVELL-Datei-Server
+ 11111  2B67  Arbeitsspeicher im NOVELL-Server nicht ausreichend
+ 11112  2B68  Datensatz bereits von diesem Arbeitsplatzrechner gesperrt
+ 11113  2B69  Datensatz nicht gesperrt
+ 11265  2C01  Fehler beim Initialisieren des Netzwerkes 
+ 11266  2C02  Anzahl der zur Verfügung stehenden Netzwerk-Lizenzen überschritten
+ 11267  2C03  Falsche Version der .NET-Datei
+ 11268  2C04  Netzwerksteuerungs-Datei kann nicht gesperrt werden.
+ 11269  2C05  Kein Privatverzeichnis
+ 11270  2C06  Mehrere .NET-Dateien in Anwendung
+ 11271  2C07  Unbekannter Netzwerkfehler
+ 11272  2C08  Nicht für den Zugriff auf Netzwerk-Dateien initialisiert
+ 11273  2C09  SHARE wurde nicht geladen. Dies ist für den gemeinsamen Zugriff auf lokale Dateien erforderlich.
+ 11274  2C0A  Nicht im Netzwerk: nicht angemeldet oder falscher Netztreiber
+ 11275  2C0B  Verbindung mit SQL-Server abgebrochen
+ 11521  2D01  Optionaler Parameter erforderlich.
+ 11522  2D02  Ungültiger optionaler Parameter
+ 11777  2E01  veraltet
+ 11778  2E02  veraltet
+ 11779  2E03  Uneindeutige Verwendung des Inklusionsoperators (!)
+ 11780  2E04  veraltet
+ 11781  2E05  veraltet
+ 11782  2E06  Ein SET-Befehl kann nicht auf sich selbst angewandt werden.
+ 11783  2E07  Mittelwertberechnung nur für numerische und Datums-/Uhrzeitfelder möglich
+ 11784  2E08  Ungültiger Ausdruck
+ 11785  2E09  Ungültiger OR-Ausdruck
+ 11786  2E0A  veraltet
+ 11787  2E0B  Bitmap
+ 11788  2E0C  RECHNE darf in Zeilen mit EINFUEGEN, LOESCHEN, AENDERNZU und MENGE nicht verwendet werden.
+ 11789  2E0D  Fehler: Typ im RECHNE-Ausdruck
+ 11790  2E0E  Verwendung von AENDERNZU nur einmal pro Abfrageformular zulässig
+ 11791  2E0F  Tabelle ALT kann mit AENDERNZU nicht geändert werden.
+ 11792  2E10  Ein Feld darf nur einen AENDERNZU-Ausdruck enthalten.
+ 11793  2E11  Ein Feld darf nur einen EINFUEGEN-Ausdruck enthalten.
+ 11794  2E12  veraltet
+ 11795  2E13  AENDERNZU muß neuer Feldwert folgen
+ 11796  2E14  Ausmarken oder RECHNE-Ausdrücke in FINDEN-Abfragen nicht zulässig
+ 11797  2E15  Operation mit ALT-Tabelle in AENDERNZU-Abfrage nicht zulässig
+ 11798  2E16  Chunk
+ 11799  2E17  ANTWORT-Tabelle enthält mehr als 255 Felder
+ 11800  2E18  ALS muß Feldname der ANTWORT-Tabelle folgen
+ 11801  2E19  Verwendung LOESCHEN nur einmal pro Abfrage zulässig
+ 11802  2E1A  Operation mit ENTFERNT-Tabelle in LOESCHEN-Abfrage nicht zulässig
+ 11803  2E1B  Aus ENTFERNT-Tabelle können Daten nicht gelöscht werden.
+ 11804  2E1C  Beispielelement wird in inkompatiblen Feldern oder in einem BLOB-Feld verwendet.
+ 11805  2E1D  Bespielelemente in ODER-Ausdrücken nicht zulässig
+ 11806  2E1E  Falscher Typ für den Ausdruck in diesem Feld
+ 11807  2E1F  Überzähliges Komma
+ 11808  2E20  Überzähliges ODER
+ 11809  2E21  Eine oder mehrere Zeilen der Abfrage sind überflüssig.
+ 11810  2E22  Verwendung von FINDEN nur einmal pro Abfrage zulässig.
+ 11811  2E23  Verwendung von FINDEN mit ANTWORT-Tabelle nicht zulässig.
+ 11812  2E24  Eine Zeile mit der Auswahlmarke GRUPPIERUNG muß Mengenoperationen enthalten.
+ 11813  2E25  Verwendung der Auswahlmarke GRUPPIERUNG nur in Zeilen mit MENGE zulässig
+ 11814  2E26  In der ersten Spalte nur EINFUEGEN, LOESCHEN, MENGE oder FINDEN zulässig
+ 11815  2E27  Verwendung von EINFUEGEN, LOESCHEN, MENGE oder FINDEN nur einmal pro Zeile zulässig
+ 11816  2E28  Syntaxfehler im Ausdruck
+ 11817  2E29  Verwendung von EINFUEGEN nur einmal pro Abfrage zulässig
+ 11818  2E2A  Operation mit ERGAENZT-Tabelle in EINFUEGEN-Abfrage nicht zulässig
+ 11819  2E2B  Auswahlmarken in Zeilen mit EINFUEGEN, LOESCHEN, AENDERNZU und MENGE nicht zulässig
+ 11820  2E2C  Feld muß einen Ausdruck für EINFUEGEN enthalten oder leer bleiben.
+ 11821  2E2D  In die Tabelle ERGAENZT können keine Daten eingefügt werden.
+ 11822  2E2E  Variable ist ein Array; Zugriff nicht möglich
+ 11823  2E2F  Beschriftung
+ 11824  2E30  Zeilen mit den im RECHNE-Ausdruck verwendeten Beispielelementen müssen verbunden sein.
+ 11825  2E31  Variablenname zu lang
+ 11826  2E32  Abfrage kann etwas länger dauern.
+ 11827  2E33  Begriff ist reserviert oder kann nicht als Variablenname verwendet werden.
+ 11828  2E34  Komma fehlt
+ 11829  2E35  Schließende Klammer ) fehlt
+ 11830  2E36  Rechtes Anführungszeichen fehlt
+ 11831  2E37  Spaltenname bereits vorhanden
+ 11832  2E38  Abfrage enthält keine Auswahlmarken.
+ 11833  2E39  Verwendetes Beispielelement nicht definiert
+ 11834  2E3A  Für die Mengenoperation keine Gruppierung definiert
+ 11835  2E3B  Kein sinnvolles Ergebnis für Abfrage möglich
+ 11836  2E3C  Platzhalter in diesem Kontext nicht zulässig
+ 11837  2E3D  Ungültiges Datum.
+ 11838  2E3E  Variablen wurde kein Wert zugewiesen.
+ 11839  2E3F  Ungültige Verwendung eines Beispielelements im Zusammenfassungsausdruck
+ 11840  2E40  Unvollständige Abfrageanweisung: Abfrage enthält nur eine Mengendefinition.
+ 11841  2E41  Beispielelement mit ! ergibt keinen sinnvollen Ausdruck
+ 11842  2E42  Verwendung eines Beispielelements in !-Abfrage nur zweimal zulässig
+ 11843  2E43  Zeile darf keinen Ausdruck enthalten.
+ 11844  2E44  veraltet
+ 11845  2E45  veraltet
+ 11846  2E46  Unzureichende Zugriffsrechte für das Einfügen oder Löschen von Datensätzen
+ 11847  2E47  Unzureichende Zugriffsrechte für die Bearbeitung des Feldes
+ 11848  2E48  Feld in der Tabelle nicht vorhanden
+ 11849  2E49  Spaltentrennzeichen im Tabellenkopfbereich fehlt
+ 11850  2E4A  Spaltentrennzeichen in der Tabelle fehlt
+ 11851  2E4B  Spaltenname in der Tabelle fehlt
+ 11852  2E4C  Tabellenname fehlt
+ 11853  2E4D  Anzahl der Spalten muß in allen Zeilen der Tabelle identisch sein
+ 11854  2E4E  Tabelle kann nicht geöffnet werden.
+ 11855  2E4F  Feld ist mehr als einmal in der Tabelle vorhanden.
+ 11856  2E50  LOESCHEN-, AENDERNZU- oder EINFUEGEN-Abfrage ergibt keine ANTWORT-Tabelle.
+ 11857  2E51  Abfrage wegen fehlender Eigenschaften unvollständig
+ 11858  2E52  Quantifizierender Ausdruck in Zeilen mit LOESCHEN nicht zulässig
+ 11859  2E53  Ungültiger Ausdruck in der EINFUEGEN-Zeile
+ 11860  2E54  Ungültiger Ausdruck in der EINFUEGEN-Zeile
+ 11861  2E55  Ungültiger Ausdruck in der Mengendefinition
+ 11862  2E56  Zeilenanwendung
+ 11863  2E57  Schlüsselwort MENGE erwartet
+ 11864  2E58  Uneindeutige Verwendung des Beispielelements
+ 11865  2E59  veraltet
+ 11866  2E5A  veraltet
+ 11867  2E5B  Summenberechnung nur für numerische Felder möglich
+ 11868  2E5C  Tabelle ist schreibgeschützt.
+ 11869  2E5D  Symbol-String nicht gefunden.
+ 11870  2E5E  Verwendung eines Beispielelements mit ! nur einmal in einer Zeile zulässig
+ 11871  2E5F  Keine Übereinstimmung der Typen im Ausdruck
+ 11872  2E60  Abfrage scheint aus zwei nicht zusammengehörigen Fragen zu bestehen.
+ 11873  2E61  Nicht verwendete MENGE-Zeile
+ 11874  2E62  Verwendung von EINFUEGEN, LOESCHEN, MENGE oder FINDEN nur in erster Spalte zulässig
+ 11875  2E63  Verwendung von AENDERNZU mit EINFUEGEN, LOESCHEN oder FINDEN nicht zulässig
+ 11876  2E64  Dem Ausdruck muß ein für eine Mengendefinition benutztes Beispielelement folgen.
+ 11877  2E65  Fehler beim Sperren
+ 11878  2E66  Ausdruck zu lang
+ 11879  2E67  Aktualisierungsfehler während der Abfrage
+ 11880  2E68  Abfrage abgebrochen
+ 11881  2E69  Datenbank-Engine: Fehler
+ 11882  2E6A  Zu wenig Arbeitsspeicher, um die Operation abzuschließen
+ 11883  2E6B  Unerwartete Bedingung
+ 11884  2E6C  Merkmal nicht für Abfragen implementiert
+ 11885  2E6D  Abfrageformat nicht verfügbar
+ 11886  2E6E  Abfrage-String ist leer
+ 11887  2E6F  Versuch, eine leere Abfrage vorzubereiten
+ 11888  2E70  Puffer zu klein für Abfrage-String
+ 11889  2E71  Abfrage wurde nicht analysiert oder vorbereitet.
+ 11890  2E72  Funktion mit ungültigem Abfrage-Handle aufgerufen
+ 11891  2E73  Syntaxfehler in der Abfrage
+ 11892  2E74  Fehler bei der Feldanzahl der erweiterten Abfragesyntax
+ 11893  2E75  Feldname in Sortier- oder Feldklausel nicht gefunden
+ 11894  2E76  Tabellenname in Sortier- oder Feldklausel nicht gefunden
+ 11895  2E77  Operation für BLOB-Felder nicht verfügbar.
+ 11896  2E78  Allgemeiner BLOB-Fehler
+ 11897  2E79  Abfrage muß neu gestartet werden.
+ 11898  2E7A  Unbekannter Typ der ANTWORT-Tabelle
+ 11926  2E96  Nach einem BLOB-Feld kann nicht gruppiert werden.
+ 11927  2E97  Abfrageeigenschaften wurden nicht übernommen.
+ 11928  2E98  Ungeeigneter ANTWORT-Tabellentyp
+ 11929  2E99  ANTWORT-Tabelle wird nicht als Server-Alias unterstützt.
+ 11930  2E9A  Nicht-Null-BLOB-Feld erforderlich. Datensätze können nicht eingefügt werden.
+ 11931  2E9B  Änderung nur mit Unikate-Index möglich
+ 11932  2E9C  Löschen von Datensätzen nur mit Unikate-Index möglich
+ 11933  2E9D  Fehler beim Aktualisieren der Tabelle auf dem Server
+ 11934  2E9E  Fernabfrage kann nicht ausgeführt werden.
+ 11935  2E9F  Ungültiges Befehlsende
+ 11936  2EA0  Parameter in Abfragestring nicht gesetzt.
+ 11937  2EA1  Abfragestring ist zu lang.
+ 12033  2F01  Inkompatible Schnittstellen (unterschiedliche Engine-Versionen)
+ 12034  2F02  Index nicht mehr gültig
+ 12035  2F03  Ältere Version (kontextabhängig)
+ 12036  2F04  .VAL-Datei nicht mehr gültig
+ 12037  2F05  BLOB-Datei nicht mehr gültig
+ 12038  2F06  Unterschiedliche Abfrage- und Engine-DLL
+ 12289  3001  Merkmal nicht verfügbar
+ 12290  3002  Noch nicht implementiert
+ 12291  3003  SQL-Replikas werden nicht unterstützt.
+ 12292  3004  Für diese Operation ist eine Nicht-BLOB-Spalte in der Tabelle erforderlich.
+ 12293  3005  Mehrfachverbindungen werden nicht unterstützt.
+ 12545  3101  Ungültiger Datenbankalias
+ 12546  3102  Unbekannter Datenbanktyp
+ 12547  3103  Systemkonfigurationsdatei fehlerhaft
+ 12548  3104  Unbekannter Netzwerktyp
+ 12549  3105  Nicht im Netzwerk
+ 12550  3106  Ungültiger Konfigurationsparameter
+ 12801  3201  Objekt implizit fallengelassen
+ 12802  3202  Objekt eird möglicherweise abgeschnitten.
+ 12803  3203  Objekt implizit geändert
+ 12804  3204  Sollen die Feldgültigkeitsregeln überprüft werden?
+ 12805  3205  Feld für Gültigkeitsprüfung geändert
+ 12806  3206  Tabellenebene geändert
+ 12807  3207  Verbundene Tabellen kopieren?
+ 12809  3209  Objekt implizit abgeschnitten
+ 12810  320A  Gültigkeitsprüfung wird nicht durchgeführt.
+ 12811  320B  Mehrere Datensätze vorhanden
+ 12812  320C  Feld wird abgeschnitten. Datensätze können nicht in PROBLEM-Tabelle eingefügt werden.
+ 13057  3301  Datei bereits vorhanden
+ 13058  3302  BLOB wurde geändert
+ 13059  3303  Allgemeiner SQL-Fehler
+ 13060  3304  Tabelle bereits vorhanden
+ 13061  3305  Paradox-1.0-Tabellen werden nicht unterstützt.
+ 13313  3401  Unterschiedliche Sortierordnung
+ 13314  3402  Verzeichnis wird von einer früheren Paradox-Version verwendet.
+ 13315  3403  Paradox-3.5-kompatibler Sprachtreiber erforderlich
+ 14849  3A01  SYSTEM
+ 14850  3A02  DRIVERS
+ 14851  3A03  DATABASES
+ 14853  3A05  VERSION
+ 14854  3A06  NET TYPE
+ 14855  3A07  NET DIR
+ 14856  3A08  LOCAL SHARE
+ 14857  3A09  LANGDRIVER
+ 14858  3A0A  LANGDRVDIR
+ 14859  3A0B  MINBUFSIZE
+ 14860  3A0C  MAXBUFSIZE
+ 14861  3A0D  LOCKRETRY
+ 14862  3A0E  SYSFLAGS
+ 14863  3A0F  MAXFILEHANDLES
+ 14864  3A10  SQLQRYMODE
+ 14865  3A11  LOW MEMORY USAGE LIMIT
+ 14866  3A12  AUTO ODBC
+ 14867  3A13  DEFAULT DRIVER
+ 14868  3A14  VERSION
+ 14869  3A15  TYPE
+ 14870  3A16  LANGDRIVER
+ 14871  3A17  FILL FACTOR
+ 14872  3A18  BLOCK SIZE
+ 14873  3A19  LOCKPROTOCOL
+ 14874  3A1A  LEVEL
+ 14875  3A1B  DRIVER FLAGS
+ 14878  3A1E  MEMO FILE BLOCK SIZE
+ 14879  3A1F  MDX BLOCK SIZE
+ 14888  3A28  INIT
+ 14889  3A29  DB CREATE
+ 14890  3A2A  DB OPEN
+ 14891  3A2B  TABLE CREATE
+ 14892  3A2C  TABLE OPEN
+ 14898  3A32  DB INFO
+ 14908  3A3C  TYPE
+ 14909  3A3D  PATH
+ 14910  3A3E  DEFAULT DRIVER
+ 14918  3A46  INIT
+ 14919  3A47  TYPE
+ 14920  3A48  STANDARD
+ 14921  3A49  TRUE
+ 14922  3A4A  FALSE
+ 14923  3A4B  OPEN MODE
+ 14924  3A4C  READ/WRITE
+ 14925  3A4D  READ ONLY
+ 14926  3A4E  SHARE MODE
+ 14927  3A4F  EXCLUSIVE
+ 14928  3A50  SHARED
+ 14929  3A51  USER NAME
+ 14930  3A52  SERVER NAME
+ 14931  3A53  DATABASE NAME
+ 14932  3A54  SCHEMA CACHE SIZE
+ 14933  3A55  STRICTINTEGRTY
+ 14938  3A5A  ORACLE
+ 14939  3A5B  1.0
+ 14940  3A5C  SERVER
+ 14941  3A5D  NET PROTOCOL
+ 14942  3A5E  DECNET
+ 14943  3A5F  NETBIOS
+ 14944  3A60  NAMED PIPES
+ 14945  3A61  SPX/IPX
+ 14946  3A62  TCP/IP
+ 14947  3A63  3270
+ 14948  3A64  VINES
+ 14949  3A65  APPC
+ 14950  3A66  ASYNC
+ 14958  3A6E  SYBASE
+ 14959  3A6F  1.0
+ 14960  3A70  SERVER
+ 14961  3A71  BLOB EDIT LOGGING
+ 14962  3A72  CONNECT TIMEOUT
+ 14963  3A73  TIMEOUT
+ 14964  3A74  DATE MODE
+ 14965  3A75  DATE SEPARATOR
+ 14966  3A76  DECIMAL SEPARATOR
+ 14968  3A78  INTRBASE
+ 14969  3A79  1.0
+ 14970  3A7A  SERVER
+ 14978  3A82  FORMATS
+ 14979  3A83  DATE
+ 14980  3A84  TIME
+ 14981  3A85  NUMBER
+ 14988  3A8C  SEPARATOR
+ 14989  3A8D  MODE
+ 14990  3A8E  FOURDIGITYEAR
+ 14991  3A8F  YEARBIASED
+ 14992  3A90  LEADINGZEROM
+ 14993  3A91  LEADINGZEROD
+ 14994  3A92  TWELVEHOUR
+ 14995  3A93  AMSTRING
+ 14996  3A94  PMSTRING
+ 14997  3A95  SECONDS
+ 14998  3A96  MILSECONDS
+ 15008  3AA0  DECIMALSEPARATOR
+ 15009  3AA1  THOUSANDSEPARATOR
+ 15010  3AA2  DECIMALDIGITS
+ 15011  3AA3  LEADINGZERON
+ 15013  3AA5  intl
+ 15014  3AA6  DB437DE0
+ 15018  3AAA  .
+ 15019  3AAB  0
+ 15020  3AAC  FALSE
+ 15021  3AAD  TRUE
+ 15022  3AAE  TRUE
+ 15023  3AAF  TRUE
+ 15024  3AB0  TRUE
+ 15025  3AB1  AM
+ 15026  3AB2  PM
+ 15027  3AB3  TRUE
+ 15028  3AB4  FALSE
+ 15029  3AB5  ,
+ 15030  3AB6  .
+ 15031  3AB7  TRUE
+ 15873  3E01  Falscher Treibername
+ 15874  3E02  Falsche Systemversion
+ 15875  3E03  Falsche Treiberversion
+ 15876  3E04  Falscher Treibertyp
+ 15877  3E05  Treiber kann nicht geladen werden.
+ 15878  3E06  Sprachtreiber kann nicht geladen werden.
+ 15879  3E07  Initialisierung fehlgeschlagen
+ 16129  3F01  Abfrage durch Beispiel
+ 16130  3F02  SQL-Generator
+ 16131  3F03  IDAPI
+ 16132  3F04  Verwaltung der Datensperrung
+ 16133  3F05  SQL-Treiber
+ 16134  3F06  IDAPI-Dienste
+ 16135  3F07  dBASE-Treiber
+ 16138  3F0A  Symbol-String
+ 16140  3F0C  Tabelle
+ 16141  3F0D  Feld
+ 16142  3F0E  Grafik
+ 16143  3F0F  Benutzer
+ 16144  3F10  Datei
+ 16145  3F11  Index
+ 16146  3F12  Verzeichnis
+ 16147  3F13  Schlüssel
+ 16148  3F14  Alias
+ 16149  3F15  Laufwerk
+ 16150  3F16  Server-Fehler
+ 16151  3F17  Server-Meldung
+ 16152  3F18  Zeilennummer
+ 16153  3F19  Merkmal
+ 16154  3F1A  Limit
+ 16239  3F6F  ARBEIT
+ 16240  3F70  PRIVAT
+ 16241  3F71  Datensätze kopiert
+ 16242  3F72  Datensätze hinzufügt

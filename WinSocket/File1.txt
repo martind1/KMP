@@ -1,0 +1,40 @@
+Let's say you have a client/server application that you
+want to communicate between.  A simple way to do so is the following
+using an 'extract' function.
+Create a form with TClientSocket and another with TServerSocket.
+Let's say you want the server to 'delete' a file when it
+receives a certain string.  You would call the following from
+a OnClientRead event (which I call ServerSocketClientRead in the sample).
+
+(the TClientSocket must first send this)
+<<CodeBegins here>>
+//below we send a string the server will recognize followed
+//by the filename to be deleted on the server (full path+file)
+
+ClientSocket1.Socket.SendText ('delfile'+OpenDialog1.Filename); 
+                                                               
+(TServerSocket retreives buffer)
+
+procedure TServerForm.ServerSocketClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+var gotstr:string;
+begin
+gotstr:=socket.receivetext;
+ if copy (gotstr, 1, 7)='delfile' then
+  begin
+   DeleteFile (extract (gotstr, 8, Length(gotstr))); 
+  end;
+end;
+
+//Dont forget to declare the 'extract' function
+
+function extract (st: string; ind1, ind2 : integer): string;
+  var i: integer;
+ begin
+  result:='';
+  for i:=ind1 to ind2 do
+   result:=result+st[i];
+ end;
+
+((((END CODE)))
+Hope that was explained well enough.  Sorry if it was not ...

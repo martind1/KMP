@@ -1,0 +1,72 @@
+Vor einiger Zeit fragte ich selbst:
+
+> Wie bringe ich ein MSXML2 DOMDocument dazu, bei Aufruf der Save-Methode den
+> Datenbaum nicht als Spaghetticode (alles hintereinander in einer Zeile)
+> sondern mit Zeilenumbrüchen und Einrückungen?
+> Habe in der Dokumentation nichts dazu gefunden.
+>
+> Anm.: Das Dokument ist nicht durch Laden einer Datei entstanden sondern
+> wurde mit CreateElement und AppendChild konstruiert.
+> Anm.: Programmiersprache ist Visual Basic
+>
+> MfG, J.Reuther
+
+Ich habe nun selbst einen Workaround gefunden.
+Mein alter Code sah so aus:
+
+    Dim xd As New DOMDocument
+    Dim xroot As IXMLDOMElement
+    Dim xn As IXMLDOMElement
+    xdoc.LoadXML "<?xml version=""1.0"" encoding=""ISO-8859-1""?><tab/>"
+    Set xroot = xdoc.documentElement
+    for every ....
+       Set xn = xdoc.createElement("row")
+       xn.setAttribute "name", "blabla"
+       xroot.appendChild xn
+   next
+   xd.Save datei
+
+Der Output in die XML-Datei sah daraufhin so aus:
+
+<?xml version="1.0" encoding="ISO-8859-1"?><tab/><row name="blabla"/><row
+name="blabla"/></tab>
+
+Spaghetticode, wie man sieht.Bei größeren Datenmengen ist das einfach
+unschön, auch wenn man mit einem Browser den Datenbaum formatiert betrachten
+kann.
+Der neue Code sieht so aus:
+
+    Dim xd As New DOMDocument
+    Dim xroot As IXMLDOMElement
+    Dim xn As IXMLDOMElement
+    Dim factory As New DOMDocument
+    xdoc.LoadXML "<?xml version=""1.0"" encoding=""ISO-8859-1""?>" & Chr(13)
+& _
+            "<tab>" & Chr(13) & "</tab>"
+    Set xroot = xdoc.documentElement
+    for every ....
+       factory.LoadXML "<?xml version=""1.0"" encoding=""ISO-8859-1""?>" &
+Chr(13) & _
+                                "<row>" & Chr(13) & "</row>" & Chr(13)
+       Set xn = factory.documentElement
+       Set xn = xdoc.createElement("row")
+       xn.setAttribute "name", "blabla"
+       xroot.appendChild xn
+   next
+   xd.Save datei
+
+Mit diesem neuen Code wird eine XML-Datei erzeugt, die formatiert ist:
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tab/>
+    <row name="blabla">
+    </row>
+    <row name="blabla">
+    </row>
+</tab>
+
+Ein gut strukturierter Datensatz also. Die Einrückungen werden dabei von
+MSXML2 automatisch entsprechend der Tiefe in der XML Baumstruktur generiert.
+
+Das alles ist natürlich für die Funktionalität von XML nicht wichtig, mich
+als Ästheten hat es jedoch gestört.

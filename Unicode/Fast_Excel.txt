@@ -1,0 +1,78 @@
+Question/Problem/Abstract:
+
+How can I export data into MS Excel workbook? 
+Answer:
+
+
+Anyone who worked with OLE automation, know that OLE is very slowly. 
+Especially if you work using late binding (which have a lot of other 
+advantages which early binding haven't) 
+
+A reason of bad performance is the next: 
+every command (method or property) which you access (no matter in read or 
+write mode) will be interpretated (a-la script). I mean that this command 
+must be found in table of available methods/properties by string name and 
+only if found, a physical memory address for execution will be calculated. 
+
+So if your code contain a lot of access to methods/properties, your code 
+will be slow. 
+
+For example, you need transfer some data from Delphi application into 
+xls-spreadsheet. 
+You can solve a task in two different ways (now I describe only late binding 
+for OLE automation and don't describe another methods): 
+- to navigate thru own data and export every data in required cell 
+- to prepare a variant array with copied data and apply this array with data 
+into desired range of cells 
+
+I must say that second method will be faster than first because you'll call 
+less commands from OLE object and main code will be executed without OLE 
+automation. 
+
+Small sample: to export some StringGrid into xls-file. 
+
+var 
+  xls, wb, Range: OLEVariant; 
+  arrData: Variant; 
+begin 
+  {create variant array where we'll copy our data} 
+  arrData := VarArrayCreate([1, yourStringGrid.RowCount, 1, 
+yourStringGrid.ColCount], varVariant); 
+
+  {fill array} 
+  for i := 1 to yourStringGrid.RowCount do 
+    for j := 1 to yourStringGrid.ColCount do 
+      arrData[i, j] := yourStringGrid.Cells[j-1, i-1]; 
+
+  {initialize an instance of Excel} 
+  xls := CreateOLEObject('Excel.Application'); 
+
+  {create workbook} 
+  wb := xls.Workbooks.Add; 
+
+  {retrieve a range where data must be placed} 
+  Range := wb.WorkSheets[1].Range[wb.WorkSheets[1].Cells[1, 1], 
+wb.WorkSheets[1].Cells[yourStringGrid.RowCount, yourStringGrid.ColCount]]; 
+
+  {copy data from allocated variant array} 
+  Range.Value := arrData; 
+
+  {show Excel with our data} 
+  xls.Visible := True; 
+end; 
+
+Of course, you must understand that such method is not good for large data 
+arrays because to allocate in memory large array is not easy task. You must 
+find some optimal size for data transfer (for example, to copy every 10 
+rows) and as result you'll receive an optimal code both for memory use and 
+performance. 
+
+Anyway more faster way to transfer data is not use OLE at all:-) You can use 
+my TSMExportToXLS component from SMExport suite 
+(http://www.scalabium.com/sme) for this task. There is implemented a direct 
+xls-file creation which doesn't require installed MS Excel at all.. 
+
+With best regards, Mike Shkolnik 
+EMail: mshkolnik@scalabium.com 
+http://www.scalabium.com 
+ 

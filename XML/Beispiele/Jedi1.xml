@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE JEDI [
+<!ELEMENT JEDI (CHAPTER*)*>
+<!ELEMENT CHAPTER (DESCRIPTION?,SUBTITLE+)>
+<!ELEMENT DESCRIPTION EMPTY>
+<!ELEMENT SUBTITLE (MAINSUBTITLE+, OTHER*)*>
+<!ELEMENT MAINSUBTITLE (#PCDATA)>
+<!ELEMENT OTHER (#PCDATA)>
+<!ATTLIST DESCRIPTION
+            LINE1 CDATA #REQUIRED
+            TYPE (Pascal|OO) "Pascal">
+<!ENTITY STATEMENT "ProjectJedi := TDelphiAPI.Create(DelphiCommunity);">
+]>
+
+<JEDI>
+&STATEMENT; 
+<CHAPTER> 
+<DESCRIPTION LINE1="Object Pascal Syntax" TYPE="Pascal"/>
+<SUBTITLE> 
+<MAINSUBTITLE>Main subtitle rules OK?</MAINSUBTITLE> 
+<OTHER>Second (sub) subtitle woz ere!!</OTHER> 
+</SUBTITLE>
+</CHAPTER>
+</JEDI>

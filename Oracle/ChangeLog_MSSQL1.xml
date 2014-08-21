@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- encoding="UTF-8"  macht Fehler bei Umlauten -->
+<!--==================================================================
+*  Template zum Erstellen von MSSQL-Trigger 
+*  zum Protokollieren von Feldaeerungen in STME 
+*  fuer ChangeLog
+*=====================================================================
+*  19.03.2004 MD   erstellt
+*  27.12.2006 MD   MSSQL
+*  04.04.2012 MD   Rowcount=1, IsNull, für DPE
+*  30.04.2012 md   getrennte Trigger für AFD,AFI und AFU (ohne Postfix)
+*  02.09.2013 md   vor Ausgabe noch old <> new vergleichen
+*===================================================================-->
+<template>
+<line><![CDATA[
+IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'dbo.TR_[Short]_CHANGELOG'))
+  drop TRIGGER TR_[Short]_CHANGELOG;
+IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'dbo.TR_[Short]_CHANGELOG_AFD'))
+  drop TRIGGER TR_[Short]_CHANGELOG_AFD;
+IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'dbo.TR_[Short]_CHANGELOG_AFI'))
+  drop TRIGGER TR_[Short]_CHANGELOG_AFI;
+
+create trigger TR_[Short]_CHANGELOG_AFD ON [TableName] after delete as
+begin
+  declare @S varchar(8000)
+  declare @PK varchar(250)
+  declare CUR_DEL cursor local for select [MsPkeyFields] from deleted
+  declare [MsPkeyDeclFields]
+  open CUR_DEL
+  while 1=1
+  begin
+    fetch next from CUR_DEL
+    into [MsPkeyAtFields]
+    if @@FETCH_STATUS <> 0 break
+    set @S = '[Short]:' + ' deleted'
+    set @PK = [MsCurPKEY]
+    exec ADD_STME [STME_NR], [WERK_NR], @PK, 'N', @S
+  end
+  close CUR_DEL
+  deallocate CUR_DEL
+end;
+
+create trigger TR_[Short]_CHANGELOG_AFI ON [TableName] after insert as
+begin
+  declare @S varchar(8000)
+  declare @PK varchar(250)
+  declare CUR_INS cursor local for select [MsPkeyFields] from inserted
+  declare [MsPkeyDeclFields]
+  open CUR_INS
+  while 1=1
+  begin
+    fetch next from CUR_INS
+    into [MsPkeyAtFields]
+    if @@FETCH_STATUS <> 0 break
+    set @S = '[Short]:' + ' inserted'
+    set @PK = [MsCurPKEY]
+    exec ADD_STME [STME_NR], [WERK_NR], @PK, 'N', @S
+  end
+  close CUR_INS
+  deallocate CUR_INS
+end;
+
+create trigger TR_[Short]_CHANGELOG ON [TableName] after update as
+begin
+  if @@ROWCOUNT = 1
+  begin
+  declare @S varchar(8000)
+  declare @PK varchar(255)
+  declare CUR_INS cursor local for select [MsPkeyFields] from inserted
+  declare [MsPkeyDeclFields]
+  declare @OLDVAL varchar(255), @NEWVAL varchar(255)
+  open CUR_INS
+  fetch next from CUR_INS
+  into [MsPkeyAtFields]
+  if @@FETCH_STATUS = 0 
+  begin
+    set @S = '[Short]:'
+    set @PK = [MsCurPKEY]
+]]></line>
+  <field><![CDATA[
+    if update([Field]) begin
+      set @OLDVAL = substring(IsNull(([MSOld]), ''),1,255)
+      set @NEWVAL = substring(IsNull(([MSNew]), ''),1,255)
+      if @OLDVAL <> @NEWVAL set @S = @S + '[Field]('+@OLDVAL+')->('+@NEWVAL+') '
+    end
+  ]]></field>
+<line><![CDATA[
+    if len(@S) > len('[Short]:')
+    begin
+      exec ADD_STME [STME_NR], [WERK_NR], @PK, 'N', @S
+    end
+  end
+  close CUR_INS
+  deallocate CUR_INS
+  end
+end;
+]]></line>
+</template>

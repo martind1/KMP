@@ -1,0 +1,5 @@
+<?xml version='1.0'?>
+<?xml-stylesheet href="nstest.css" type="text/css"?>
+<homepage xmlns:html="http://www.w3.org/TR/REC-html40">
+<html:script language="JavaScript" src="code.js"/>
+</homepage>

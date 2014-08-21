@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding="ISO-8859-1" standalone="no"?>
+<?xml-stylesheet href="adresse.xsl" type="text/xsl"?> 
+<!DOCTYPE adresse SYSTEM "adresse.dtd">
+<adresse>
+
+<einzeladresse>
+<name>Müller</name>
+<vorn>Lieschen</vorn>
+<strasse>Nirgendwostr. 10</strasse>
+<plz>10000</plz>
+<ort>Nirgendwo</ort>
+<tel art="off">00000/12345</tel>
+<tel art="priv">00000/54321</tel>
+</einzeladresse>
+
+<einzeladresse>
+<name>Müller</name>
+<vorn>Margaret</vorn>
+<strasse>Nirgendwostr. 15</strasse>
+<plz>10000</plz>
+<ort>Nirgendwo</ort>
+<tel art="priv">00000/56789</tel>
+<email>l.mueller@provider.net</email>
+</einzeladresse>
+
+<einzeladresse>
+<name>Müller</name>
+<vorn>Wolfgang</vorn>
+<strasse>Nirgendwostr. 20</strasse>
+<plz>10000</plz>
+<ort>Nirgendwo</ort>
+<tel art="off">00000/24680</tel>
+<email>wm@provider.com</email>
+</einzeladresse>
+</adresse>

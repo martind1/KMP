@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes" ?>
+<?xml-stylesheet href="hgkdiary-html.xsl" type="text/xsl"?>
+<!DOCTYPE TEI.2 SYSTEM "hgkdiary.dtd">
+<TEI.2 xml:space="preserve">
+  <teiHeader type="text">
+    <fileDesc>
+      <titleStmt>
+        <title></title>
+        <title> Tagebücher Harry Graf Kessler 05/1898</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Interne Arbeitsdatei</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Grundlage: Tagebuchband ...</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc>
+      <change>
+        <date>(Vorlage: Simon) 30.06.98</date>
+        <respStmt>
+          <name>HeSi</name>
+        </respStmt>
+        <item>Transkription:</item>
+      </change>
+      <change>
+        <date>17.08.98</date>
+        <respStmt>
+          <name>Ka</name>
+        </respStmt>
+        <item>Kollation:</item>
+      </change>
+      <change>
+        <date>08.08.2000 08:46:09</date>
+        <respStmt>
+          <name>WordToTEI Version 2000/08/02/02</name>
+        </respStmt>
+        <item>Konvertierung nach XML aus H:\end_ablg\1898\1898_05.doc</item>
+      </change>
+      <change><date>11.05.2001</date><respStmt><name>Bie</name></respStmt><item>Datumseinträge
+          und Verknüpfung abgeschlossen</item>
+      </change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="month" id="m-1898-05">
+    <head>Mai 1898</head>
+    <div type="entry" id="d-1898-05-03">
+    <head>3.5.1898 Dienstag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 3 Mai
+      1898.</dateline></opener>
+    <p>Diner bei Dirksens<note type="reg"><rs type="per"
+        key="p-73175">Ella</rs> u. <rs type="per" key="p-58581">Willibald</rs></note>.
+      - Der Traum ist Nichts als eine zusammenhangslose sozusagen kapriziöse
+      Fortsetzung genau derselben Thätigkeit, der wir unsere Vorstellung einer
+      von uns selber unterschiedenen, objektiven Welt verdanken: die individuelle
+      Verarbeitung (Umdeutung) äusserer Reize durch die Phantasie.
+      <hi rend="ul.1">Daher</hi> mag es kommen, dass Visionäre, Menschen, die
+      auch im wachen Zustande ihren Blick nur nach innen kehren, die auch wachend
+      sich wenig um die Aussenwelt kümmern, im Schlaf wenig träumen;
+      <rs type="per" key="p-59671">Przsybyszewski</rs> hat mir gesagt, dass er seit
+      einer grossen Reihe von Jahren <hi rend="ul.1">nie</hi> geträumt habe;
+      während Nichts Einen zum Träumen mehr praedisponiert als eine
+      längere hochgespannte Aufmerksamkeit auf Dinge der Aussenwelt. -
+      Dasjenige, an dem man später die Stumpfheit und die Geschmacksverwirrung
+      unserer Zeit am deutlichsten erkennen wird, sind die Bucheinbände unserer
+      grossen Dampf-Buchbindereien und die Häuserfassaden unserer Maurerpoliere.
+      Ich glaube nicht, dass es zu irgend einer Epoche Etwas so Widersinniges,
+      Prätentiöses und Greisenhaft-Gelehrtes gegeben hat wie diese beiden
+      zeitgenössischen Typen. Es ist der richtige Ausdruck unserer
+      <hi rend="ul.1">beim „Ochsen</hi>“ kurzsichtig, d.h.
+      Sinnenstumpf, gewordenen Philister.</p>
+    </div>
+    <div type="entry" id="d-1898-05-04">
+    <head>4.5.1898 Mittwoch</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 4 Mai
+      1898.</dateline></opener>
+    <p>In <rs type="loc" key="o-4421">Bredow</rs> bei Bredows<note
+      type="reg"><rs type="per" key="p-73272">Hedwig Caroline</rs> u.
+        <rs type="per" key="p-60862">Wichard</rs></note>. Dort noch
+      <rs type="per" key="p-56826">Bernhard Stolberg</rs>,
+      <rs type="per" key="p-59993">Reinhold Richter</rs>,
+      <rs type="per" key="p-57911">Spitzemberg</rs> etc.</p>
+    </div>
+    <div type="entry" id="d-1898-05-05">
+    <head>5.5.1898 Donnerstag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 5 Mai 1898.
+      Donnerstag.</dateline></opener>
+    <p><rs type="per" key="p-56826">Bernhard Stolberg</rs> bei mir
+      gegessen.</p>
+    </div>
+    <div type="entry" id="d-1898-05-07">
+    <head>7.5.1898 Samstag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 7 Mai
+      1898.</dateline></opener>
+    <p>Die ersten Exemplare meines Buches<note type="reg.p"><rs type="wrk"
+        key="w-15978">Notizen über Mexico</rs></note> erhalten.</p>
+    </div>
+    <div type="entry" id="d-1898-05-08">
+    <head>8.5.1898 Sonntag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 8 Mai
+      1898.</dateline></opener>
+    <p>Die beiden Bredows<note type="reg.p"><rs type="per"
+        key="p-63090">Gerhard Joachim</rs> u. <rs type="per" key="p-59989">Leopold
+        Waldemar</rs></note> u. <rs type="per" key="p-59993">Reinhold Richter</rs> bei
+      mir gefrühstückt.</p>
+    </div>
+    <div type="entry" id="d-1898-05-10">
+    <head>10.5.1898 Dienstag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 10 Mai
+      1898.</dateline></opener>
+    <p>Bei den Kürassieren in ihrem neuen Kasino gegessen.</p>
+    </div>
+    <div type="entry" id="d-1898-05-11">
+    <head>11.5.1898 Mittwoch</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs>. 11 Mai
+      1898.</dateline></opener>
+    <p>Nachmittags <rs type="per" key="p-63617">Hofmannsthal</rs> mich besucht;
+      es ist ein kleiner, lustiger Wiener mit hoher, detonierender Stimme sprechend,
+      aber durchaus sympathisch und natürlich (? eher <hi
+      rend="ul.1">affektiert</hi> natürlich) in seiner Art und Weise.
+      <rs type="loc" key="o-3422">Berlin</rs> misfällt ihm sehr; er findet es so
+      „hart“; man vermutet in den Häusern überall Menschen
+      mit viel Geld und wenig Geist. Er findet es aber doch weniger
+      unliebenswürdig, als er erwartet hatte; er habe geglaubt lauter Menschen
+      zu finden, die sich immer „auf den Rechtsstandpunkt stellten“;
+      darin ist er angenehm enttäuscht.</p>
+    </div>
+    <div type="entry" id="d-1898-05-12">
+    <head>12.5.1898 Donnerstag</head>
+    <opener><dateline><rs type="loc.wrt" key="o-3422">Berlin</rs> 12 Mai
+      1898.</dateline></opener>
+    <p><rs type="per" key="p-63617">Hofmannsthal</rs> Nachmittags das innere
+      <rs type="loc" key="o-3422">Berlin</rs>, die Grachten und die Apfelkähne,
+      gezeigt. Er sah sich aber wenig um, und sprach dafür fortwährend. Er
+      hat einen scharfen Blick für die oberflächlichen Tiefen des Lebens
+      und drückt seine Entdeckungen pointiert und pittoresk aus; seine
+      philosophische Begabung erscheint aber eleganter, als auf die Dauer
+      wünschenswert ist. - Das Reiten ist eine so gute Charakterübung, weil
+      es erfordert, dass man immerfort nicht das Pferd sondern sich korrigiert; ein
+      in seinem innersten Grunde eitler Mensch wird schwer gut reiten lernen. - Die
+      Hälfte des Leidens an der Welt wäre weggeräumt, wenn man lernen
+      könnte, nie Andre besser, klüger, geschmackvoller, kurz anders als
+      sie sind, machen zu wollen; sie nehmen, wie sie sind, und sich korrigieren, gut
+      reiten lernen, ist das Geheimnis des Wenigleidens. Aber allerdings, welcher
+      Verzicht; und warum dann überhaupt noch leben?</p>
+    </div>
+    [...]
+    </div>
+    </body>
+  </text>
+</TEI.2>

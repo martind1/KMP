@@ -1,0 +1,13 @@
+Names can contain letters, numbers, and other characters 
+Names must not start with a number or punctuation character 
+Names must not start with the letters xml (or XML or Xml ..) 
+Names cannot contain spaces 
+
+Non-English letters like йтб are perfectly legal in XML element names, but watch out for problems if your software vendor doesn't support them.
+
+The ":" should not be used in element names because it is reserved to be used for something called namespaces (more later).
+
+Attribute values must always be enclosed in quotes, but either single or double quotes can be used. 
+
+
+

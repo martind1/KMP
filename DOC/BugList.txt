@@ -1,0 +1,62 @@
+Buglist - V2.12
+===============
+
+- Hints werden nicht als Bubble-Help gezeigt (nur in Statuszeile)
+
+
+
+22.01.01
+--------
+- bei Not Null Fehler positioniert FocusControl (in D5)
+  nicht mehr auf das DBEdit sondern setzt SelectedField
+  in der DBGrid.
+  Lsg:
+
+18.02.02
+--------
+- InsertFlag wurde bei DoInsert zwar zurückgesetzt aber der
+  Filter von LNav.DetailInsert blieb bestehen.
+  Lsg: In DoInsert wird jetzt DetailInsert(diReset) aufgerufen.
+
+
+19.08.02
+--------
+- Nach DoPost wird automatisch auf ersten Record positioniert.
+  Lsg: (1) keine Blob in Multigrid anzeigen
+       (2) obsolet. LNAV geändert. 
+
+24.05.03
+--------
+WindowMenu funktioniert nicht: (Delphi5 Bug)
+setze im MnuWindow AutoHotKeys=maManual
+                   AutoLineReduction=maManual
+
+Allg. Fehlerbehandlung
+----------------------
+Assert(Bedingung, Text)
+  löst Exception aus wenn Begingung=false mit Modulname und Zeilennummer.
+
+02.06.03 - Delphi-Debugger zeigt falsche Sourcezeile an
+--------
+Ursache: der Quellcode wurde von einer Unix-Quelle importiert.
+         Er enthält nur ^J als Zeilentrenner und nicht ^M^J wie unter
+           Windows üblich.
+Lösung: File mit Notepad öffnen. Dort sieht man schön die falschen
+        Zeilenumbrüche. Die 'Vierecke' löschen und mit <Return> einen
+        korrekten Zeilenumbruch erzeugen.           
+
+
+01.11.03 - Fehler bei Resize + Multigrids behoben
+-------------------------------------------------
+- Beim Resize des Formulars oder über Splitter haben alle untergeordneten
+  LookupDefs mehrmals refreshed.
+- Auch das unmotivierte Vergrößern von Grid-Spalten ist damit behoben.
+
+07.12.03 Oracle EAccess+Programmende
+------------------------------------
+- beim Öffnen eine Requestlive=true Abfrage wird Programm spontan beendet
+  Lsg. BDE Alias: OBJECT MODE=TRUE einstellen
+            
+28.01.04 - MSSQL: keine Indizes
+-------------------------------
+- die BDE lädt MSSQL Indizes nur wenn 'dbo.' vor dem Tablename steht.

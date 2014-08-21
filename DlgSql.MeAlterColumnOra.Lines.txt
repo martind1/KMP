@@ -1,0 +1,13 @@
+ALTER TABLE #Table#
+  ADD TMP_#Col# #Format#;
+update #Table#
+  set TMP_#Col# = #Col#;
+update #Table#
+  set #Neu# = null;
+ALTER TABLE #Table#
+  MODIFY(#Neu# #Format#);
+update #Table#
+  set #Neu# = TMP_#Col#;
+ALTER TABLE #Table#
+  DROP COLUMN TMP_#Col#;
+ 

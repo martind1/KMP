@@ -1,0 +1,5 @@
+select #Col#, count(*) as ANZ
+from #Table#
+group by #Col#
+having count(*) > 1
+ 

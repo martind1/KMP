@@ -1,0 +1,48 @@
+procedure TFrmMain.GNavigator1DbCompare(const S1, S2: string;
+  IgnoreCase: Boolean; var Value: Integer);
+var
+  I, N: integer;
+  S1Test, S2Test: string;
+begin
+  if not SortListInit then
+  begin
+    SortListInit := true;
+    QueSortOrder.Open;
+    if QueSortOrder.EOF then
+    begin
+      QueSortOrder.Close;
+      TFrmSort.CreateData;
+      QueSortOrder.Open;
+    end;
+    I := 0;
+    while not QueSortOrder.EOF do
+    begin
+      SortList[QueSortOrder.FieldByName('SORT_NR').AsInteger] := I;
+      Inc(I);
+      QueSortOrder.Next;
+    end;
+  end;
+  Value := 0;
+  N := IMin(length(S1), length(S2));
+  if IgnoreCase then
+  begin
+    S1Test := AnsiUpperCase(S1);  //Ansi ist wichtig wg ö/Ö
+    S2Test := AnsiUpperCase(S2);
+    for I := 1 to N do
+    begin
+      Value := SortList[ord(S1Test[I])] - SortList[ord(S2Test[I])];
+      if Value <> 0 then
+        Exit;
+    end;
+  end else
+  begin
+    for I := 1 to N do
+    begin
+      Value := SortList[ord(S1[I])] - SortList[ord(S2[I])];
+      if Value <> 0 then
+        Exit;
+    end;
+  end;
+  if Value = 0 then
+    Value := length(S1) - length(S2);
+end;

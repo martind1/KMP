@@ -1,0 +1,30 @@
+<Database>
+<universities>
+  <university>
+    <universities_name>UCSB</universities_name>
+    <universities_location>Santa Barbara, CA</universities_location>
+  </university>
+  <university>
+    <universities_name>University of Texas at Arlington</universities_name>
+    <universities_location>Arlington, TX</universities_location>
+  </university>
+  <university>
+    <universities_name>USM</universities_name>
+    <universities_location>Hattiesburg, MS</universities_location>
+  </university>
+  <university>
+    <universities_name>Baylor</universities_name>
+    <universities_location>Waco, TX</universities_location>
+  </university>
+</universities>
+<Tabelle1>
+  <Record>
+    <Tabelle1_Feld1>Feldinhalt1</Tabelle1_Feld1>
+    <Tabelle1_Feld2>Feldinhalt2</Tabelle1_Feld2>
+  </Record>
+  <Record>
+    <Tabelle1_Feld1>Feldinhalt3</Tabelle1_Feld1>
+    <Tabelle1_Feld2>Feldinhalt4</Tabelle1_Feld2>
+  </Record>
+</Tabelle1>
+</Database>

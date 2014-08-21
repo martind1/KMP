@@ -1,0 +1,54 @@
+UniDAC Migration Wizard log
+
+Created at: 23.12.2011 04:04:09
+
+Initializing unit list
+
+Allocating temporary folder
+
+Processing file: D:\Delphi2010\kmp\msapps\ASWSFrm.pas
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\msapps\BackupFrm.pas
+
+2 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\EMAIFrm.pas
+
+6 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\EMGRFrm.pas
+
+2 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\Logondlg.pas
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\msapps\ASWSFrm.DFM
+
+No changes
+
+Processing file: D:\Delphi2010\kmp\msapps\BackupFrm.DFM
+
+1 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\EMAIFrm.DFM
+
+5 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\EMGRFrm.DFM
+
+1 change(s)
+
+Processing file: D:\Delphi2010\kmp\msapps\Logondlg.DFM
+
+No changes
+
+Replacing original files with changed versions
+
+Removing temporary folder
+
+Replace procedure was performed sucessfully.
+

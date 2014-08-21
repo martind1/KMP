@@ -1,0 +1,102 @@
+Projekt    Version        Stand
+KMP        3.12MD         28.01.03
+Komponenten
+==================================
+
+Rechteverwaltung
+----------------
+- TPopupMenu kann Rechte haben:
+  - nur Visibel:
+    wenn Anzeige nicht erlaubt wird AutoPopup=false gesetzt
+
+- Objektrechte allgemein:
+  Wenn Objektrechte vergeben wurden, sollten sie für alle Gruppen vergeben werden.
+  Grund: Logon innerhalb der Aplikation
+
+Combit - List&Label
+-------------------
+- Das Package darf nur direkt nach KMP kompiliert werden.
+  Grund: es existieren Abhängigkeiten zu KMP und wenn KMP geändert wurde
+	 ohne Neu-Kompilierung wird KMP in LL integriert.
+
+TLookupMemo - Options
+---------------------
+- TLookupMemo wird ergänzt um die Eigenschaften Options: TLeOptions;
+  Die Options entsprechen denen in TLookupEdit:
+  TLeOption = (LeNoNullValues,        {keine Null-Werte kopieren}
+               LeReadOnly,            {keine Änderung zw. Data und LookupField}
+               LeNoOverride,          {Kopieren nur wenn Ziel=Null}
+               LeForceEmpty,          {Leere References als Fltr is null verwenden}
+               LeNoDblClick           {kein Lookup bei Doppelklick}
+
+MultiGrid - Layout sofort speichern
+-----------------------------------
+- Das Layout wird sofort nach der Änderung in der INI gespeichert
+  (und nicht erst beim Schließen).
+  Damit wird verhindert, dass nach Refresh die Layoutänderung verloren geht.
+
+
+LuGriDlg - Suchfunktion
+-----------------------
+im LookUp Grid Dialog kann eine Filterfunktion angezeigt werden.
+Sie besteht aus einer Combobox zur Auswahl der Spalte, einem
+Eingabefeld für den Suchbegriff und einem Button zum Starten der Suche.
+Falls Filterzeichen (%,*,..,<,>,=) fehlen, wird '..' ergänzt.
+
+Beim Wechsel der Spalte werden die bereits eingegebenen Suchkriterien gelöscht.
+
+Aktivieren: im aufrufenden LookUpDef.Options.luGridFltr=true setzen.
+
+
+INI-Datei editieren
+-------------------
+IniKmp.Edit;    Öffnet Editor
+
+Andere Logfiles editieren
+-------------------------
+Prots.EditAll;  Öffnet Dialog zum Auswählen einer oder mehrerer Logfiles.
+
+Prots.Edit;     Editiert aktuelles Logfile
+
+
+Filterabfragen: bei Lookup auch verwenden - 20.10.03
+-----------------------------------------
+- über LuDef.Optsions.UseFltr kann eingestellt werden,
+  dass auch bei Lookup die zuletzt verwendete Filterabfrage
+  verwendet wird.
+
+
+Lookup Grid sortieren permanent
+-------------------------------
+- das permanente Sortieren funktioniert jetzt auch im LuGrid.
+
+
+Select über mehrere Schemas
+---------------------------
+- Field Descriptions können auch selects über mehrere Schemas handeln
+  i.d.F. 'select F1, F2 from Schema1.T1, Schema2.T2'
+
+Grid: copy Memos
+----------------
+- das Kopieren der Inhalte von Memo Feldern wird unterstützt
+  (bisher wurde nur '(Memo)' in das Clipbord kopiert).
+
+Gemeinsames Logon
+-----------------
+- gemeinsames LogonDlg für versch. User/Server (Qw)
+- Im Designmodus wird vom GNavigator.Bemerkungsfeld
+  nach DB1.Params kopiert:
+  USER NAME
+  PASSW
+- Anwendung: in GNavigator.Bemerkung werden 2 Zeilen eingefügt
+  USER NAME=user
+  PASSWORD=passwort
+  Im Designer-Modus wird LogonFrm.Database1 mit diesen Parametern ergänzt.
+
+Lov-Button im Suchmodus
+-----------------------
+- auch im Suchmodus kann über den LovBtn (List of Values) ein Wert
+  in die Suchmaske übernommen werden.
+  Intern: bei nlQuery wird ANavLink.SaveDataSet verwendet (function LovNLDataSet)
+
+  

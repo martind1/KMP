@@ -1,0 +1,63 @@
+Installation auf Delphi5
+------------------------
+
+- Packages
+  --------
+  ct3dcanvas.bpl
+  addons.bpl
+  kmp.bpl
+
+- Designer Interface
+  ------------------
+  - in allen Projekten hinzufügen:
+    kmp\toolsapi\dsgintf.pas
+
+- Quickreport
+  -----------
+  - in allen Reports ersetzen
+    von: Sender: TQuickRep nach: Sender: TCustomQuickRep
+
+  - User Formular Editor entfernt: Modul qrEdiDlg
+
+  - Damit TQrExpr funktioniert MUSS ein Detailband vorhanden
+    und enabled sein
+
+- InMemKmp:
+  ---------
+  PFieldDesc: Typ geändert
+  MEMTABLE.PAS: entfernt aus kmp__Prj
+
+- PSrc_Kmp:
+  ---------
+  Feld 'Report' entfernt (D5 unterstützt nicht Reportsmith)
+
+- GNavigator:
+  -----------
+  - property PanelClient is obsolet.
+    properties für Clientbereich: ClientWidth und ClientHeight
+
+11.08.00  zu häufiges Nachladen von LuDef Tables
+          --------------------------------------
+          Das Ändern von TField.ReadOnly bewirkt in D5 den Aufruf
+          von DataChange.
+          LuDefKmp.PutFields: ReadOnly wird nur bei Wertänderung
+                              zurückgesetzt (in SetFieldComp)
+                              
+02.01.00  TeamSource
+          ----------
+          Versionskontrolle
+
+04.01.01  TMultiGrid
+          ----------
+          CopyToHtml (markierte Zeilen zum Clipboard im Html Format)
+
+05.01.01  TMultiGrid
+          ----------
+          Layout Editor: MuGriDlg
+
+20.01.01  EXPORT.INI
+          ----------
+          Export/Import Einstellungen werden jetzt in EXPORT.INI
+          gespeichert (nicht mehr in der Standard-IniKmp)
+
+          

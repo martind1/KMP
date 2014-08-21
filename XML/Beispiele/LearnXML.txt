@@ -1,0 +1,85 @@
+
+Learn XML
+
+Author: Ali Nouroozpour
+
+
+In its simplest form, the following is XML
+
+<?xml version="1.0"?>
+<CHAPTER>
+            <SECTION>
+                        This is a section of this chapter.
+            </SECTION>
+            <EMPTY/>
+</CHAPTER>
+
+So what’s all this about then?
+
+<?xml version="1.0"?>  tells your browser what version of XML we are trying to write.
+
+<CHAPTER> is a markup. Basically, XML is divided into markup and content, with Markup being the detailed description of the content.
+
+You can use any word (other than the reserved words) as a Markup, as long as you stick to certain rules. 
+
+Firstly, a Markup that contains content (CHAPTER in our example), must have opening and closing tags. In our example we used <CHAPTER> and </CHAPTER>.
+
+Secondly Markup must be able to nest correctly. Its rather like a parent-child relationship with a parent nesting any number of children. In our example <SECTION> was the child nested within <CHAPTER>.
+
+Finally, if it’s a lone-markup (as in a lone-parent <g>), it must end where it started!! <EMPTY/> as in our example.
+
+The above is a well-formed XML, because tags are properly opened and closed, children are nested within the parent and a lone-markup is ended at the same time as it was started.
+
+But … there’s more … lots more …
+
+<?xml version="1.0"?>
+<!DOCTYPE JEDI [
+<!ELEMENT JEDI (CHAPTER*)*>
+<!ELEMENT CHAPTER (DESCRIPTION?,SUBTITLE+)>
+<!ELEMENT DESCRIPTION EMPTY>
+<!ELEMENT SUBTITLE (MAINSUBTITLE+, OTHER*)*>
+<!ELEMENT MAINSUBTITLE (#PCDATA)>
+<!ELEMENT OTHER (#PCDATA)>
+<!ATTLIST DESCRIPTION
+            LINE1 CDATA #REQUIRED
+            TYPE (Pascal|OO) "Pascal">
+<!ENTITY STATEMENT "ProjectJedi := TDelphiAPI.Create(DelphiCommunity);">
+]>
+
+<JEDI>
+&STATEMENT; 
+<CHAPTER> 
+<DESCRIPTION LINE1="Object Pascal Syntax" TYPE="Pascal"/>
+<SUBTITLE> 
+<MAINSUBTITLE>Main subtitle rules OK?</MAINSUBTITLE> 
+<OTHER>Second (sub) subtitle woz ere!!</OTHER> 
+</SUBTITLE>
+</CHAPTER>
+</JEDI>
+
+Same as the first example, <?xml version="1.0"?>, declares the version of XML.
+
+<!DOCTYPE JEDI [, tell XML that this is a Document Type Definition (DTD) and its name(JEDI). 
+
+A DTD defines a strict set of standards to use in an XML document. The shape and form of each and every part of an XML is exactly defined. DTD’s are enclosed between open and close square-brackets and they consist of elements (<!ELEMENT).
+
+An element defines the name and form of a markup. <!ELEMENT JEDI (CHAPTER)*>, shows that;
+
+Our tag's name (JEDI). 
+JEDI’s child markup (CHAPTER). 
+How often it can be used (this is optional, but we used * in our example meaning “any number of times” 
+Our next line, <!ELEMENT CHAPTER (DESCRIPTION?,SUBTITLE+)>, describes the children of CHAPTER. They are DESCRIPTION and SUBTITLE. It also tells us that
+
+DESCRIPTION may appear once or not at all (? sign). 
+SUBTITLE must appear at least once, although there could be more (+ sign). 
+<!ELEMENT DESCRIPTION EMPTY> tells XML that this markup has no content (as in <DESCRIPTION/>).
+
+<!ELEMENT SUBTITLE (MAINSUBTITLE+,OTHER+)*> tells the story of a SUBTITLE that had two children, MAINSUBTITLE and OTHER. While the first child, MAINSUBTITLE, had to be repeated at least one (+ sign), the OTHER child be repeated not at all (* sign).
+
+<!ELEMENT MAINSUBTITLE (#PCDATA)> and <!ELEMENT OTHER (#PCDATA)> both contain #PCDATA, which means that the contents of these markups can be anything.
+
+Another way of describing an element, is to give it a list of attributes. <!ATTLIST DESCRIPTION tells XML that a list of attributes is attached to the element DESCRIPTION. Those attributes, in this case, are LINE1 and TYPE. LINE1 is normal text (CDATA) and it is required (#REQUIRED). TYPE is an option between “Pascal” and “OO”, with the default being set to “Pascal”.
+
+Oh, nearly forgot! Then line <!ENTITY STATEMENT "ProjectJedi := TDelphiAPI.Create(DelphiCommunity);"> inserts “ProjectJedi := TDelphiAPI.Create(DelphiCommunity);“ whenever $STATEMENT appears!
+
+So as you can see, the second bit our XML (that’s the bit after ]) is the actual text being formatted as per our DTD.

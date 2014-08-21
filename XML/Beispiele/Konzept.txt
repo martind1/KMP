@@ -1,0 +1,10 @@
+Konzept XML Austauschformat:
+
+<[Tabelle1]>
+  <Record>
+    <[Tabelle1]_[Feld1]><[Feldinhalt1]></[Tabelle1]_[Feld1]>
+    <[Tabelle1]_[Feld2]><[Feldinhalt2]></[Tabelle1]_[Feld2]>
+...
+  </Record>
+<\[Tabelle1]>
+

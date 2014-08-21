@@ -1,0 +1,14 @@
+Auto=1
+CheckTime=60
+WaitTime=1
+Pollinterval=3000
+MessTime=5
+CheckLaser=0
+DeleteTemp=0
+DeleteTempCnt=5
+DeleteTempFiles=*.xls;Ind*.tmp
+MoveDrive=d:
+MoveMonths=6
+BMCDriveMinSpace=2000
+MoveDriveMinSpace=2000
+ 

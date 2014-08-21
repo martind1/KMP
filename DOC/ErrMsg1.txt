@@ -1,0 +1,1 @@
+[Fataler Fehler] SpsDemo.DPR(17): Datei nicht gefunden: 'DsgnIntf.dcu'

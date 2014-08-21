@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<?xml-stylesheet type="text/xsl" href="vehicles.xslt"?>
+<vehicles>
+  <type>Cars</type>
+  <car>
+    <name>Commodore</name>
+    <manufacturer>Holden</manufacturer>
+    <price>38,000</price>
+  </car>
+  <car>
+    <name>Falcon</name>
+    <manufacturer>Ford</manufacturer>
+    <price>36,000</price>
+  </car>
+  <car>
+    <name>Verada</name>
+    <manufacturer>Mitsubishi</manufacturer>
+    <price>36,500</price>
+    </car>
+  <car>
+    <name>Avalon</name>
+    <manufacturer>Toyota</manufacturer>
+    <price>41,000</price>
+  </car>
+</vehicles>
